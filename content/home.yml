@@ -12,7 +12,7 @@ hero:
   - value: 10+
     label: anni di esperienza
   - value: 3+
-    label: anni, età di partenza dei corsi
+    label: anni, età minima
   - value: CSEN
     label: formazione nazionale istruttori
 quote:
@@ -28,7 +28,7 @@ paths:
   action: Scopri i corsi per bambini e ragazzi
   link: /bambini-e-ragazzi/
   image: /uploads/scuola-di-parkour-a-padova.jpg
-  caption: Primo corso di parkour a padova U14 Uncensored Runners
+  caption: ''
 - question: Sei curioso/a ma non sai se fa per te?
   title: Corsi per adulti
   action: Scopri di più sui nostri corsi
@@ -39,7 +39,7 @@ paths:
   title: Chi siamo
   action: Leggi di noi
   link: /scuola-parkour-padova/
-  image: /uploads/foto-fondatore-parkour-padova.jpg
+  image: /uploads/allenatori-professionisti-parkour-padova.jpg
   caption: ''
 band_title: Contattaci per una lezione di prova gratuita
 social_title: Seguici sui social!

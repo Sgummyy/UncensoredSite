@@ -1,26 +1,25 @@
-/* Bricolage Grotesque e Figtree (SIL Open Font License), ospitati localmente: nessuna connessione a Google */
+/* Big Shoulders Display e Source Sans 3 (SIL Open Font License), ospitati localmente: nessuna connessione a Google */
 @font-face {
-  font-family: 'Bricolage Grotesque';
+  font-family: 'Big Shoulders Display';
   font-style: normal;
-  font-weight: 500 800;
-  font-stretch: 100%;
+  font-weight: 700 900;
   font-display: swap;
-  src: url(/assets/fonts/bricolage-grotesque-normal-latin.woff2) format('woff2');
+  src: url(/assets/fonts/big-shoulders-display-normal-latin.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Figtree';
+  font-family: 'Source Sans 3';
   font-style: italic;
   font-weight: 400;
   font-display: swap;
-  src: url(/assets/fonts/figtree-italic-latin.woff2) format('woff2');
+  src: url(/assets/fonts/source-sans-3-italic-latin.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Figtree';
+  font-family: 'Source Sans 3';
   font-style: normal;
   font-weight: 400 700;
   font-display: swap;
-  src: url(/assets/fonts/figtree-normal-latin.woff2) format('woff2');
+  src: url(/assets/fonts/source-sans-3-normal-latin.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }

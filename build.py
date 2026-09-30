@@ -286,7 +286,7 @@ def footer():
 </div></footer>
 <div class="quickbar"><a class="btn btn-ghost" href="tel:{PHONE_TEL}">Chiama</a><a class="btn btn-red" href="/contatti/parkour-padova/">Prova gratuita</a></div>'''
 
-FONTS = '<link rel="preload" href="/assets/fonts/bricolage-grotesque-normal-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/assets/fonts/figtree-normal-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/assets/fonts/fonts.css">'
+FONTS = '<link rel="preload" href="/assets/fonts/big-shoulders-display-normal-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/assets/fonts/source-sans-3-normal-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/assets/fonts/fonts.css">'
 
 def org():
     return {"@type": "SportsOrganization", "@id": DOMAIN + "/#scuola", "sport": "Parkour", "name": f"{S['site_name']} – Scuola di parkour a Padova",
@@ -346,9 +346,6 @@ def page_head(crumbs, tag, title, subtitle='', notice='', image=None, image_alt=
     subs = ''.join(f'<p class="sub">{e(s)}</p>' for s in (subtitle or '').split('\n') if s.strip())
     text = (f'<div class="ph-text">{crumbs_html(crumbs)}<div><span class="tag">{e(tag)}</span></div><h1>{e(title)}</h1>{subs}'
             + (f'<p class="notice">{e(notice)}</p>' if notice else '') + '</div>')
-    if image:
-        return (f'<section class="page-head has-photo"><div class="wrap">{text}'
-                f'<figure class="ph-photo">{img(image, image_alt, sizes="(max-width:900px) 100vw, 45vw", eager=True)}</figure></div></section>')
     return f'<section class="page-head"><div class="wrap">{text}</div></section>'
 
 def take_head_image(p):
@@ -398,23 +395,17 @@ def build_home():
     socials = ''.join(f'<div class="social-card">{video(v, "Video su YouTube")}</div>' for v in (H.get('videos') or [])[:2])
     body = f'''
 <section class="hero">
+<picture>{img(hero.get('image'), '', sizes='100vw', eager=True)}</picture>
 <div class="wrap">
-<div class="hero-text">
 <span class="tag">{e(hero.get('tag'))}</span>
 <h1>{e(hero.get('title_1'))} <em>{e(hero.get('title_2'))}</em></h1>
 <p class="lead">{e(hero.get('lead'))}</p>
-<div class="cta-row"><a class="btn btn-red" href="/contatti/parkour-padova/">{e(hero.get('button'))} {ARROW}</a><a class="btn btn-ghost" href="/parkour-movimentonaturale-yoga-padova/">{e(hero.get('button_2'))}</a></div>
+<div class="actions"><a class="btn btn-red" href="/contatti/parkour-padova/">{e(hero.get('button'))} {ARROW}</a><a class="btn btn-ghost" href="/parkour-movimentonaturale-yoga-padova/">{e(hero.get('button_2'))}</a></div>
 {f'<div class="stats">{stats}</div>' if stats else ''}
 {areas}
 </div>
-<svg class="trajectory" viewBox="0 0 300 200" preserveAspectRatio="none" aria-hidden="true"><path d="M4 196 C 60 20, 200 -10, 296 60"/></svg>
-<div class="hero-media">
-<picture>{img(hero.get('image'), '', sizes='(max-width:900px) 100vw, 55vw', eager=True)}</picture>
-<div class="hero-badge"><span class="dot">{ARROW}</span><span><b>Prima lezione gratuita</b><small>Chiamaci al {e(PHONE)} o scrivici</small></span></div>
-</div>
-</div>
 </section>
-<section class="section tinted"><div class="wrap manifesto">
+<section class="section"><div class="wrap manifesto">
 <figure>{img(q.get('image'), q.get('author'), sizes='(max-width:820px) 100vw, 40vw')}</figure>
 <div class="flow">
 <p class="eyebrow">{e(q.get('eyebrow'))}</p>
@@ -425,11 +416,11 @@ def build_home():
 <div class="section-head"><h2>{e(H.get('paths_title'))}</h2></div>
 <div class="paths">{cards}</div>
 </div></section>
-<section class="section band"><div class="wrap"><div>
-<div><h2>{e(H.get('band_title'))}</h2><p>Rispondiamo di persona e ti aiutiamo a scegliere il corso giusto.</p></div>
-<div class="cta-row"><a class="phone" href="tel:{PHONE_TEL}">{e(PHONE)}</a><a class="btn btn-light" href="/contatti/parkour-padova/">Scrivici {ARROW}</a></div>
-</div></div></section>
-<section class="section"><div class="wrap">
+<section class="band"><div class="wrap">
+<h2>{e(H.get('band_title'))}</h2>
+<div class="cta-row"><a class="phone" href="tel:{PHONE_TEL}">{e(PHONE)}</a><a class="btn btn-white" href="/contatti/parkour-padova/">Scrivici {ARROW}</a></div>
+</div></section>
+<section class="section section-top"><div class="wrap">
 <div class="section-head"><h2>Dal blog</h2><a class="btn btn-ghost" href="/blog-parkour-padova/">Tutti gli articoli {ARROW}</a></div>
 <div class="posts">{''.join(post_card(p) for p in [x for x in POSTS if x.get('cover') or first_md_image(x['body'])][:3])}</div>
 </div></section>
@@ -451,8 +442,10 @@ def crumbs_for(p):
 def build_page(p):
     crumbs = crumbs_for(p)
     lay = p.get('layout')
-    blocks, himg, halt = take_head_image(p) if lay == 'standard' else (p.get('blocks'), p.get('head_image'), p.get('title'))
-    head = page_head(crumbs, p.get('tag'), p.get('title'), p.get('subtitle'), p.get('notice'), himg, halt)
+    blocks = p.get('blocks') or []
+    if p.get('head_image') and lay == 'standard':
+        blocks = [{'type': 'image', 'src': p['head_image'], 'alt': p.get('head_image_alt') or p.get('title')}] + list(blocks)
+    head = page_head(crumbs, p.get('tag'), p.get('title'), p.get('subtitle'), p.get('notice'))
     if lay == 'blog':
         withc = [x for x in POSTS if x.get('cover') or first_md_image(x['body'])]
         other = [x for x in POSTS if x not in withc]

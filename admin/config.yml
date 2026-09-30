@@ -319,6 +319,11 @@ collections:
     label: Testo sopra il modulo (solo pagina Contatti)
     widget: text
     required: false
+  - name: trust
+    label: Punti di fiducia sotto il modulo (solo pagina Contatti)
+    label_singular: punto
+    widget: list
+    required: false
   - name: show_cta
     label: Mostra il riquadro "Prenota la prova" in fondo
     widget: boolean

@@ -1,8 +1,8 @@
 url: /parkour-movimentonaturale-yoga-padova/
 menu_label: Parkour e movimento
 order: 1
-seo_title: Corsi di parkour, yoga e movimento a padova | Uncensored Runners Padova
-description: 'Corsi di parkour, movimento naturale, calisthenics e yoga per scoprire le discipline in sicurezza, con i migliori professionisti. '
+seo_title: Corsi di parkour, yoga e movimento a Padova | Adulti
+description: Corsi di parkour, movimento naturale e yoga per adulti a Padova, a ogni età e livello, con istruttori qualificati. Prova gratuita.
 tag: Corsi adulti
 title: Corsi di parkour e movimento
 subtitle: ''
@@ -26,7 +26,7 @@ blocks:
 - type: divider
 - type: image
   src: /uploads/parkour-padova-15cf7e.jpg
-  alt: ''
+  alt: Allievi di Uncensored Runners durante un allenamento di parkour in città
 - type: heading
   text: I NOSTRI CORSI IN BREVE
   level: 2

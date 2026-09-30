@@ -1,8 +1,8 @@
 url: /formazione-istruttori/
 menu_label: Formazione istruttori
 order: 5
-seo_title: FORMAZIONE ISTRUTTORI NAZIONALI DI PARKOUR | Uncensored Runners Padova
-description: Introduzione e regolamento per la formazione nazionale degli istruttori di parkour CSEN, riconosciuta dal CONI e dal MIUR, in collaborazione con Elia Landolfi e UncensoredRunners
+seo_title: Formazione istruttori di parkour C.S.E.N. | Uncensored Runners
+description: Formazione nazionale per istruttori di parkour riconosciuta C.O.N.I. e M.I.U.R., in collaborazione con C.S.E.N. ed Elia Landolfi. Regolamento e date.
 tag: C.S.E.N. · C.O.N.I. · M.I.U.R.
 title: FORMAZIONE ISTRUTTORI nazionali DI PARKOUR
 subtitle: |-
@@ -16,7 +16,7 @@ layout: standard
 blocks:
 - type: image
   src: /uploads/parkour-padova-78f124.jpg
-  alt: ''
+  alt: Istruttori di parkour in allenamento durante la formazione
 - type: heading
   text: INTRODUZIONE E REGOLAMENTO
   level: 2

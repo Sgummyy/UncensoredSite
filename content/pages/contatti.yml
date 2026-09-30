@@ -1,8 +1,8 @@
 url: /contatti/parkour-padova/
 menu_label: Contatti
 order: 6
-seo_title: Contatti | Uncensored Runners Padova
-description: 'Contatti scuola di parkour N^1 a Padova '
+seo_title: Contatti e lezione di prova | Uncensored Runners Padova
+description: Chiama il 352 048 0417 o scrivici per informazioni sui corsi di parkour a Padova e per prenotare la tua lezione di prova gratuita.
 tag: Contatti
 title: Informazioni di contatto
 subtitle: ''
@@ -16,4 +16,9 @@ blocks:
   src: /uploads/coach-parkour-padova.jpg
   alt: Coach parkour Padova
   caption: Uncensored Runners Coach 2018
-intro: Chiedi informazioni sui corsi o prenota la tua lezione di prova gratuita.
+intro: Chiedi informazioni sui corsi o prenota la tua lezione di prova gratuita. Ti ricontattiamo per fissare giorno e sede.
+trust:
+- La prima lezione di prova è gratuita
+- Corsi per bambini dai 3 anni, ragazzi e adulti, divisi per età
+- Istruttori formati con almeno sei mesi di tirocinio ed esame teorico e pratico
+- Formazione nazionale istruttori riconosciuta C.S.E.N.

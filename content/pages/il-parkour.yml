@@ -1,8 +1,8 @@
 url: /il-parkour/
 menu_label: Il parkour
 order: 7
-seo_title: IL PARKOUR | Uncensored Runners Padova
-description: Cos'è il parkour? Come è nato? Scoprilo con noi!
+seo_title: 'Il parkour: cos''è e storia | Uncensored Runners Padova'
+description: Una disciplina moderna non convenzionale, un'attività fisica e mentale, un inno alla libertà. Scopri cos'è il parkour e come è nato.
 tag: La disciplina
 title: Il parkour
 subtitle: ''
@@ -37,5 +37,5 @@ blocks:
   - blocks:
     - type: image
       src: /uploads/parkour-padova-3c2335.jpg
-      alt: ''
+      alt: Un allievo aiuta un compagno a superare un muro
   layout: stretta-larga

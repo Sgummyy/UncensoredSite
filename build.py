@@ -130,15 +130,16 @@ REASONS = ['Parkour bambini e ragazzi', 'Corsi per adulti', 'Formazione istrutto
 def form(title=''):
     FORM_N[0] += 1
     n = FORM_N[0]
-    def inp(label, typ, ac, i):
-        return f'<div><label for="f{n}-{i}">{label} *</label><input id="f{n}-{i}" type="{typ}" name="{label}" autocomplete="{ac}" required></div>'
+    def inp(label, typ, ac, i, req=True):
+        star, r = (' *', ' required') if req else (' <small>(facoltativo)</small>', '')
+        return f'<div><label for="f{n}-{i}">{label}{star}</label><input id="f{n}-{i}" type="{typ}" name="{label}" autocomplete="{ac}"{r}></div>'
     opts = ''.join(f'<option>{e(o)}</option>' for o in REASONS)
     return (f'<div class="card">{f"<h3>{e(title)}</h3>" if title else ""}'
             f'<form class="form" id="form-{n}" name="contatti" method="POST" data-netlify="true" netlify-honeypot="sito-web">'
             f'<input type="hidden" name="form-name" value="contatti"><p hidden><label>Non compilare: <input name="sito-web"></label></p>'
             f'<div class="row">{inp("Nome", "text", "name", 1)}{inp("Email", "email", "email", 2)}</div>'
-            f'<div class="row">{inp("Telefono", "tel", "tel", 3)}<div><label for="f{n}-4">Motivo del contatto *</label><select id="f{n}-4" name="Motivo del contatto" required><option value="">Seleziona…</option>{opts}</select></div></div>'
-            f'<div><label for="f{n}-5">Messaggio *</label><textarea id="f{n}-5" name="Messaggio" required></textarea></div>'
+            f'<div class="row">{inp("Telefono", "tel", "tel", 3, False)}<div><label for="f{n}-4">Motivo del contatto *</label><select id="f{n}-4" name="Motivo del contatto" required><option value="">Seleziona…</option>{opts}</select></div></div>'
+            f'<div><label for="f{n}-5">Messaggio <small>(facoltativo)</small></label><textarea id="f{n}-5" name="Messaggio" placeholder="Es. età del bambino, giorni preferiti, domande…"></textarea></div>'
             f'<label class="check"><input type="checkbox" id="f{n}-6" name="privacy" required> Ho letto l\'<a href="/j/privacy/">informativa privacy</a> e acconsento al trattamento dei dati.</label>'
             f'<button class="btn btn-red" type="submit">Invia richiesta {ARROW}</button></form>'
             f'<p class="form-ok" hidden>Grazie! Abbiamo ricevuto la tua richiesta e ti risponderemo al più presto. Per urgenze chiamaci al <strong>{e(PHONE)}</strong>.</p></div>')
@@ -283,7 +284,7 @@ def footer():
 FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">'
 
 def org():
-    return {"@type": ["SportsActivityLocation", "LocalBusiness"], "@id": DOMAIN + "/#scuola", "name": f"{S['site_name']} – Scuola di parkour a Padova",
+    return {"@type": "SportsOrganization", "@id": DOMAIN + "/#scuola", "sport": "Parkour", "name": f"{S['site_name']} – Scuola di parkour a Padova",
             "url": DOMAIN + "/", "logo": DOMAIN + "/assets/logo-512.png", "image": og_image(HOME['hero'].get('image')),
             "telephone": PHONE_TEL, "email": EMAIL, "description": HOME.get('description'),
             "address": {"@type": "PostalAddress", "addressLocality": "Padova", "addressRegion": "PD", "addressCountry": "IT"},
@@ -292,12 +293,17 @@ def org():
 
 WRITTEN = []
 def write_page(url, title, desc, body, crumbs=None, og=None, ld=None, noindex=False, is_post=False):
-    lds = [org()] if url == '/' else []
+    lds = [org(), {"@type": "WebSite", "@id": DOMAIN + "/#website", "name": S['site_name'], "url": DOMAIN + "/",
+                   "inLanguage": "it-IT", "publisher": {"@id": DOMAIN + "/#scuola"}}] if url == '/' else []
     if crumbs:
         lds.append({"@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": i + 1, "name": n, "item": canonical(h.strip('/'))} for i, (n, h) in enumerate(crumbs)]})
     if ld: lds.append(ld)
-    ldj = json.dumps({"@context": "https://schema.org", "@graph": lds}, ensure_ascii=False) if lds else ''
+    def clean(o):
+        if isinstance(o, dict): return {k: clean(v) for k, v in o.items() if v not in (None, '', [])}
+        if isinstance(o, list): return [clean(x) for x in o]
+        return o
+    ldj = json.dumps({"@context": "https://schema.org", "@graph": clean(lds)}, ensure_ascii=False).replace('</', '<\\/') if lds else ''
     slug = url.strip('/')
     doc = f'''<!doctype html>
 <html lang="it"><head>
@@ -372,6 +378,7 @@ def build_home():
 <p class="lead">{e(hero.get('lead'))}</p>
 <div class="actions"><a class="btn btn-red" href="/contatti/parkour-padova/">{e(hero.get('button'))} {ARROW}</a><a class="btn btn-ghost" href="/parkour-movimentonaturale-yoga-padova/">{e(hero.get('button_2'))}</a></div>
 {f'<div class="stats">{stats}</div>' if stats else ''}
+{f'<p class="areas"><b>Dove ci alleniamo</b> {e(" · ".join(S.get("areas") or []))}</p>' if S.get('areas') else ''}
 </div>
 </section>
 <section class="section"><div class="wrap manifesto">
@@ -427,7 +434,8 @@ def build_page(p):
 <div class="card flow"><p class="eyebrow">Facci una domanda</p><p><a href="mailto:{e(EMAIL)}" style="font-weight:700;font-size:1.15rem">{e(EMAIL)}</a></p></div>
 {fb}{photos}
 </div>
-<div class="flow"><h2>Scrivici</h2><p class="lede">{e(p.get('intro'))}</p>{form()}</div>
+<div class="flow"><h2>Scrivici</h2><p class="lede">{e(p.get('intro'))}</p>{form()}
+<ul class="trust">{''.join(f'<li>{e(t)}</li>' for t in (p.get('trust') or []))}</ul></div>
 </div></div></section>'''
     else:
         body = head + f'<section class="section"><div class="wrap flow">{render_blocks(p.get("blocks"))}{cta_aside() if p.get("show_cta") else ""}</div></section>'
@@ -458,9 +466,9 @@ def build_post(i):
     im = cover or first_md_image(p['body'])
     desc = p.get('description') or p.get('excerpt') or trim(plain(body_html))
     ld = {"@type": "BlogPosting", "headline": p['title'], "datePublished": d.isoformat() if d else None, "inLanguage": "it-IT",
-          "author": {"@type": "Person", "name": p.get('author') or 'Elia Landolfi'}, "publisher": {"@id": DOMAIN + "/#scuola"},
+          "author": {"@type": "Person", "name": p['author']} if p.get('author') else {"@id": DOMAIN + "/#scuola"}, "publisher": {"@id": DOMAIN + "/#scuola"},
           "mainEntityOfPage": canonical(p['slug']), "image": og_image(im) if im else None}
-    write_page(p['url'], f"{p['title']} | Blog {S['site_name']}", trim(desc), body, crumbs, og_image(im) if im else None, ld, is_post=True)
+    write_page(p['url'], f"{p['title']} | {S['site_name']}", trim(desc), body, crumbs, og_image(im) if im else None, ld, is_post=True)
 
 def build_sitemap_page():
     li = '<li><a href="/">Home</a></li>' + ''.join(f'<li><a href="{e(p["url"])}">{e(p.get("menu_label") or p["title"])}</a></li>' for p in PAGES if not p.get('noindex'))

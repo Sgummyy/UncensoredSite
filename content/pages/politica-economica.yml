@@ -2,7 +2,7 @@ url: /scuola-parkour-padova/politica-economica/
 menu_label: Politica economica
 order: 4
 seo_title: Politica economica | Uncensored Runners Padova
-description: Politica economica di Movivo SSDARL, tra sostenibilità e trasparenza.
+description: 'Formazione continua degli istruttori, trasparenza su costi e prezzi, agevolazioni: la politica economica di Movivo SSDARL, Uncensored Runners.'
 tag: Trasparenza
 title: POLITICA ECONOMICA di MOVIVO SSDARL
 subtitle: Cultura del movimento, educazione, sostenibilità e trasparenza.
@@ -12,16 +12,15 @@ show_cta: true
 noindex: false
 layout: standard
 blocks:
-- type: heading
-  text: La cultura del movimento, per noi, è uno strumento speciale per contribuire all'educazione e alla crescita dei praticanti, dai bambini agli adulti. Nel corpo si depositano emozioni ed esperienze che condizionano il vissuto di tutti i giorni. Attraverso il movimento, che è il linguaggio del corpo, chi pratica ha la possibilità di elaborare fisicamente il passato e di scoprire e coltivare le proprie potenzialità, senza passare dal ragionamento. Per questo crediamo nell'importanza di offrire un servizio di alto livello e investiamo in giovani professionisti che condividono questi valori.
-  level: 3
+- type: text
+  body: La cultura del movimento, per noi, è uno strumento speciale per contribuire all'educazione e alla crescita dei praticanti, dai bambini agli adulti. Nel corpo si depositano emozioni ed esperienze che condizionano il vissuto di tutti i giorni. Attraverso il movimento, che è il linguaggio del corpo, chi pratica ha la possibilità di elaborare fisicamente il passato e di scoprire e coltivare le proprie potenzialità, senza passare dal ragionamento. Per questo crediamo nell'importanza di offrire un servizio di alto livello e investiamo in giovani professionisti che condividono questi valori.
 - type: divider
 - type: columns
   columns:
   - blocks:
     - type: heading
       text: Formazione continua e professionalità.
-      level: 3
+      level: 2
     - type: text
       body: |-
         In Italia, per lavorare come istruttore sportivo spesso è sufficiente una certificazione che si ottiene partecipando ad un weekend di formazione.
@@ -33,7 +32,7 @@ blocks:
         Le tematiche affrontate nella formazione comprendono una parte scientifica (anatomia, fisiologia e biomeccanica), una parte tecnico-pratica (postura, esercizi e tecniche del parkour) e una parte pedagogica-educativa (comunicazione, gestione del rischio, elementi di psicologia e coaching).
     - type: heading
       text: 'Trasparenza: costi e prezzi.'
-      level: 3
+      level: 2
     - type: text
       body: |-
         Per garantire la sostenibilità dell'impegno che richiediamo ai nostri istruttori, ci impegniamo a riconoscere un corrispettivo economico che permetta loro di vivere di questa professione. Questo significa anche tutelarli nei momenti in cui le attività sono ridotte, come il periodo estivo.
@@ -44,7 +43,7 @@ blocks:
   - blocks:
     - type: heading
       text: Agevolazioni, diritti e comunità.
-      level: 3
+      level: 2
     - type: text
       body: |-
         Il diritto all'educazione è sancito dalla costituzione, ma siccome l'offerta pubblica presenta ampie lacune soprattutto nell'ambito del movimento, noi cerchiamo di dare il nostro contributo. D'altra parte, chiediamo il contributo dei nostri tesserati per assicurare il diritto al riposo e alla malattia ai nostri istruttori.

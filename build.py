@@ -108,10 +108,15 @@ ARROW = '<svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="non
 PLAY = '<svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>'
 FBICON = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.3V10H7v4h3v8h4v-8h3l1-4h-4V8.6c0-.4.2-.6.6-.6z"/></svg>'
 
-def video(yt, label='Guarda il video su YouTube'):
+POSTERS = ['/uploads/parkour-padova-78f124.jpg', '/uploads/parkour-padova-ed282e.jpg', '/uploads/parkour-padova-d4acce.jpg', '/uploads/parkour-padova-2c691b.jpg']
+POSTER_I = [0]
+def video(yt, label='Guarda il video su YouTube', poster=None):
+    """Video card: the cover is a local photo (no request to YouTube); the player loads only after consent."""
     yt = re.sub(r'.*(?:v=|youtu\.be/|embed/)([\w-]{6,}).*', r'\1', yt or '')
+    if not poster:
+        poster = POSTERS[POSTER_I[0] % len(POSTERS)]; POSTER_I[0] += 1
     return (f'<a class="yt" href="https://www.youtube.com/watch?v={e(yt)}" data-yt="{e(yt)}" target="_blank" rel="noopener" aria-label="{e(label)}">'
-            f'<img data-consent="media" data-src="https://i.ytimg.com/vi/{e(yt)}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">'
+            f'{img(poster, "", sizes="(max-width:820px) 100vw, 40vw")}'
             f'<span class="play"><span>{PLAY}</span></span><span class="lbl">YouTube</span></a>')
 
 def button(b):
@@ -176,7 +181,7 @@ def render_blocks(blocks, ctx='page'):
             group = [b]
             while i + 1 < len(blocks) and blocks[i + 1].get('type') == 'video':
                 i += 1; group.append(blocks[i])
-            out.append('<div class="card-list">' + ''.join(video(x.get('youtube')) for x in group) + '</div>')
+            out.append('<div class="card-list">' + ''.join(video(x.get('youtube'), poster=x.get('poster')) for x in group) + '</div>')
         elif t == 'form':
             out.append(form(b.get('title')))
         elif t == 'document':
@@ -337,11 +342,31 @@ def crumbs_html(crumbs):
     lis = [f'<li aria-current="page">{e(n)}</li>' if i == len(crumbs) - 1 else f'<li><a href="{e(h)}">{e(n)}</a></li>' for i, (n, h) in enumerate(crumbs)]
     return f'<nav aria-label="Percorso"><ol class="crumbs">{"".join(lis)}</ol></nav>'
 
-def page_head(crumbs, tag, title, subtitle='', notice=''):
+def page_head(crumbs, tag, title, subtitle='', notice='', image=None, image_alt=''):
     subs = ''.join(f'<p class="sub">{e(s)}</p>' for s in (subtitle or '').split('\n') if s.strip())
-    return (f'<section class="page-head"><div class="wrap">{crumbs_html(crumbs)}'
-            f'<div><span class="tag">{e(tag)}</span></div><h1>{e(title)}</h1>{subs}'
-            f'{f"<p class=notice>{e(notice)}</p>" if notice else ""}</div></section>')
+    text = (f'<div class="ph-text">{crumbs_html(crumbs)}<div><span class="tag">{e(tag)}</span></div><h1>{e(title)}</h1>{subs}'
+            + (f'<p class="notice">{e(notice)}</p>' if notice else '') + '</div>')
+    if image:
+        return (f'<section class="page-head has-photo"><div class="wrap">{text}'
+                f'<figure class="ph-photo">{img(image, image_alt, sizes="(max-width:900px) 100vw, 45vw", eager=True)}</figure></div></section>')
+    return f'<section class="page-head"><div class="wrap">{text}</div></section>'
+
+def take_head_image(p):
+    """Use head_image if set, otherwise move the first top-level photo of the page into the header."""
+    blocks = list(p.get('blocks') or [])
+    if p.get('head_image'):
+        return blocks, p['head_image'], p.get('head_image_alt') or p.get('title')
+    for i, b in enumerate(blocks[:6]):
+        if b.get('type') == 'columns': break
+        if b.get('type') == 'image' and b.get('src') and not b.get('link'):
+            del blocks[i]
+            clean = []
+            for x in blocks:  # no leading or doubled dividers after removing the photo
+                if x.get('type') == 'divider' and (not clean or clean[-1].get('type') == 'divider'): continue
+                clean.append(x)
+            return clean, b['src'], b.get('alt') or b.get('caption') or p.get('title')
+    return blocks, None, ''
+
 
 def cta_aside():
     return (f'<div class="aside-cta"><h2>{e(S.get("cta_title"))}</h2>'
@@ -369,7 +394,7 @@ def build_home():
         small = f'<small>{e(c["caption"])}</small>' if c.get('caption') else ''
         cards += (f'<a class="path" href="{e(c.get("link"))}"><div class="ph">{img(c.get("image"), c.get("title"), sizes="(max-width:900px) 100vw, 33vw")}</div>'
                   f'<div class="bd"><span class="q">{e(c.get("question"))}</span><h3>{e(c.get("title"))}</h3>{small}<span class="go">{e(c.get("action"))} {ARROW}</span></div></a>')
-    areas = ('<div class="wrap"><div class="areas"><b>Dove ci alleniamo</b>' + ''.join(f'<span>{e(a)}</span>' for a in S.get('areas') or []) + '</div></div>') if S.get('areas') else ''
+    areas = ('<div class="areas"><b>Dove ci alleniamo</b>' + ''.join(f'<span>{e(a)}</span>' for a in S.get('areas') or []) + '</div>') if S.get('areas') else ''
     socials = ''.join(f'<div class="social-card">{video(v, "Video su YouTube")}</div>' for v in (H.get('videos') or [])[:2])
     body = f'''
 <section class="hero">
@@ -380,6 +405,7 @@ def build_home():
 <p class="lead">{e(hero.get('lead'))}</p>
 <div class="cta-row"><a class="btn btn-red" href="/contatti/parkour-padova/">{e(hero.get('button'))} {ARROW}</a><a class="btn btn-ghost" href="/parkour-movimentonaturale-yoga-padova/">{e(hero.get('button_2'))}</a></div>
 {f'<div class="stats">{stats}</div>' if stats else ''}
+{areas}
 </div>
 <svg class="trajectory" viewBox="0 0 300 200" preserveAspectRatio="none" aria-hidden="true"><path d="M4 196 C 60 20, 200 -10, 296 60"/></svg>
 <div class="hero-media">
@@ -387,7 +413,6 @@ def build_home():
 <div class="hero-badge"><span class="dot">{ARROW}</span><span><b>Prima lezione gratuita</b><small>Chiamaci al {e(PHONE)} o scrivici</small></span></div>
 </div>
 </div>
-{areas}
 </section>
 <section class="section tinted"><div class="wrap manifesto">
 <figure>{img(q.get('image'), q.get('author'), sizes='(max-width:820px) 100vw, 40vw')}</figure>
@@ -406,7 +431,7 @@ def build_home():
 </div></div></section>
 <section class="section"><div class="wrap">
 <div class="section-head"><h2>Dal blog</h2><a class="btn btn-ghost" href="/blog-parkour-padova/">Tutti gli articoli {ARROW}</a></div>
-<div class="posts">{''.join(post_card(p) for p in POSTS[:3])}</div>
+<div class="posts">{''.join(post_card(p) for p in [x for x in POSTS if x.get('cover') or first_md_image(x['body'])][:3])}</div>
 </div></section>
 <section class="section"><div class="wrap">
 <div class="section-head"><h2>{e(H.get('social_title'))}</h2></div>
@@ -425,11 +450,17 @@ def crumbs_for(p):
 
 def build_page(p):
     crumbs = crumbs_for(p)
-    head = page_head(crumbs, p.get('tag'), p.get('title'), p.get('subtitle'), p.get('notice'))
     lay = p.get('layout')
+    blocks, himg, halt = take_head_image(p) if lay == 'standard' else (p.get('blocks'), p.get('head_image'), p.get('title'))
+    head = page_head(crumbs, p.get('tag'), p.get('title'), p.get('subtitle'), p.get('notice'), himg, halt)
     if lay == 'blog':
-        cards = (post_card(POSTS[0], True) + ''.join(post_card(x) for x in POSTS[1:])) if POSTS else '<p>Nessun articolo.</p>'
-        body = head + f'<section class="section"><div class="wrap"><div class="posts">{cards}</div></div></section>'
+        withc = [x for x in POSTS if x.get('cover') or first_md_image(x['body'])]
+        other = [x for x in POSTS if x not in withc]
+        cards = (post_card(withc[0], True) + ''.join(post_card(x) for x in withc[1:])) if withc else ''
+        rows = ''.join(f'<a class="post-row" href="{e(x["url"])}"><time datetime="{x["date"].isoformat() if x["date"] else ""}">{fmt_date(x["date"])}</time>'
+                       f'<span><b>{e(x["title"])}</b><small>{e(x.get("excerpt") or trim(plain(md(x["body"])), 160))}</small></span>{ARROW}</a>' for x in other)
+        body = head + (f'<section class="section"><div class="wrap flow"><div class="posts auto">{cards}</div>'
+                       + (f'<h2 class="list-title">Altri articoli</h2><div class="post-list">{rows}</div>' if rows else '') + '</div></section>')
     elif lay == 'contatti':
         def _fig(b):
             cap = '<figcaption>' + e(b.get('caption')) + '</figcaption>' if b.get('caption') else ''
@@ -446,7 +477,7 @@ def build_page(p):
 <ul class="trust">{''.join(f'<li>{e(t)}</li>' for t in (p.get('trust') or []))}</ul></div>
 </div></div></section>'''
     else:
-        body = head + f'<section class="section"><div class="wrap flow">{render_blocks(p.get("blocks"))}{cta_aside() if p.get("show_cta") else ""}</div></section>'
+        body = head + f'<section class="section"><div class="wrap flow page-body">{render_blocks(blocks)}{cta_aside() if p.get("show_cta") else ""}</div></section>'
     im = first_image(p.get('blocks'))
     desc = p.get('description') or trim(first_text(p.get('blocks'))) or HOME.get('description')
     write_page(p['url'], p.get('seo_title') or f"{p['title']} | {S['site_name']}", desc, body, crumbs, og_image(im) if im else None, noindex=p.get('noindex'))

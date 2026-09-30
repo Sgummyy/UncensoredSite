@@ -12,22 +12,13 @@ show_cta: true
 noindex: false
 layout: standard
 blocks:
-- type: columns
-  columns:
-  - blocks:
-    - type: image
-      src: /uploads/corso-di-parkour-a-padova-bambini-di-4-5-6-7-8-9-e-10-anni.jpg
-      alt: Corso di parkour a Padova bambini di 4, 5, 6, 7, 8, 9 e 10 anni
-      caption: Corso Base Under14 - 2018/19
-  - blocks:
-    - type: heading
-      text: Albignasego - Chiesanuova - Padova Centro - Forcellini - Vigodarzere - Ponte San Nicolò - Noventa Padovana - Monselice
-      level: 2
-    - type: text
-      body: |-
-        L'educazione di bambini e ragazzi è sempre stata al centro delle nostre attività. I nostri corsi sono pensati per integrare l'istruzione scolastica con un'educazione al movimento, alla salute e alla relazione adattata alle esigenze specifiche di ogni età.
+- type: text
+  body: |-
+    L'educazione di bambini e ragazzi è sempre stata al centro delle nostre attività. I nostri corsi sono pensati per integrare l'istruzione scolastica con un'educazione al movimento, alla salute e alla relazione adattata alle esigenze specifiche di ogni età.
 
-        Insieme alle tecniche e ai valori dell'arte dello spostamento e della preparazione atletica, ci impegniamo ad integrare negli allenamenti i principi della pedagogia di Pestalozzi, Montessori, Hessen ed Etievan, oltre alla nostra esperienza decennale, per un'educazione integrata di bambini e ragazzi.
+    Insieme alle tecniche e ai valori dell'arte dello spostamento e della preparazione atletica, ci impegniamo ad integrare negli allenamenti i principi della pedagogia di Pestalozzi, Montessori, Hessen ed Etievan, oltre alla nostra esperienza decennale, per un'educazione integrata di bambini e ragazzi.
+
+    **Dove ci alleniamo:** Albignasego · Chiesanuova · Padova Centro · Forcellini · Vigodarzere · Ponte San Nicolò · Noventa Padovana · Monselice
 - type: divider
 - type: columns
   columns:
@@ -98,4 +89,6 @@ blocks:
 
         Dai 14 anni i corsi non fanno più distinzione d'età. Vedi [Parkour e Movimento](/parkour-movimentonaturale-yoga-padova/).
 - type: form
-  title: ''
+  title: Prenota una lezione di prova gratuita
+head_image: /uploads/corso-di-parkour-a-padova-bambini-di-4-5-6-7-8-9-e-10-anni.jpg
+head_image_alt: Corso di parkour a Padova bambini di 4, 5, 6, 7, 8, 9 e 10 anni

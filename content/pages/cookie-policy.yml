@@ -29,7 +29,7 @@ blocks:
 
     Alla prima visita un banner ti permette di **accettare tutto**, **rifiutare tutto** o **scegliere per categoria**. Chiudere il banner con la X equivale a rifiutare i cookie non necessari.
 
-    Finché non scegli, il sito non carica nessun contenuto di terze parti: neanche le anteprime dei video.
+    Finché non scegli, il sito non carica nessun contenuto di terze parti. Le copertine dei video sono foto ospitate sul nostro server.
 
     Ricordiamo la tua scelta per **6 mesi**. Puoi cambiarla o revocarla quando vuoi dal link **"Preferenze cookie"** in fondo a ogni pagina.
 
@@ -43,7 +43,7 @@ blocks:
 
     ### Contenuti esterni: YouTube (solo con consenso)
 
-    Quando attivi i video, il sito carica il lettore YouTube in modalità "privacy avanzata" (dominio youtube-nocookie.com) e le anteprime da i.ytimg.com. Google può impostare cookie e usare il localStorage (per esempio `VISITOR_INFO1_LIVE`, `YSC`, `yt-remote-*`, `ytidb::LAST_RESULT_ENTRY_KEY`) per riprodurre il video, misurarne l'uso e, se hai un account Google, collegarlo alle tue preferenze. Durata: da fine sessione a circa 6 mesi.
+    Quando attivi i video, il sito carica il lettore YouTube in modalità "privacy avanzata" (dominio youtube-nocookie.com). Google può impostare cookie e usare il localStorage (per esempio `VISITOR_INFO1_LIVE`, `YSC`, `yt-remote-*`, `ytidb::LAST_RESULT_ENTRY_KEY`) per riprodurre il video, misurarne l'uso e, se hai un account Google, collegarlo alle tue preferenze. Durata: da fine sessione a circa 6 mesi.
 
     Google agisce come titolare autonomo. Informativa: [policies.google.com/privacy](https://policies.google.com/privacy). Cookie usati da Google: [policies.google.com/technologies/cookies](https://policies.google.com/technologies/cookies).
 

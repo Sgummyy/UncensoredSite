@@ -95,6 +95,15 @@ collections:
     label: Etichetta rossa sopra il titolo
     widget: string
     required: false
+  - name: head_image
+    label: Foto nell'intestazione (facoltativa)
+    widget: image
+    required: false
+    hint: Se vuota, viene usata la prima foto della pagina.
+  - name: head_image_alt
+    label: Descrizione della foto nell'intestazione
+    widget: string
+    required: false
   - name: notice
     label: Avviso in evidenza (facoltativo)
     widget: text
@@ -172,6 +181,10 @@ collections:
       - name: youtube
         label: Link o codice del video YouTube
         widget: string
+      - name: poster
+        label: Foto di copertina (facoltativa, evita di caricare YouTube prima del consenso)
+        widget: image
+        required: false
     - name: document
       label: Documento PDF
       fields:
@@ -289,6 +302,10 @@ collections:
             - name: youtube
               label: Link o codice del video YouTube
               widget: string
+            - name: poster
+              label: Foto di copertina (facoltativa)
+              widget: image
+              required: false
           - name: document
             label: Documento PDF
             fields:

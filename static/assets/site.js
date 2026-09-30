@@ -1,7 +1,11 @@
 (function(){
   // mobile menu
   var b=document.querySelector('.burger'), n=document.getElementById('nav');
-  if(b&&n){b.addEventListener('click',function(){var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':'';});}
+  if(b&&n){
+    b.addEventListener('click',function(){var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Chiudi menu':'Menu');document.documentElement.style.overflow=o?'hidden':'';});
+    n.addEventListener('click',function(e){ if(e.target.closest('a')&&n.classList.contains('open')) b.click(); });
+    window.addEventListener('resize',function(){ if(n.classList.contains('open')&&getComputedStyle(b).display==='none') b.click(); });
+  }
   document.querySelectorAll('.nav button.dd').forEach(function(btn){
     btn.addEventListener('click',function(){var li=btn.parentElement;var o=li.classList.toggle('open');btn.setAttribute('aria-expanded',o);});
   });

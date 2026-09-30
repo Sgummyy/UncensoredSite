@@ -267,7 +267,7 @@ def header(url):
     return f'''<a class="skip" href="#main">Vai al contenuto</a>
 <header class="site-header"><div class="wrap">
 <a class="brand" href="/" aria-label="{e(S['site_name'])} – Home"><img src="/assets/logo-192.png" alt="" width="44" height="44"><b>{e(S['site_name'])}<span>{e(S['tagline'])}</span></b></a>
-<button class="burger" aria-expanded="false" aria-controls="nav" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+<button class="burger" aria-expanded="false" aria-controls="nav" aria-label="Menu"><svg class="i-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg><svg class="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
 <nav class="nav" id="nav" aria-label="Principale">{''.join(items)}</nav>
 {f'<a class="btn btn-red head-cta" href="{e(mb.get("link"))}">{e(mb["label"])}</a>' if mb.get('label') else ''}
 </div></header>'''

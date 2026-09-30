@@ -399,20 +399,20 @@ collections:
     file: content/home.yml
     fields:
     - name: hero
-      label: Apertura (foto grande)
+      label: Apertura (titolo sopra il carosello)
       widget: object
       fields:
       - name: image
-        label: Foto di sfondo
+        label: Foto per le condivisioni social
         widget: image
       - name: tag
-        label: Etichetta rossa
+        label: Etichetta sopra il titolo
         widget: string
       - name: title_1
         label: Titolo – inizio
         widget: string
       - name: title_2
-        label: Titolo – parte in corsivo rosso
+        label: Titolo – parola evidenziata
         widget: string
       - name: title_3
         label: Titolo – fine
@@ -425,21 +425,115 @@ collections:
         label: Pulsante principale
         widget: string
       - name: button_2
-        label: Pulsante secondario
+        label: Testo pulsante telefono (es. "Chiama")
         widget: string
-      - name: stats
-        label: Numeri in evidenza
-        label_singular: numero
-        widget: list
-        fields:
-        - name: value
-          label: Numero
-          widget: string
-        - name: label
-          label: Descrizione
-          widget: string
+      - name: badge_1
+        label: Etichetta bianca – riga 1
+        widget: string
+        required: false
+      - name: badge_2
+        label: Etichetta bianca – parola rossa
+        widget: string
+        required: false
+    - name: gallery
+      label: Carosello foto dell'apertura
+      label_singular: foto
+      widget: list
+      fields:
+      - name: image
+        label: Foto
+        widget: image
+      - name: caption
+        label: Didascalia
+        widget: string
+        required: false
+      - name: position
+        label: Punto da tenere al centro (es. 50% 30%)
+        widget: string
+        required: false
+        hint: Prima cifra = orizzontale, seconda = verticale. 50% 20% tiene visibile la parte alta della foto.
+    - name: facts
+      label: Punti in evidenza (sotto il carosello)
+      label_singular: punto
+      widget: list
+      fields:
+      - name: title
+        label: Titolo
+        widget: string
+      - name: text
+        label: Testo
+        widget: text
+    - name: journey_title
+      label: Percorso – etichetta iniziale
+      widget: string
+    - name: courses_eyebrow
+      label: Passo 1 – etichetta
+      widget: string
+    - name: courses_title
+      label: Passo 1 – titolo
+      widget: string
+    - name: courses_text
+      label: Passo 1 – nota sotto il titolo
+      widget: text
+    - name: courses
+      label: Corsi per età
+      label_singular: corso
+      widget: list
+      fields:
+      - name: label
+        label: Età o nome
+        widget: string
+      - name: text
+        label: Descrizione
+        widget: text
+      - name: link
+        label: Link
+        widget: string
+    - name: where_eyebrow
+      label: Passo 2 – etichetta
+      widget: string
+    - name: where_title
+      label: Passo 2 – titolo
+      widget: string
+    - name: where_text
+      label: Passo 2 – testo
+      widget: text
+    - name: where_image
+      label: Passo 2 – foto rotonda
+      widget: image
+    - name: places
+      label: Passo 2 – sedi
+      label_singular: sede
+      widget: list
+      field:
+        name: place
+        label: Sede
+        widget: string
+    - name: schedule_title
+      label: Passo 2 – titolo tabella orari
+      widget: string
+    - name: schedule
+      label: Passo 2 – orari
+      label_singular: orario
+      widget: list
+      fields:
+      - name: name
+        label: Corso
+        widget: string
+      - name: when
+        label: Giorno e ora
+        widget: string
+    - name: trainers_eyebrow
+      label: Passo 3 – etichetta
+      widget: string
+    - name: trainers_title
+      label: Passo 3 – titolo
+      widget: string
+    - name: trainers_text
+      label: Passo 3 – testo
+      widget: text
     - name: quote
-      label: Citazione
+      label: Passo 3 – citazione del fondatore
       widget: object
       fields:
       - name: eyebrow
@@ -457,55 +551,6 @@ collections:
       - name: image
         label: Foto
         widget: image
-    - name: gallery
-      label: Carosello foto
-      label_singular: foto
-      widget: list
-      fields:
-      - name: image
-        label: Foto
-        widget: image
-      - name: caption
-        label: Didascalia
-        widget: string
-        required: false
-    - name: facts
-      label: Punti in evidenza (sotto il carosello)
-      label_singular: punto
-      widget: list
-      fields:
-      - name: title
-        label: Titolo
-        widget: string
-      - name: text
-        label: Testo
-        widget: text
-    - name: courses_title
-      label: Titolo sezione corsi
-      widget: string
-    - name: courses_text
-      label: Testo sezione corsi
-      widget: text
-    - name: courses
-      label: Corsi per età
-      label_singular: corso
-      widget: list
-      fields:
-      - name: label
-        label: Età o nome
-        widget: string
-      - name: text
-        label: Descrizione
-        widget: text
-      - name: link
-        label: Link
-        widget: string
-    - name: contact_title
-      label: Titolo riquadro contatti
-      widget: string
-    - name: contact_text
-      label: Testo riquadro contatti
-      widget: text
     - name: paths_title
       label: Titolo delle schede
       widget: string
@@ -526,9 +571,15 @@ collections:
       - name: link
         label: Link
         widget: string
-    - name: band_title
-      label: Testo della fascia rossa
+    - name: finish_eyebrow
+      label: Riquadro contatti – etichetta
       widget: string
+    - name: contact_title
+      label: Titolo riquadro contatti
+      widget: string
+    - name: contact_text
+      label: Testo riquadro contatti
+      widget: text
     - name: social_title
       label: Titolo sezione social
       widget: string
@@ -542,6 +593,9 @@ collections:
     - name: facebook_text
       label: Testo riquadro Facebook
       widget: text
+    - name: band_title
+      label: Testo della fascia rossa
+      widget: string
     - name: seo_title
       label: Titolo per Google
       widget: string

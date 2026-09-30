@@ -60,23 +60,70 @@
   });
 })();
 
-// Carosello foto (home): scorrimento nativo con swipe, frecce, pallini e avanzamento automatico lento
+// Apertura della home: foto a tutto schermo in dissolvenza, con barre di avanzamento, pausa, frecce e swipe
 (function(){
-  document.querySelectorAll('[data-carousel]').forEach(function(c){
-    var track=c.querySelector('.car-track'), slides=[].slice.call(c.querySelectorAll('.car-slide')), dots=[].slice.call(c.querySelectorAll('.car-dot'));
-    if(!track||!slides.length) return;
-    var cur=0, timer=null, reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    function go(i,smooth){ cur=(i+slides.length)%slides.length; track.scrollTo({left:slides[cur].offsetLeft-track.offsetLeft,behavior:smooth===false||reduce?'auto':'smooth'}); mark(); }
-    function mark(){ dots.forEach(function(d,j){ d.setAttribute('aria-current',j===cur?'true':'false'); }); }
-    track.addEventListener('scroll',function(){ var x=track.scrollLeft, best=0, bd=1e9; slides.forEach(function(s,j){ var d=Math.abs(s.offsetLeft-track.offsetLeft-x); if(d<bd){bd=d;best=j;} }); if(best!==cur){cur=best;mark();} },{passive:true});
-    var prev=c.querySelector('.car-prev'), next=c.querySelector('.car-next');
-    if(prev) prev.addEventListener('click',function(){ stop(); go(cur-1); });
-    if(next) next.addEventListener('click',function(){ stop(); go(cur+1); });
-    dots.forEach(function(d,j){ d.addEventListener('click',function(){ stop(); go(j); }); });
-    track.addEventListener('keydown',function(e){ if(e.key==='ArrowRight'){e.preventDefault();stop();go(cur+1);} if(e.key==='ArrowLeft'){e.preventDefault();stop();go(cur-1);} });
-    function start(){ if(reduce||timer) return; timer=setInterval(function(){ go(cur+1); },6000); }
-    function stop(){ clearInterval(timer); timer=null; }
-    c.addEventListener('mouseenter',stop); c.addEventListener('focusin',stop); track.addEventListener('touchstart',stop,{passive:true});
-    mark(); start();
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('[data-hero]').forEach(function(h){
+    var s=[].slice.call(h.querySelectorAll('.hs')), d=[].slice.call(h.querySelectorAll('.hb-dot')), cap=h.querySelector('.hero-cap'), pb=h.querySelector('.hb-pause');
+    var n=s.length; if(!n) return;
+    var cur=0, paused=reduce, fallback=null;
+    function preload(i){ var im=s[i%n].querySelector('img'); if(im&&im.loading==='lazy') im.loading='eager'; }
+    function arm(){ // riavvia la barra della foto corrente
+      clearTimeout(fallback);
+      var dot=d[cur]; if(!dot) return;
+      dot.classList.remove('is-on'); void dot.offsetWidth; dot.classList.add('is-on');
+    }
+    function show(i){
+      s[cur].classList.remove('is-on'); s[cur].setAttribute('aria-hidden','true');
+      cur=(i+n)%n;
+      s[cur].classList.add('is-on'); s[cur].removeAttribute('aria-hidden');
+      d.forEach(function(x,j){ x.classList.toggle('done',j<cur); x.classList.remove('is-on'); x.setAttribute('aria-current',j===cur?'true':'false'); });
+      if(cap){ cap.classList.add('swap'); setTimeout(function(){ cap.textContent=s[cur].getAttribute('data-caption')||''; cap.classList.remove('swap'); },250); }
+      arm(); preload(cur+1);
+    }
+    d.forEach(function(x,j){
+      x.addEventListener('click',function(){ show(j); });
+      x.addEventListener('animationend',function(){ if(j===cur&&!paused) show(cur+1); });
+    });
+    function setPaused(p){ paused=p; h.classList.toggle('is-paused',p); if(pb){ pb.setAttribute('aria-label',p?'Riprendi il carosello':'Metti in pausa il carosello'); pb.setAttribute('aria-pressed',p?'true':'false'); } }
+    if(pb) pb.addEventListener('click',function(){ setPaused(!paused); if(!paused) arm(); });
+    var pr=h.querySelector('.hb-prev'), nx=h.querySelector('.hb-next');
+    if(pr) pr.addEventListener('click',function(){ show(cur-1); });
+    if(nx) nx.addEventListener('click',function(){ show(cur+1); });
+    var x0=null, y0=null;
+    h.addEventListener('touchstart',function(e){ if(e.target.closest('a,button')) return; x0=e.touches[0].clientX; y0=e.touches[0].clientY; },{passive:true});
+    h.addEventListener('touchend',function(e){ if(x0===null) return; var dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0; x0=null; if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)) show(cur+(dx<0?1:-1)); },{passive:true});
+    document.addEventListener('visibilitychange',function(){ h.classList.toggle('is-paused',paused||document.hidden); });
+    setPaused(paused); show(0); preload(1);
   });
+})();
+
+// Comparsa dei contenuti e percorso che si disegna mentre si scorre
+(function(){
+  var root=document.documentElement;
+  // nelle pagine interne marca da solo i blocchi principali
+  var auto='.page-head .ph-text, .page-body > *, .card-list > *, .cols > .flow > *, .posts > .post-card, .post-list > .post-row, .article > .flow > *, .article .prose > figure, .pn > a';
+  document.querySelectorAll(auto).forEach(function(el){
+    if(el.hasAttribute('data-reveal')||el.closest('[data-reveal]')) return;
+    el.setAttribute('data-reveal','');
+    var sib=el.parentElement?[].slice.call(el.parentElement.children):[];
+    var k=sib.indexOf(el); if(k>0&&k<6) el.style.setProperty('--d',k);
+  });
+  var els=document.querySelectorAll('[data-reveal], .trail, .step');
+  if(!('IntersectionObserver' in window)){ els.forEach(function(el){el.classList.add('is-in');}); return; }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); } });
+  },{rootMargin:'0px 0px -10% 0px',threshold:0.08});
+  els.forEach(function(el){ io.observe(el); });
+  // sicurezza: se qualcosa non viene osservato (stampa, anteprime), dopo 4s mostra tutto ciò che è già sopra
+  setTimeout(function(){ els.forEach(function(el){ if(el.getBoundingClientRect().top<innerHeight) el.classList.add('is-in'); }); },4000);
+  root.classList.add('js');
+})();
+
+// Ombra dell'intestazione quando si scorre
+(function(){
+  var h=document.querySelector('.site-header'); if(!h) return;
+  var on=false;
+  function f(){ var s=window.scrollY>8; if(s!==on){ on=s; h.classList.toggle('is-scrolled',s); } }
+  window.addEventListener('scroll',f,{passive:true}); f();
 })();

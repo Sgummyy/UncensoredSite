@@ -145,7 +145,7 @@ def form(title=''):
             f'<div class="row">{inp("Nome", "text", "name", 1)}{inp("Email", "email", "email", 2)}</div>'
             f'<div class="row">{inp("Telefono", "tel", "tel", 3, False)}<div><label for="f{n}-4">Motivo del contatto *</label><select id="f{n}-4" name="Motivo del contatto" required><option value="">Seleziona…</option>{opts}</select></div></div>'
             f'<div><label for="f{n}-5">Messaggio <small>(facoltativo)</small></label><textarea id="f{n}-5" name="Messaggio" placeholder="Es. età del bambino, giorni preferiti, domande…"></textarea></div>'
-            f'<label class="check"><input type="checkbox" id="f{n}-6" name="privacy" required> Dichiaro di aver letto l\'<a href="/j/privacy/">informativa privacy</a>.</label>'
+            f'<label class="check"><input type="checkbox" id="f{n}-6" name="privacy" required><span>Dichiaro di aver letto l\'<a href="/j/privacy/">informativa privacy</a>.</span></label>'
             f'<button class="btn btn-red" type="submit">Invia richiesta {ARROW}</button></form>'
             f'<p class="form-ok" hidden>Grazie! Abbiamo ricevuto la tua richiesta e ti risponderemo al più presto. Per urgenze chiamaci al <strong>{e(PHONE)}</strong>.</p></div>')
 
@@ -269,6 +269,7 @@ def header(url):
 <a class="brand" href="/" aria-label="{e(S['site_name'])} – Home"><img src="/assets/logo-192.png" alt="" width="44" height="44"><b>{e(S['site_name'])}<span>{e(S['tagline'])}</span></b></a>
 <button class="burger" aria-expanded="false" aria-controls="nav" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
 <nav class="nav" id="nav" aria-label="Principale">{''.join(items)}</nav>
+{f'<a class="btn btn-red head-cta" href="{e(mb.get("link"))}">{e(mb["label"])}</a>' if mb.get('label') else ''}
 </div></header>'''
 
 def footer():
@@ -296,7 +297,7 @@ def asset_v(path):
         return path
     return f'{path}?v={h}'
 
-FONTS = '<link rel="preload" href="/assets/fonts/fraunces-normal-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/assets/fonts/instrument-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="' + asset_v('/assets/fonts/fonts.css') + '">'
+FONTS = '<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/assets/fonts/nunito-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="' + asset_v('/assets/fonts/fonts.css') + '">'
 
 def org():
     return {"@type": "SportsOrganization", "@id": DOMAIN + "/#scuola", "sport": "Parkour", "name": f"{S['site_name']} – Scuola di parkour a Padova",
@@ -329,10 +330,11 @@ def write_page(url, title, desc, body, crumbs=None, og=None, ld=None, noindex=Fa
 {'<meta name="robots" content="noindex">' if noindex else ''}
 <meta property="og:type" content="{'article' if is_post else 'website'}"><meta property="og:locale" content="it_IT"><meta property="og:site_name" content="{e(S['site_name'])}">
 <meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{canonical(slug)}"><meta property="og:image" content="{e(og or og_image(HOME['hero'].get('image')))}">
-<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#081C35">
+<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0F2A4A">
 <link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 {FONTS}
 <link rel="stylesheet" href="{asset_v('/assets/site.css')}">
+<script>document.documentElement.classList.add('js')</script>
 {f'<script type="application/ld+json">{ldj}</script>' if ldj else ''}
 </head><body>
 {header(url)}
@@ -393,66 +395,115 @@ def first_md_image(body):
     m = re.search(r'!\[[^\]]*\]\(([^)\s]+)', body or '')
     return m.group(1) if m else None
 
+TRAILS = {  # tratti del percorso tratteggiato (viewBox 1000x100, allungato a tutta larghezza)
+    'cl': 'M1000 0 C1000 60 0 40 0 100', 'lr': 'M0 0 C0 60 1000 40 1000 100',
+    'rl': 'M1000 0 C1000 60 0 40 0 100', 'lc': 'M0 0 C0 60 1000 40 1000 100'}
+def trail(kind):
+    return (f'<div class="trail trail-{kind}" aria-hidden="true"><svg viewBox="0 0 1000 100" preserveAspectRatio="none">'
+            f'<path d="{TRAILS[kind]}" vector-effect="non-scaling-stroke"/></svg></div>')
+
+def split_label(s):
+    """'3–4 anni' -> ('3–4', 'anni'); 'Ragazzi e adulti' -> ('', 'Ragazzi e adulti')"""
+    m = re.match(r'^\s*([\d–\-+]+)\s*(.*)$', s or '')
+    return (m.group(1), m.group(2)) if m else ('', s or '')
+
 def build_home():
     H = HOME; hero = H['hero']; q = H['quote']
-    gal = H.get('gallery') or []
-    slides = ''.join(
-        f'<figure class="car-slide" role="group" aria-roledescription="slide" aria-label="{i + 1} di {len(gal)}">'
-        f'{img(g.get("image"), g.get("caption") or "", sizes="(max-width:820px) 88vw, 70vw", eager=(i == 0))}'
-        + (f'<figcaption>{e(g.get("caption"))}</figcaption>' if g.get('caption') else '') + '</figure>'
-        for i, g in enumerate(gal))
-    dots = ''.join(f'<button type="button" class="car-dot" aria-label="Vai alla foto {i + 1}"></button>' for i in range(len(gal)))
-    carousel = (f'<div class="carousel" data-carousel aria-roledescription="carosello" aria-label="Foto della scuola">'
-                f'<div class="car-track" tabindex="0">{slides}</div>'
-                f'<div class="car-ui"><div class="car-dots">{dots}</div><div class="car-arrows">'
-                f'<button type="button" class="car-prev" aria-label="Foto precedente"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>'
-                f'<button type="button" class="car-next" aria-label="Foto successiva"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>'
-                f'</div></div></div>') if slides else ''
-    facts = ''.join(f'<div><h3>{e(x.get("title"))}</h3><p>{e(x.get("text"))}</p></div>' for x in H.get('facts') or [])
-    rows = ''.join(f'<a class="row-link" href="{e(c.get("link"))}"><span class="rl-label">{e(c.get("label"))}</span><span class="rl-text">{e(c.get("text"))}</span><span class="rl-go" aria-hidden="true">→</span></a>' for c in H.get('courses') or [])
-    paths = ''.join(f'<a class="row-link" href="{e(c.get("link"))}"><span class="rl-label">{e(c.get("title"))}</span><span class="rl-text">{e(c.get("question"))} <b>{e(c.get("action"))}</b></span><span class="rl-go" aria-hidden="true">→</span></a>' for c in H.get('paths') or [])
-    socials = ''.join(f'<div class="social-card">{video(v, "Video su YouTube")}</div>' for v in (H.get('videos') or [])[:2])
+    gal = [g for g in (H.get('gallery') or []) if g.get('image')]
+    def slide(i, g):
+        hid = ' aria-hidden="true"' if i else ''
+        pos = f' style="--pos:{e(g["position"])}"' if g.get('position') else ''
+        on = ' is-on' if i == 0 else ''
+        return (f'<figure class="hs{on}" role="group" aria-roledescription="slide" aria-label="{i + 1} di {len(gal)}"{hid} data-caption="{e(g.get("caption"))}"{pos}>'
+                f'{img(g.get("image"), g.get("caption") or "", sizes="100vw", eager=(i == 0))}</figure>')
+    slides = ''.join(slide(i, g) for i, g in enumerate(gal))
+    bars = ''.join(f'<button type="button" class="hb-dot" aria-label="Foto {i + 1} di {len(gal)}"><i></i></button>' for i in range(len(gal)))
+    words = []
+    for part, cls in ((hero.get('title_1'), ''), (hero.get('title_2'), 'hl'), (hero.get('title_3'), '')):
+        for w in (part or '').split():
+            words.append((w, cls))
+    h1 = ' '.join(f'<span class="w{" " + c if c else ""}" style="--i:{i}">{e(w)}</span>' for i, (w, c) in enumerate(words))
+    first_cap = e(gal[0].get('caption')) if gal else ''
+    facts = ''.join(f'<div class="fact" data-reveal style="--d:{i}"><b>{e(x.get("title"))}</b><span>{e(x.get("text"))}</span></div>' for i, x in enumerate(H.get('facts') or []))
+
+    def course(i, c):
+        num, rest = split_label(c.get('label'))
+        top = f'<span class="cc-num">{e(num)}</span><b>{e(rest)}</b>' if num else f'<span class="cc-num cc-word">{e(rest)}</span>'
+        dark = '' if num else ' course-dark'
+        return (f'<a class="course{dark}" href="{e(c.get("link"))}" data-reveal style="--d:{i}">{top}'
+                f'<span class="cc-text">{e(c.get("text"))}</span><span class="cc-go">Scopri {ARROW}</span></a>')
+    courses = ''.join(course(i, c) for i, c in enumerate(H.get('courses') or []))
+    places = ''.join(f'<li>{e(x)}</li>' for x in H.get('places') or [])
+    sched = ''.join(f'<li><b>{e(x.get("name"))}</b><span>{e(x.get("when"))}</span></li>' for x in H.get('schedule') or [])
+    paths = ''.join(f'<a class="fork" href="{e(c.get("link"))}" data-reveal style="--d:{i}"><span class="fork-q">{e(c.get("question"))}</span>'
+                    f'<b>{e(c.get("title"))}</b><span class="fork-go">{e(c.get("action"))} {ARROW}</span></a>' for i, c in enumerate(H.get('paths') or []))
+    socials = ''.join(f'<div class="social-card" data-reveal style="--d:{i}">{video(v, "Video su YouTube")}</div>' for i, v in enumerate((H.get('videos') or [])[:2]))
     withc = [x for x in POSTS if x.get('cover') or first_md_image(x['body'])][:3]
     cards = ''.join(post_card(p) for p in withc)
+    def badge(n, extra=''):
+        return f'<span class="badge{extra}" data-badge aria-hidden="true">{n}</span>'
     body = f'''
-<section class="hero"><div class="wrap">
-<div class="hero-grid">
-<div><p class="tag">{e(hero.get('tag'))}</p>
-<h1>{e(hero.get('title_1'))} <em>{e(hero.get('title_2'))}</em> {e(hero.get('title_3'))}</h1></div>
-<div class="hero-side"><p class="lead">{e(hero.get('lead'))}</p>
-<div class="cta-row"><a class="btn btn-dark" href="/contatti/parkour-padova/">{e(hero.get('button'))}</a><a class="btn btn-text" href="#corsi">{e(hero.get('button_2'))} →</a></div></div>
+<section class="hero" data-hero aria-label="Presentazione">
+<div class="hero-slides" aria-roledescription="carosello" aria-label="Foto della scuola">{slides}</div>
+<div class="hero-shade" aria-hidden="true"></div>
+<div class="wrap hero-inner">
+<div class="hero-copy">
+<p class="pill">{e(hero.get('tag'))}</p>
+<h1>{h1}</h1>
+<p class="lead">{e(hero.get('lead'))}</p>
+<div class="cta-row"><a class="btn btn-red btn-lg" href="/contatti/parkour-padova/">{e(hero.get('button'))} {ARROW}</a><a class="btn btn-glass btn-lg" href="tel:{PHONE_TEL}">{e(hero.get('button_2'))} {e(PHONE)}</a></div>
 </div>
-{carousel}
-</div></section>
-<section class="facts-band"><div class="wrap"><div class="facts">{facts}</div></div></section>
-<section class="section" id="corsi"><div class="wrap split">
-<div class="split-head"><p class="tag">I corsi</p><h2>{e(H.get('courses_title'))}</h2><p>{e(H.get('courses_text'))}</p></div>
-<div class="row-list">{rows}</div>
-</div></section>
-<section class="section"><div class="wrap split">
-<div class="split-head"><p class="tag">Per iniziare</p><h2>{e(H.get('paths_title'))}</h2></div>
-<div class="row-list">{paths}</div>
-</div></section>
-<section class="section"><div class="wrap quote-grid">
-<div class="flow"><p class="tag">{e(q.get('eyebrow'))}</p>
-<blockquote class="big">“{e(q.get('text'))}”</blockquote>
-<p class="sig"><b>{e(q.get('author'))}</b> - {e(q.get('role'))}</p>
+<p class="hero-badge">{e(hero.get('badge_1'))}<b>{e(hero.get('badge_2'))}</b></p>
+</div>
+<div class="wrap hero-bar">
+<p class="hero-cap" aria-live="polite">{first_cap}</p>
+<div class="hero-ctrl"><div class="hb-dots">{bars}</div>
+<button type="button" class="hb-btn hb-pause" aria-label="Metti in pausa il carosello"><svg class="i-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h3v14H7zM14 5h3v14h-3z"/></svg><svg class="i-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
+<button type="button" class="hb-btn hb-prev" aria-label="Foto precedente"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+<button type="button" class="hb-btn hb-next" aria-label="Foto successiva"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+</div></div>
+</section>
+<section class="facts-wrap"><div class="wrap"><div class="facts">{facts}</div></div></section>
+<section class="journey" id="corsi"><div class="wrap">
+<p class="journey-start" data-reveal><span>{e(H.get('journey_title'))}</span></p>
+{trail('cl')}
+<div class="step step-l">{badge(1)}<div class="step-body">
+<div class="step-head" data-reveal><p class="eyebrow">{e(H.get('courses_eyebrow'))}</p><h2>{e(H.get('courses_title'))}</h2><p class="muted">{e(H.get('courses_text'))}</p></div>
+<div class="courses">{courses}</div>
+</div></div>
+{trail('lr')}
+<div class="step step-r">{badge(2)}<div class="step-body step-split">
+<div class="flow" data-reveal><p class="eyebrow">{e(H.get('where_eyebrow'))}</p><h2>{e(H.get('where_title'))}</h2><p class="muted">{e(H.get('where_text'))}</p>
+<ul class="places">{places}</ul>
+<div class="sched"><p class="sched-title">{e(H.get('schedule_title'))}</p><ul>{sched}</ul></div>
+<div class="cta-row"><a class="btn btn-text" href="/bambini-e-ragazzi/">Corsi bambini e ragazzi →</a><a class="btn btn-text" href="/parkour-movimentonaturale-yoga-padova/">Corsi per adulti →</a></div></div>
+<figure class="blob-img" data-reveal>{img(H.get('where_image'), 'Allievi di Uncensored Runners durante un allenamento', sizes='(max-width:820px) 80vw, 440px')}</figure>
+</div></div>
+{trail('rl')}
+<div class="step step-l">{badge(3, ' badge-hot')}<div class="step-body step-split step-split-r">
+<figure class="arch-img" data-reveal>{img(q.get('image'), q.get('author'), sizes='(max-width:820px) 80vw, 400px')}</figure>
+<div class="flow" data-reveal><p class="eyebrow">{e(H.get('trainers_eyebrow'))}</p><h2>{e(H.get('trainers_title'))}</h2><p class="muted">{e(H.get('trainers_text'))}</p>
+<blockquote class="quote"><p class="q-eyebrow">{e(q.get('eyebrow'))}</p>“{e(q.get('text'))}”</blockquote>
+<p class="sig"><b>{e(q.get('author'))}</b> · {e(q.get('role'))}</p>
 <a class="btn btn-text" href="/scuola-parkour-padova/">La nostra storia →</a></div>
-<figure>{img(q.get('image'), q.get('author'), sizes='(max-width:820px) 100vw, 420px')}</figure>
+</div></div>
+{trail('lc')}
+<div class="forks-head" data-reveal><h2>{e(H.get('paths_title'))}</h2></div>
+<div class="forks">{paths}</div>
 </div></section>
+<section class="section finish-wrap" id="contatti"><div class="wrap"><div class="finish" data-reveal>
+<div class="flow"><p class="eyebrow eyebrow-on-dark">{e(H.get('finish_eyebrow'))}</p><h2>{e(H.get('contact_title'))}</h2><p class="lede">{e(H.get('contact_text'))}</p>
+<p class="big-contact"><a href="tel:{PHONE_TEL}">{e(PHONE)}</a><a href="mailto:{e(EMAIL)}">{e(EMAIL)}</a></p></div>
+{form()}
+</div></div></section>
 <section class="section"><div class="wrap">
-<div class="section-head"><h2>Dal blog</h2><a class="btn btn-text" href="/blog-parkour-padova/">Tutti gli articoli →</a></div>
+<div class="section-head" data-reveal><h2>Dal blog</h2><a class="btn btn-text" href="/blog-parkour-padova/">Tutti gli articoli →</a></div>
 <div class="posts">{cards}</div>
 </div></section>
 <section class="section"><div class="wrap">
-<div class="section-head"><h2>{e(H.get('social_title'))}</h2></div>
+<div class="section-head" data-reveal><h2>{e(H.get('social_title'))}</h2></div>
 <div class="social-grid">{socials}
-<div class="social-card card flow"><h3>Facebook</h3><p>{e(H.get('facebook_text'))}</p>{facebook_btn()}</div>
-</div></div></section>
-<section class="section"><div class="wrap"><div class="contact-panel">
-<div class="flow"><h2>{e(H.get('contact_title'))}</h2><p class="lede">{e(H.get('contact_text'))}</p>
-<p class="big-contact"><a href="tel:{PHONE_TEL}">{e(PHONE)}</a><a href="mailto:{e(EMAIL)}">{e(EMAIL)}</a></p></div>
-{form()}
+<div class="social-card card flow" data-reveal style="--d:2"><h3>Facebook</h3><p>{e(H.get('facebook_text'))}</p>{facebook_btn()}</div>
 </div></div></section>'''
     write_page('/', H.get('seo_title'), H.get('description'), body)
 
@@ -517,8 +568,8 @@ def build_post(i):
     pn += f'<a class="card next" href="{e(next_p["url"])}"><small>Articolo successivo →</small><b>{e(next_p["title"])}</b></a>' if next_p else '<span></span>'
     pn += '</div>'
     d = p['date']
-    body = (f'<section class="page-head"><div class="wrap">{crumbs_html(crumbs)}<div><span class="tag">Blog · <time datetime="{d.isoformat() if d else ""}">{fmt_date(d)}</time></span></div>'
-            f'<h1>{e(p["title"])}</h1></div></section>'
+    body = (f'<section class="page-head"><div class="wrap"><div class="ph-text">{crumbs_html(crumbs)}<p class="tag">Blog · <time datetime="{d.isoformat() if d else ""}">{fmt_date(d)}</time></p>'
+            f'<h1>{e(p["title"])}</h1></div></div></section>'
             f'<section class="section"><article class="wrap"><div class="article flow">{cov}<div class="prose">{body_html}</div>{cta_aside()}{pn}</div></article></section>')
     im = cover or first_md_image(p['body'])
     desc = p.get('description') or p.get('excerpt') or trim(plain(body_html))
@@ -537,8 +588,8 @@ def build_sitemap_page():
     write_page('/sitemap/', f"Mappa del sito | {S['site_name']}", f"Tutte le pagine e gli articoli del sito {S['site_name']}, scuola di parkour a Padova.", body, crumbs)
 
 def build_404():
-    body = (f'<section class="page-head"><div class="wrap"><span class="tag">Errore 404</span><h1>Questa pagina ha fatto un salto altrove</h1>'
-            f'<p class="sub">La pagina che cerchi non esiste più o è stata spostata.</p></div></section>'
+    body = (f'<section class="page-head"><div class="wrap"><div class="ph-text"><p class="tag">Errore 404</p><h1>Questa pagina ha fatto un salto altrove</h1>'
+            f'<p class="sub">La pagina che cerchi non esiste più o è stata spostata.</p></div></div></section>'
             f'<section class="section"><div class="wrap cta-row"><a class="btn btn-red" href="/">Torna alla home {ARROW}</a><a class="btn btn-ghost" href="/blog-parkour-padova/">Vai al blog</a></div></section>')
     write_page('/__404/', f"Pagina non trovata | {S['site_name']}", 'Pagina non trovata', body, noindex=True)
     shutil.move(os.path.join(OUT, '__404', 'index.html'), os.path.join(OUT, '404.html'))

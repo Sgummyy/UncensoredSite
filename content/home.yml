@@ -1,21 +1,91 @@
 seo_title: Uncensored Runners | Scuola di parkour a Padova
 description: Scuola di parkour a Padova con corsi per bambini dai 3 anni, ragazzi e adulti, coach professionisti qualificati e lezione di prova gratuita.
 hero:
-  tag: Uncensored Runners · Scuola di parkour a Padova
-  title_1: Imparare a muoversi,
-  title_2: con fiducia,
-  lead: L'arte dello spostamento per tutti, in sicurezza. Da 10 anni pionieri della disciplina in Italia, con corsi per bambini dai 3 anni, ragazzi e adulti.
+  tag: Scuola di parkour a Padova · da 10 anni
+  title_1: Ogni ostacolo è un
+  title_2: passo
+  lead: L'arte dello spostamento per tutti, in sicurezza. Da 10 anni pionieri della disciplina in Italia, con corsi per bambini dai 3 anni, ragazzi e adulti e istruttori qualificati.
   image: /uploads/parkour-padova-284b2b.jpg
   button: Prenota la prova gratuita
-  button_2: Vedi i corsi
-  stats:
-  - value: 10+
-    label: anni di esperienza
-  - value: 3+
-    label: anni, età minima
-  - value: CSEN
-    label: formazione nazionale istruttori
-  title_3: a ogni età.
+  button_2: Chiama
+  title_3: in avanti.
+  badge_1: Prima lezione
+  badge_2: gratuita
+gallery:
+- image: /uploads/parkour-padova-78f124.jpg
+  caption: Allenamento all'aperto a Padova
+  position: 50% 40%
+- image: /uploads/parkour-padova-284b2b.jpg
+  caption: Allenamento in città con gli Uncensored Runners
+- image: /uploads/scuola-di-parkour-a-padova.jpg
+  caption: Primo corso di parkour a padova U14 Uncensored Runners
+  position: 50% 45%
+- image: /uploads/corso-di-parkour-a-padova-bambini-di-4-5-6-7-8-9-e-10-anni.jpg
+  caption: Corso Base Under14 - 2018/19
+  position: 50% 38%
+- image: /uploads/foto-fondatore-parkour-padova.jpg
+  caption: Elia Landolfi, fondatore di Uncensored Runners e responsabile nazionale del settore parkour C.S.E.N.
+  position: 50% 22%
+- image: /uploads/parkour-padova-d4acce.jpg
+  caption: Esercizi di quadrupedia in palestra
+- image: /uploads/parkour-padova-performers.jpg
+  caption: Uncensored Runners performers
+- image: /uploads/parkour-padova-ed282e.jpg
+  caption: Allenamento serale
+  position: 50% 30%
+facts:
+- title: Istruttori formati
+  text: Almeno sei mesi di formazione e tirocinio ed esame teorico e pratico prima di insegnare.
+- title: Riconosciuti C.S.E.N.
+  text: Formazione nazionale degli istruttori di parkour, riconosciuta C.O.N.I. e M.I.U.R.
+- title: Prima lezione gratuita
+  text: In 8 sedi tra Padova e provincia.
+journey_title: Il tuo percorso in tre passi
+courses_eyebrow: Primo passo
+courses_title: Trova il gruppo per la sua età
+courses_text: 'Le età sono indicative: ogni esercizio viene adattato alle esigenze e possibilità di ognuno.'
+courses:
+- label: 3–4 anni
+  text: Capacità motorie di base e sicurezza nel movimento. 40 minuti.
+  link: /bambini-e-ragazzi/
+- label: 5–7 anni
+  text: Capacità motorie generali e coordinative. 55 minuti.
+  link: /bambini-e-ragazzi/
+- label: 8–10 anni
+  text: 'Tecnica del movimento: postura, precisione e disciplina. 60 minuti.'
+  link: /bambini-e-ragazzi/
+- label: 11–13 anni
+  text: Tecniche avanzate e qualità del movimento. 60 minuti.
+  link: /bambini-e-ragazzi/
+- label: Ragazzi e adulti
+  text: Parkour yamak, parkour rivisitato, parkour morbido, yoga in movimento e hatha yoga.
+  link: /parkour-movimentonaturale-yoga-padova/
+where_eyebrow: Secondo passo
+where_title: Scegli sede e orario
+where_text: 'Ci alleniamo in 8 sedi tra Padova e provincia: scrivici l''età e le preferenze e ti proponiamo il gruppo e la sede più comodi.'
+where_image: /uploads/scuola-di-parkour-a-padova.jpg
+places:
+- Padova Centro
+- Albignasego
+- Chiesanuova
+- Forcellini
+- Vigodarzere
+- Ponte San Nicolò
+- Noventa Padovana
+- Monselice
+schedule_title: Corsi per ragazzi e adulti
+schedule:
+- name: Parkour yamak · 14–25 anni
+  when: Lun e ven, 15.45–16.45
+- name: Parkour rivisitato · adulti
+  when: Martedì, 19.15–20.15
+- name: Yoga in movimento · adulti
+  when: Lunedì, 19.15–20.15
+- name: Hatha yoga · adulti
+  when: Giovedì, 19.15–20.15
+trainers_eyebrow: Terzo passo
+trainers_title: Allenati con istruttori formati
+trainers_text: Prima di insegnare, i nostri istruttori fanno almeno sei mesi di formazione e tirocinio e superano un esame teorico e pratico. La formazione nazionale degli istruttori di parkour C.S.E.N. è riconosciuta C.O.N.I. e M.I.U.R.
 quote:
   eyebrow: L'arte dello spostamento per tutti, in sicurezza
   text: 'Il parkour è libertà. Libertà fisica di muoversi, esplorare e cambiare punto di vista. Libertà di ri-scoprire le capacità del proprio corpo e di ri-posizionarsi nell''ambiente che ci circonda. Una libertà viva che, passo dopo passo, salto dopo salto, si trasforma in una danza silenziosa: l''Arte di spostarsi come solo l''animale uomo può fare, consapevolmente e coraggiosamente.'
@@ -36,51 +106,12 @@ paths:
   title: Chi siamo
   action: Leggi di noi
   link: /scuola-parkour-padova/
+finish_eyebrow: Traguardo
+contact_title: Contattaci per una lezione di prova gratuita
+contact_text: 'Scrivici l''età e le preferenze: ti proponiamo il gruppo e la sede più comodi.'
 band_title: Contattaci per una lezione di prova gratuita
 social_title: Seguici sui social!
 videos:
 - kSnBFzwAZ7w
 - cY5k8_YDE5A
 facebook_text: 'Aggiornamenti su corsi, eventi e lezioni aperte: seguici sulla pagina ufficiale.'
-gallery:
-- image: /uploads/parkour-padova-284b2b.jpg
-  caption: Allenamento in città con gli Uncensored Runners
-- image: /uploads/scuola-di-parkour-a-padova.jpg
-  caption: Primo corso di parkour a padova U14 Uncensored Runners
-- image: /uploads/corso-di-parkour-a-padova-bambini-di-4-5-6-7-8-9-e-10-anni.jpg
-  caption: Corso Base Under14 - 2018/19
-- image: /uploads/foto-fondatore-parkour-padova.jpg
-  caption: Elia Landolfi, fondatore di Uncensored Runners e responsabile nazionale del settore parkour C.S.E.N.
-- image: /uploads/parkour-padova-d4acce.jpg
-  caption: Esercizi di quadrupedia in palestra
-- image: /uploads/parkour-padova-performers.jpg
-  caption: Uncensored Runners performers
-- image: /uploads/parkour-padova-ed282e.jpg
-  caption: Allenamento serale
-facts:
-- title: Istruttori formati
-  text: Almeno sei mesi di formazione e tirocinio ed esame teorico e pratico prima di insegnare.
-- title: Riconosciuti C.S.E.N.
-  text: Formazione nazionale degli istruttori di parkour, riconosciuta C.O.N.I. e M.I.U.R.
-- title: Prima lezione gratuita
-  text: In 8 sedi tra Padova e provincia.
-courses_title: Un gruppo per ogni età
-courses_text: 'Le età sono indicative: ogni esercizio viene adattato alle esigenze e possibilità di ognuno.'
-courses:
-- label: 3–4 anni
-  text: Capacità motorie di base e sicurezza nel movimento. 40 minuti.
-  link: /bambini-e-ragazzi/
-- label: 5–7 anni
-  text: Capacità motorie generali e coordinative. 55 minuti.
-  link: /bambini-e-ragazzi/
-- label: 8–10 anni
-  text: 'Tecnica del movimento: postura, precisione e disciplina. 60 minuti.'
-  link: /bambini-e-ragazzi/
-- label: 11–13 anni
-  text: Tecniche avanzate e qualità del movimento. 60 minuti.
-  link: /bambini-e-ragazzi/
-- label: Ragazzi e adulti
-  text: Parkour yamak, parkour rivisitato, parkour morbido, yoga in movimento e hatha yoga.
-  link: /parkour-movimentonaturale-yoga-padova/
-contact_title: Contattaci per una lezione di prova gratuita
-contact_text: 'Scrivici l''età e le preferenze: ti proponiamo il gruppo e la sede più comodi.'

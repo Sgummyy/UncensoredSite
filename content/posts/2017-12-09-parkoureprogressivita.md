@@ -1,0 +1,22 @@
+---
+title: L'importanza della progressività nel parkour
+date: '2017-12-09'
+url: /parkoureprogressività/
+cover: ''
+excerpt: ''
+description: ''
+---
+
+## L'importanza della progressività nel parkour
+
+Spesso e volentieri, in particolare quando si inizia a praticare il parkour, ci si trova davanti alla tentazione di provare un salto particolarmente alto o visivamente spettacolare. Il web è pieno di video di praticanti esperti che fanno salti mozzafiato, con acrobazie in mezzo e movimenti puliti, che possono portare il nuovo praticante a desiderare di approcciarsi a salti più consistenti. Il problema però è che il dislivello di abilità nel parkour tra un praticante alle prime armi e uno più esperto è abissale. Soprattutto nei ragazzi, quando si scopre di essere in grado di saltare giù da un muro di 3 metri di altezza ad esempio, senza sentire dolore, si è portati a pensare di essere in grado di farlo. In realtà, qualsiasi persona normo-abile potrebbe eseguire un atterraggio da quell'altezza, ma quello che fa la differenza è la capacità di minimizzare l'impatto e di rendere efficace l'atterraggio.
+
+Un praticante esperto fa raramente salti da più di 3 metri, non perché non ne sia in grado, ma perché grazie all'esperienza, alla potenza, alla tecnica e al controllo sviluppati negli anni di pratica, sa di essere in grado di atterrare delicatamente e senza sforzo da quella altezza, come sa che da altezze superiori in ogni caso andrebbe a sforzare eccessivamente le articolazioni. Tutti abbiamo provato qualche "saltone" nei primi anni di pratica e tutti ce ne siamo pentiti. A quei tempi però l'informazione era poca e di coaches non ce n'erano, ora invece i coaches ci sono e noi ci stiamo impegnando proprio per diffondere più informazione possibile.
+
+Inoltre, dopo anni di pratica, ci si rende conto che i grandi salti sono una minima parte della disciplina e che per farli sono indispensabili centinaia e migliaia di salti più piccoli, allenati e lavorati fino alla perfezione.
+
+Non lasciatevi prendere dalla smania di esagerare, una delle più grandi qualità del parkour è proprio la varietà: se vi concentrate solamente su una cosa, magari migliorerete in quella, ma non svilupperete il controllo e la padronanza che vi permetterebbero poi di fare la stessa cosa in altezza, piuttosto che sul bagnato o in qualsiasi altra situazione. Il modo più efficace per crescere e migliorare in tutto è variare, sondando ogni giorno i nostri limiti, mentali, fisici e tecnici, e allenandoci per superarli, senza fretta. Arrampicatevi sugli alberi, spostatevi tra i rami, correte sui muri, saltate sulle sbarre, provate a rifarlo scalzi, poi ad occhi chiusi. Continuando ad allenarsi con passione, senza ansie e senza fretta, per migliorare voi stessi fino alla perfezione e non per sfidare gli altri o mettersi in mostra, vi divertirete ogni giorno di più e di anno in anno scoprirete nuovi salti, nuove possibilità, fino a quando tornerete di fronte a qualche grande salto che avreste sempre voluto fare e lo sbloccherete senza difficoltà e senza rischio.
+
+Tutto questo non significa che dobbiate fermarvi non appena un movimento vi spaventa, tutt'altro. La paura e il suo superamento fanno parte del parkour come tutto il resto, tant'è che i salti davanti ai quali ci si sente paralizzati dalla paura hanno un nome preciso: Break The Jump, derivante proprio dal fatto di doverli sbloccare, rompendo le barriere mentali della paura. Possono essere di ogni tipo, da un atterraggio su sbarra, ad un salto in altezza e ognuno di questi necessita coscienza e controllo per essere superato al meglio. Il parkour stimola il pensiero, la ponderatezza e il calcolo, ma di questo parleremo meglio in seguito. Per il momento ci interessa che comprendiate a fondo l'importanza della progressività, della varietà e della cautela. Se non riuscite a resistere dal fare un saltone, fatelo, una volta. La tecnica si lavora sulle piccole cose, come il controllo e la consapevolezza. Ripetendo salti più violenti invece, anche se magari sul momento non succede nulla, con il passare degli anni rischiate solo di incorrere in infiammazioni, irritazioni e infortuni, in particolare alle articolazioni, che vi costringerebbero a stare a riposo per giorni, settimane o addirittura mesi.
+
+Non dovete dimostrare nulla a nessuno, non è una gara, il parkour è per ogni praticante, usatelo per divertirvi, per migliorarvi, per crescere e per necessità, ma rispettate i tempi, le progressioni e voi stessi.

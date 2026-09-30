@@ -1,0 +1,43 @@
+site_name: Uncensored Runners
+tagline: Parkour · Padova
+domain: https://www.uncensoredrunners.com
+phone: 352 048 0417
+email: info@uncensoredrunners.com
+facebook: https://www.facebook.com/uncensoredrunners/
+instagram: ''
+youtube: ''
+footer_text: Scuola di parkour a Padova. L'arte dello spostamento per tutti, in sicurezza, con coach professionisti qualificati.
+legal_name: Movivo SSDARL
+cta_title: Vuoi provare? La prima lezione è gratuita
+menu:
+- label: Parkour e movimento
+  link: /parkour-movimentonaturale-yoga-padova/
+- label: Bambini e ragazzi
+  link: /bambini-e-ragazzi/
+- label: Chi siamo
+  link: /scuola-parkour-padova/
+  children:
+  - label: Il nostro approccio
+    link: /scuola-parkour-padova/
+  - label: Politica economica
+    link: /scuola-parkour-padova/politica-economica/
+  - label: Il parkour
+    link: /il-parkour/
+  - label: Storia del parkour
+    link: /il-parkour/storia-del-parkour/
+- label: Formazione istruttori
+  link: /formazione-istruttori/
+- label: Blog
+  link: /blog-parkour-padova/
+menu_button:
+  label: Prova gratuita
+  link: /contatti/parkour-padova/
+areas:
+- Padova
+- Albignasego
+- Chiesanuova
+- Forcellini
+- Vigodarzere
+- Ponte San Nicolò
+- Noventa Padovana
+- Monselice

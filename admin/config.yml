@@ -1,0 +1,555 @@
+# Configurazione del pannello (Sveltia CMS) – https://sveltiacms.app
+backend:
+  name: github
+  repo: Sgummyy/UncensoredSite
+  branch: main
+  commit_messages:
+    create: 'Nuovo contenuto: {{slug}}'
+    update: 'Modifica: {{slug}}'
+    delete: 'Eliminato: {{slug}}'
+    uploadMedia: 'Caricata immagine: {{path}}'
+    deleteMedia: 'Eliminata immagine: {{path}}'
+site_url: https://www.uncensoredrunners.com
+display_url: https://www.uncensoredrunners.com
+logo_url: /assets/logo-192.png
+locale: it
+media_folder: static/uploads
+public_folder: /uploads
+collections:
+- name: posts
+  label: Articoli del blog
+  label_singular: Articolo
+  icon: edit_note
+  folder: content/posts
+  extension: md
+  format: frontmatter
+  create: true
+  slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+  summary: '{{title}} · {{date}}'
+  sortable_fields:
+  - date
+  - title
+  sort_by:
+    field: date
+    direction: descending
+  fields:
+  - name: title
+    label: Titolo
+    widget: string
+  - name: date
+    label: Data di pubblicazione
+    widget: datetime
+    time_format: false
+    date_format: DD/MM/YYYY
+    format: YYYY-MM-DD
+  - name: cover
+    label: Foto di copertina
+    widget: image
+    required: false
+  - name: excerpt
+    label: Anteprima (2-3 righe mostrate nell'elenco del blog)
+    widget: text
+    required: false
+  - name: description
+    label: Descrizione per Google (facoltativa)
+    widget: text
+    required: false
+  - name: draft
+    label: Bozza (non pubblicare ancora)
+    widget: boolean
+    default: false
+    required: false
+  - name: url
+    label: Indirizzo della pagina
+    widget: string
+    required: false
+    hint: 'Lascia vuoto per i nuovi articoli: viene creato in automatico dal titolo. Non modificarlo negli articoli già pubblicati.'
+  - name: body
+    label: Testo dell'articolo
+    widget: markdown
+- name: pages
+  label: Pagine
+  label_singular: Pagina
+  icon: description
+  folder: content/pages
+  extension: yml
+  format: yml
+  create: true
+  slug: '{{slug}}'
+  summary: '{{menu_label}} ({{url}})'
+  sortable_fields:
+  - order
+  - menu_label
+  sort_by:
+    field: order
+    direction: ascending
+  fields:
+  - name: title
+    label: Titolo grande della pagina
+    widget: string
+  - name: subtitle
+    label: Sottotitolo
+    widget: text
+    required: false
+  - name: tag
+    label: Etichetta rossa sopra il titolo
+    widget: string
+    required: false
+  - name: notice
+    label: Avviso in evidenza (facoltativo)
+    widget: text
+    required: false
+  - name: blocks
+    label: Contenuto della pagina
+    label_singular: blocco
+    widget: list
+    required: false
+    types:
+    - name: heading
+      label: Titolo
+      fields:
+      - name: text
+        label: Testo del titolo
+        widget: string
+      - name: level
+        label: Dimensione
+        widget: select
+        options:
+        - label: Grande
+          value: 2
+        - label: Piccolo
+          value: 3
+        default: 2
+    - name: text
+      label: Testo
+      fields:
+      - name: body
+        label: Testo
+        widget: markdown
+    - name: image
+      label: Foto
+      fields:
+      - name: src
+        label: Foto
+        widget: image
+      - name: alt
+        label: Descrizione della foto (per Google e accessibilità)
+        widget: string
+        required: false
+      - name: caption
+        label: Didascalia
+        widget: string
+        required: false
+      - name: link
+        label: Link al clic (facoltativo)
+        widget: string
+        required: false
+    - name: button
+      label: Pulsante
+      fields:
+      - name: question
+        label: Domanda sopra il pulsante (facoltativa)
+        widget: string
+        required: false
+      - name: text
+        label: Testo del pulsante
+        widget: string
+      - name: link
+        label: Link (es. /contatti/parkour-padova/)
+        widget: string
+      - name: style
+        label: Stile
+        widget: select
+        options:
+        - label: Rosso pieno
+          value: rosso
+        - label: Contorno
+          value: contorno
+        default: contorno
+    - name: video
+      label: Video YouTube
+      fields:
+      - name: youtube
+        label: Link o codice del video YouTube
+        widget: string
+    - name: document
+      label: Documento PDF
+      fields:
+      - name: title
+        label: Titolo
+        widget: string
+      - name: description
+        label: Descrizione
+        widget: string
+        required: false
+      - name: file
+        label: File
+        widget: file
+    - name: form
+      label: Modulo contatti
+      fields:
+      - name: title
+        label: Titolo sopra il modulo (facoltativo)
+        widget: string
+        required: false
+    - name: facebook
+      label: Pulsante Facebook
+      fields: []
+    - name: divider
+      label: Separatore
+      fields: []
+    - name: columns
+      label: Colonne affiancate
+      fields:
+      - name: layout
+        label: Larghezza
+        widget: select
+        required: false
+        options:
+        - label: Uguali
+          value: uguali
+        - label: Stretta + larga
+          value: stretta-larga
+        - label: Larga + stretta
+          value: larga-stretta
+      - name: columns
+        label: Colonne
+        label_singular: colonna
+        widget: list
+        fields:
+        - name: blocks
+          label: Contenuto della colonna
+          label_singular: blocco
+          widget: list
+          types:
+          - name: heading
+            label: Titolo
+            fields:
+            - name: text
+              label: Testo del titolo
+              widget: string
+            - name: level
+              label: Dimensione
+              widget: select
+              options:
+              - label: Grande
+                value: 2
+              - label: Piccolo
+                value: 3
+              default: 2
+          - name: text
+            label: Testo
+            fields:
+            - name: body
+              label: Testo
+              widget: markdown
+          - name: image
+            label: Foto
+            fields:
+            - name: src
+              label: Foto
+              widget: image
+            - name: alt
+              label: Descrizione della foto (per Google e accessibilità)
+              widget: string
+              required: false
+            - name: caption
+              label: Didascalia
+              widget: string
+              required: false
+            - name: link
+              label: Link al clic (facoltativo)
+              widget: string
+              required: false
+          - name: button
+            label: Pulsante
+            fields:
+            - name: question
+              label: Domanda sopra il pulsante (facoltativa)
+              widget: string
+              required: false
+            - name: text
+              label: Testo del pulsante
+              widget: string
+            - name: link
+              label: Link (es. /contatti/parkour-padova/)
+              widget: string
+            - name: style
+              label: Stile
+              widget: select
+              options:
+              - label: Rosso pieno
+                value: rosso
+              - label: Contorno
+                value: contorno
+              default: contorno
+          - name: video
+            label: Video YouTube
+            fields:
+            - name: youtube
+              label: Link o codice del video YouTube
+              widget: string
+          - name: document
+            label: Documento PDF
+            fields:
+            - name: title
+              label: Titolo
+              widget: string
+            - name: description
+              label: Descrizione
+              widget: string
+              required: false
+            - name: file
+              label: File
+              widget: file
+          - name: form
+            label: Modulo contatti
+            fields:
+            - name: title
+              label: Titolo sopra il modulo (facoltativo)
+              widget: string
+              required: false
+          - name: facebook
+            label: Pulsante Facebook
+            fields: []
+          - name: divider
+            label: Separatore
+            fields: []
+  - name: intro
+    label: Testo sopra il modulo (solo pagina Contatti)
+    widget: text
+    required: false
+  - name: show_cta
+    label: Mostra il riquadro "Prenota la prova" in fondo
+    widget: boolean
+    default: true
+    required: false
+  - name: seo_title
+    label: Titolo per Google
+    widget: string
+    required: false
+  - name: description
+    label: Descrizione per Google
+    widget: text
+    required: false
+  - name: menu_label
+    label: Nome breve (percorso e mappa del sito)
+    widget: string
+  - name: url
+    label: Indirizzo della pagina
+    widget: string
+    hint: Es. /corsi-estivi/ – non modificarlo nelle pagine esistenti, Google le conosce con questo indirizzo.
+  - name: parent
+    label: Pagina madre (per il percorso)
+    widget: string
+    required: false
+  - name: order
+    label: Ordine
+    widget: number
+    value_type: int
+    required: false
+  - name: layout
+    label: Tipo di pagina
+    widget: select
+    options:
+    - label: Standard
+      value: standard
+    - label: Contatti
+      value: contatti
+    - label: Elenco blog
+      value: blog
+    default: standard
+  - name: noindex
+    label: Nascondi a Google
+    widget: boolean
+    default: false
+    required: false
+- name: site
+  label: Home e impostazioni
+  icon: settings
+  files:
+  - name: home
+    label: Pagina Home
+    file: content/home.yml
+    fields:
+    - name: hero
+      label: Apertura (foto grande)
+      widget: object
+      fields:
+      - name: image
+        label: Foto di sfondo
+        widget: image
+      - name: tag
+        label: Etichetta rossa
+        widget: string
+      - name: title_1
+        label: Titolo (riga piena)
+        widget: string
+      - name: title_2
+        label: Titolo (riga a contorno)
+        widget: string
+      - name: lead
+        label: Frase sotto il titolo
+        widget: text
+      - name: button
+        label: Pulsante principale
+        widget: string
+      - name: button_2
+        label: Pulsante secondario
+        widget: string
+      - name: stats
+        label: Numeri in evidenza
+        label_singular: numero
+        widget: list
+        fields:
+        - name: value
+          label: Numero
+          widget: string
+        - name: label
+          label: Descrizione
+          widget: string
+    - name: quote
+      label: Citazione
+      widget: object
+      fields:
+      - name: eyebrow
+        label: Frase sopra
+        widget: string
+      - name: text
+        label: Citazione
+        widget: text
+      - name: author
+        label: Autore
+        widget: string
+      - name: role
+        label: Ruolo
+        widget: string
+      - name: image
+        label: Foto
+        widget: image
+    - name: paths_title
+      label: Titolo delle schede
+      widget: string
+    - name: paths
+      label: Schede "Da dove vuoi iniziare"
+      label_singular: scheda
+      widget: list
+      fields:
+      - name: question
+        label: Domanda
+        widget: string
+      - name: title
+        label: Titolo
+        widget: string
+      - name: action
+        label: Testo del link
+        widget: string
+      - name: link
+        label: Link
+        widget: string
+      - name: image
+        label: Foto
+        widget: image
+      - name: caption
+        label: Didascalia
+        widget: string
+        required: false
+    - name: band_title
+      label: Testo della fascia rossa
+      widget: string
+    - name: social_title
+      label: Titolo sezione social
+      widget: string
+    - name: videos
+      label: Video YouTube (link o codici)
+      widget: list
+      field:
+        name: video
+        label: Video
+        widget: string
+    - name: facebook_text
+      label: Testo riquadro Facebook
+      widget: text
+    - name: seo_title
+      label: Titolo per Google
+      widget: string
+    - name: description
+      label: Descrizione per Google
+      widget: text
+  - name: settings
+    label: Contatti, menu e impostazioni
+    file: content/settings.yml
+    fields:
+    - name: site_name
+      label: Nome del sito
+      widget: string
+    - name: tagline
+      label: Sotto il logo
+      widget: string
+    - name: phone
+      label: Telefono
+      widget: string
+    - name: email
+      label: Email
+      widget: string
+    - name: facebook
+      label: Pagina Facebook
+      widget: string
+      required: false
+    - name: instagram
+      label: Profilo Instagram
+      widget: string
+      required: false
+    - name: youtube
+      label: Canale YouTube
+      widget: string
+      required: false
+    - name: footer_text
+      label: Testo nel piè di pagina
+      widget: text
+    - name: cta_title
+      label: Titolo del riquadro "Prenota la prova"
+      widget: string
+    - name: legal_name
+      label: Ragione sociale
+      widget: string
+    - name: menu
+      label: Menu principale
+      label_singular: voce
+      widget: list
+      fields:
+      - name: label
+        label: Nome
+        widget: string
+      - name: link
+        label: Link
+        widget: string
+      - name: children
+        label: Sottomenu
+        label_singular: voce
+        widget: list
+        required: false
+        fields:
+        - name: label
+          label: Nome
+          widget: string
+        - name: link
+          label: Link
+          widget: string
+    - name: menu_button
+      label: Pulsante rosso nel menu
+      widget: object
+      fields:
+      - name: label
+        label: Testo
+        widget: string
+      - name: link
+        label: Link
+        widget: string
+    - name: areas
+      label: Zone servite (per Google)
+      widget: list
+      required: false
+    - name: domain
+      label: Indirizzo del sito
+      widget: string

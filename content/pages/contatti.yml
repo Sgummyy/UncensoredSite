@@ -1,0 +1,19 @@
+url: /contatti/parkour-padova/
+menu_label: Contatti
+order: 6
+seo_title: Contatti | Uncensored Runners Padova
+description: 'Contatti scuola di parkour N^1 a Padova '
+tag: Contatti
+title: Informazioni di contatto
+subtitle: ''
+notice: ''
+parent: ''
+show_cta: false
+noindex: false
+layout: contatti
+blocks:
+- type: image
+  src: /uploads/coach-parkour-padova.jpg
+  alt: Coach parkour Padova
+  caption: Uncensored Runners Coach 2018
+intro: Chiedi informazioni sui corsi o prenota la tua lezione di prova gratuita.

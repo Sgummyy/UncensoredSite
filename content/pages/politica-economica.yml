@@ -1,0 +1,68 @@
+url: /scuola-parkour-padova/politica-economica/
+menu_label: Politica economica
+order: 4
+seo_title: Politica economica | Uncensored Runners Padova
+description: Politica economica di Movivo SSDARL, tra sostenibilità e trasparenza.
+tag: Trasparenza
+title: POLITICA ECONOMICA di MOVIVO SSDARL
+subtitle: Cultura del movimento, educazione, sostenibilità e trasparenza.
+notice: ''
+parent: /scuola-parkour-padova/
+show_cta: true
+noindex: false
+layout: standard
+blocks:
+- type: heading
+  text: La cultura del movimento, per noi, è uno strumento speciale per contribuire all'educazione e alla crescita dei praticanti, dai bambini agli adulti. Nel corpo si depositano emozioni ed esperienze che condizionano il vissuto di tutti i giorni. Attraverso il movimento, che è il linguaggio del corpo, chi pratica ha la possibilità di elaborare fisicamente il passato e di scoprire e coltivare le proprie potenzialità, senza passare dal ragionamento. Per questo crediamo nell'importanza di offrire un servizio di alto livello e investiamo in giovani professionisti che condividono questi valori.
+  level: 3
+- type: divider
+- type: columns
+  columns:
+  - blocks:
+    - type: heading
+      text: Formazione continua e professionalità.
+      level: 3
+    - type: text
+      body: |-
+        In Italia, per lavorare come istruttore sportivo spesso è sufficiente una certificazione che si ottiene partecipando ad un weekend di formazione.
+
+        I nostri istruttori, prima di iniziare a lavorare, devono superare un esame teorico e pratico dopo almeno sei mesi di formazione e tirocinio.
+
+        Tutti gli istruttori attivi poi partecipano al percorso di formazione continua da noi organizzato, con un impegno di almeno 84 ore l'anno in presenza, oltre allo studio e alla pratica autonoma.
+
+        Le tematiche affrontate nella formazione comprendono una parte scientifica (anatomia, fisiologia e biomeccanica), una parte tecnico-pratica (postura, esercizi e tecniche del parkour) e una parte pedagogica-educativa (comunicazione, gestione del rischio, elementi di psicologia e coaching).
+    - type: heading
+      text: 'Trasparenza: costi e prezzi.'
+      level: 3
+    - type: text
+      body: |-
+        Per garantire la sostenibilità dell'impegno che richiediamo ai nostri istruttori, ci impegniamo a riconoscere un corrispettivo economico che permetta loro di vivere di questa professione. Questo significa anche tutelarli nei momenti in cui le attività sono ridotte, come il periodo estivo.
+
+        I prezzi delle nostre attività sono calcolati in modo che questo sia possibile, considerando anche le spese per l'adempimento degli oneri burocratici e legali della società, per la segreteria e per l'affitto dei locali in caso di pioggia.
+
+        La quota mensile intera, anche in caso di temporanea sospensione degli allenamenti (ad esempio per festività o malattia), ci permette di garantire malattia e ferie pagateai nostri istruttori.
+  - blocks:
+    - type: heading
+      text: Agevolazioni, diritti e comunità.
+      level: 3
+    - type: text
+      body: |-
+        Il diritto all'educazione è sancito dalla costituzione, ma siccome l'offerta pubblica presenta ampie lacune soprattutto nell'ambito del movimento, noi cerchiamo di dare il nostro contributo. D'altra parte, chiediamo il contributo dei nostri tesserati per assicurare il diritto al riposo e alla malattia ai nostri istruttori.
+
+        **Familiari:** in caso di partecipazione di due o più componenti dello stesso nucleo familiare, prevediamo il 10% di riduzione sui prezzi delle nostre attività, per ogni partecipante.
+
+        **Assenze:** in caso di assenza è possibile recuperare le lezioni in altre sedi e/o altre date, senza limiti di tempo in caso di problemi di salute, entro fine stagione in caso di motivi personali. In caso di assenze prolungate per malattia o cause di forza maggiore, è possibile pagare le lezioni singole lezioni del mese di riferimento.
+
+        **Sospensione degli allenamenti:** in caso di festività o di assenza dell'istruttore è sempre possibile recuperare le lezioni in altre sedi e/o altre date; inoltre, nel caso siano annullati nello stesso mese
+
+        - 2 o più allenamenti *per chi è iscritto 1 volta a settimana*
+
+        *-* 3 o più allenamenti *per chi è iscritto 2 volte a settimana*
+
+        è possibile scegliere se pagare comunque per intero e contribuire a garantire malattia e ferie pagate ai nostri istruttori, oppure se pagare le lezioni singole del mese di riferimento.
+
+        **Lezioni singole:** in ogni caso, il costo delle lezioni singole è di 15€ l'una, salvo diversi accordi con gli istruttori o con la segreteria.
+
+        **Difficoltà economiche:** in caso di difficoltà personali o familiari a sostenere le quote di partecipazione dei corsi, può essere fatta una richiesta di riduzione alla segreteria, specificando l'entità della riduzione necessaria e il tempo per cui è richiesta. Non è obbligatorio motivare la richiesta, siamo consapevoli che alcune difficoltà sono difficili da condividere, quindi ci affidiamo all'onestà dei richiedenti e restiamo a disposizione nel caso ci sia il desiderio di parlarne assieme o nel caso possiamo essere di qualche aiuto.
+- type: text
+  body: Il fondatore, Elia Landolfi, e tutto il team Movivo SSDarl - Uncensored Runners

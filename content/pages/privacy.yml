@@ -1,0 +1,25 @@
+url: /j/privacy/
+menu_label: Privacy
+order: 10
+seo_title: Privacy | Uncensored Runners Padova
+description: ''
+tag: Note legali
+title: Privacy
+subtitle: ''
+notice: ''
+parent: ''
+show_cta: false
+noindex: true
+layout: standard
+blocks:
+- type: text
+  body: |-
+    ## Dati analitici del sito (Statistiche di Creator)
+
+    Quando visiti il nostro sito, raccogliamo informazioni sul tuo utilizzo dello stesso attraverso uno strumento di analisi web fornito dal nostro servizio di hosting. Tale strumento raccoglie e combina il tuo indirizzo IP e user agent, lo accorcia e lo salva usando una funzione di hash. Tale processo crea un elemento di identificazione del visitatore codificato con un valore generato casualmente (SALT) che cambia ogni 24 ore. Questo metodo assicura che il tuo indirizzo IP non possa essere ricostruito a partire dall'elemento di identificazione del visitatore salvato, mantenendo così il tuo anonimato. Inoltre, queste informazioni non vengono combinate con nessun altro dato e vengono salvate solo sul server del provider di hosting.
+
+     Trattiamo inoltre dati di analisi web, dati HTTP e di profilazione. Lo strumento di analisi web che usiamo crea e salva un profilo di analisi web che comprende dettagli sull'uso del tuo sito, ad esempio le visualizzazioni, le frequenze delle visite, il tempo trascorso su ogni pagina, l'user agent del tuo dispositivo. Tale profilo include altresì i dati sull'utilizzo (come le pagine visitate e i tempi di accesso) e i dati sulla comunicazione (come il tipo di browser, il sistema operativo e gli indirizzi IP).
+
+     La nostra finalità relativa al trattamento di questi dati è di analizzare il comportamento dell'utente in forma aggregata al fine di migliorare la presentazione e il contenuto del nostro sito. Il fondamento giuridico di tale trattamento è il nostro interesse legittimo (art. 6, par. 1, lettera (f) del RGPD), in particolare nel misurare le metriche relative al sito per migliorare i nostri prodotti e il nostro sito.
+
+     I dati raccolti sono condivisi con il nostro provider di hosting del sito e trattati all'interno dell'UE.

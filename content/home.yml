@@ -1,0 +1,49 @@
+seo_title: Uncensored Runners | Scuola di parkour a Padova
+description: Team numero uno a Padova, corsi per tutte le età, Coach professionisti qualificati e Performers
+hero:
+  tag: Scuola di parkour a Padova
+  title_1: Uncensored
+  title_2: Runners
+  lead: Da 10 anni pionieri della disciplina in Italia. L'arte dello spostamento per tutti, in sicurezza.
+  image: /uploads/parkour-padova-284b2b.jpg
+  button: Prenota la lezione di prova gratuita
+  button_2: Scopri i corsi
+  stats:
+  - value: 10+
+    label: anni di esperienza
+  - value: 3+
+    label: anni, età di partenza dei corsi
+  - value: CSEN
+    label: formazione nazionale istruttori
+quote:
+  eyebrow: L'arte dello spostamento per tutti, in sicurezza
+  text: 'Il parkour è libertà. Libertà fisica di muoversi, esplorare e cambiare punto di vista. Libertà di ri-scoprire le capacità del proprio corpo e di ri-posizionarsi nell''ambiente che ci circonda. Una libertà viva che, passo dopo passo, salto dopo salto, si trasforma in una danza silenziosa: l''Arte di spostarsi come solo l''animale uomo può fare, consapevolmente e coraggiosamente.'
+  author: Elia Landolfi
+  role: Fondatore di Uncensored Runners e responsabile nazionale del settore parkour C.S.E.N.
+  image: /uploads/foto-fondatore-parkour-padova.jpg
+paths_title: Da dove vuoi iniziare?
+paths:
+- question: Sei un genitore e vuoi saperne di più?
+  title: Bambini e ragazzi
+  action: Scopri i corsi per bambini e ragazzi
+  link: /bambini-e-ragazzi/
+  image: /uploads/scuola-di-parkour-a-padova.jpg
+  caption: Primo corso di parkour a padova U14 Uncensored Runners
+- question: Sei curioso/a ma non sai se fa per te?
+  title: Corsi per adulti
+  action: Scopri di più sui nostri corsi
+  link: /parkour-movimentonaturale-yoga-padova/
+  image: /uploads/parkour-padova-performers.jpg
+  caption: ''
+- question: Vuoi sapere di più su di noi e sul fondatore?
+  title: Chi siamo
+  action: Leggi di noi
+  link: /scuola-parkour-padova/
+  image: /uploads/foto-fondatore-parkour-padova.jpg
+  caption: ''
+band_title: Contattaci per una lezione di prova gratuita
+social_title: Seguici sui social!
+videos:
+- kSnBFzwAZ7w
+- cY5k8_YDE5A
+facebook_text: 'Aggiornamenti su corsi, eventi e lezioni aperte: seguici sulla pagina ufficiale.'

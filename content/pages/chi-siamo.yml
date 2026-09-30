@@ -1,0 +1,105 @@
+url: /scuola-parkour-padova/
+menu_label: Chi siamo
+order: 3
+seo_title: Il nostro approccio | Uncensored Runners Padova
+description: Filosofia, pratica e storia della scuola di parkour di Padova
+tag: Chi siamo
+title: Uncensored Runners
+subtitle: Filosofia, pratica e storia della scuola di parkour di Padova
+notice: 'NOTA BENE: Uncensored Runners è un progetto della Società sportiva dilettantistica a r. l. Movivo, senza fini di lucro, affiliata a CSEN e regolarmente iscritta al R.A.S.D.: tutte le attività sono riservate ai tesserati e ogni domanda di tesseramento verrà vagliata dall''organo amministrativo.'
+parent: ''
+show_cta: false
+noindex: false
+layout: standard
+blocks:
+- type: columns
+  columns:
+  - blocks:
+    - type: image
+      src: /uploads/allenatori-professionisti-parkour-padova.jpg
+      alt: allenatori professionisti parkour padova
+      caption: 'I maestri: Elia e Francesca'
+  - blocks:
+    - type: text
+      body: |-
+        "Uncensored Runners è il nome che racchiude il mio modo di vivere la disciplina fin dai primi anni di pratica. Dopo 15 anni di esperienza e di ricerca sono cambiate tante cose, ma il principio è sempre lo stesso: il parkour è l'arte dello spostamento, una disciplina libera, in cui il praticante impara a rispettare il proprio corpo, le differenze individuali e l'ambiente, senza approssimazioni e senza imprudenza. Una libertà creativa che nasce da una pratica costante e consapevole che diventa ricerca continua di equilibrio, efficienza e bellezza. Penso che qualsiasi "arte" si pratichi, non si possa mai rinunciare alla ricerca dei principi della natura e della loro eleganza. La perfezione del gesto è semplice e umile, ma ha una luce diversa, come il riflesso dell'alba sul mare calmo."
+
+        *Elia Landolfi*
+- type: divider
+- type: columns
+  columns:
+  - blocks:
+    - type: heading
+      text: Il nostro approccio alla pratica
+      level: 2
+    - type: text
+      body: |-
+        Lo spostamento è il fondamento delle capacità motorie di qualsiasi animale. I bambini iniziano a spostarsi nella pancia della mamma per sviluppare i muscoli e i nervi e appena possono esplorano ogni angolo alla loro portata, scoprendo a poco a poco i propri limiti e superandoli continuamente. Per spostarci dobbiamo coordinare tutto il corpo insieme, mantenere l'equilibrio, rispettare le nostre articolazioni e muovere tutto il nostro peso in alto e in basso, a destra e a sinistra. La vita di oggi ci richiede molto poco a livello motorio, così tendiamo a non pensare al nostro corpo finché non ci troviamo bloccati dal mal di schiena.
+
+        Il parkour è un gioco, come il calcio e il basket: invece che giocare a far arrivare una palla da qualche parte, si gioca ad arrivarci con tutto il corpo, nel modo più sicuro ed efficiente possibile. Come ogni gioco può essere preso più o meno seriamente e diventare una sfida, una pratica profonda, un'arte, o un hobby per tenerci in forma. Si gioca per stare bene, fisicamente e mentalmente, e la prima regola è il rispetto. Rispetto per noi stessi, per il nostro corpo e per i nostri limiti, per chi ci circonda, per chi ci guarda e per l'ambiente in cui ci alleniamo. La seconda regola è che ogni gioco finisce: le condizioni in cui siamo quando finiamo di giocare devono essere migliori o uguali a quelle in cui eravamo prima di iniziare, altrimenti, come si dice, "il gioco non vale la candela". Questo non vuol dire che i rischi vanno eliminati, anzi: l'esposizione al rischio è uno stimolo prezioso che permette di reclutare tutta la propria attenzione e aiuta a diventare consapevoli dei propri limiti, ma va fatto con cura e sotto lo sguardo esperto di qualcuno, soprattutto nei primi anni di pratica. Rispettare il proprio corpo non significa solo evitare gli infortuni maggiori, ma anche metterlo e mantenerlo nelle condizioni migliori per la salute e il benessere, prendendosi cura di ogni sua parte, dalle articolazioni al sistema nervoso.
+
+        Per questi motivi penso che ogni istruttore di parkour dovrebbe prima di tutto essere stato uno studente e un praticante per un tempo sufficiente, cosa purtroppo molto rara, e continuare ad esserlo, senza smettere di aggiornarsi nella teoria e nella pratica.
+
+        Elia Landolfi
+    - type: heading
+      text: 'Il fondatore: Elia Landolfi'
+      level: 2
+    - type: text
+      body: |-
+        La carriera sportiva di Elia inizia da bambino: fino ai 7 anni frequenta corsi di psicomotricità a Milano, che gli permettono di esplorare le basi del movimento. A 8 anni arriva a Padova e per qualche anno si dedica alla ginnastica artistica sotto la guida di [Maurizio Milanetto](https://www.centrosportivomilanetto.it/), ex olimpionico italiano, da cui tornerà anni dopo per perfezionare alcune tecniche di acrobatica.
+
+        Pratica un po' di nuoto, basket e rugby, ma l'esperienza più importante la fa nell'atletica leggera con le [Fiamme Oro](https://www.fiammeoroatletica.it/), con cui si allena e gareggia per 8 anni, appassionato di discipline multiple e salto con l'asta. Qui ha occasione di allenarsi con atleti e tecnici di livello internazionale e approfondisce le tecniche di corsa, di salto, di lancio e di preparazione atletica.
+
+        Arriva al parkour per caso, nel 2009 e da subito inizia a dedicarvisi con passione, parallelamente all'atletica. Nel 2015 rinuncia all'agonismo, troppo spesso causa di infortuni, e inizia a dedicarsi solo alla pratica del parkour, fino a conseguire una delle più prestigiose qualifiche a livello internazionale: Parkour Master Coach - ADAPT di 3º livello. Negli anni ha la possibilità di allenarsi con alcuni degli [Yamakasi](https://it.wikipedia.org/wiki/Yamakasi), i fondatori del parkour, e con i praticanti storici di parkour in Italia, ai tempi del forum [GoParkour](https://gopk.forumcommunity.net/). Meritano una menzione speciale anche il tirocinio con [Marcello Palozzo](https://www.marcellopalozzo.com/) e la pratica con il fratello, Matteo.
+
+        Nel 2018 si laurea in Filosofia all'Università di Padova con una tesi su "Il coraggio di essere uomini" e inizia ad approfondire diverse tecniche di meditazione. Nel 2020 consegue il Master universitario in Meditazione e Neuroscienze presso l'Università di Udine.
+
+        Nel 2020 inizia anche a formarsi come istruttore di [Hatha Yoga](https://it.wikipedia.org/wiki/Hatha_Yoga) classico con [Paolo Proietti](https://www.yogapaoloproietti.com/), uno dei più rinomati esperti contemporanei della disciplina al mondo, che diventerà anche il suo riferimento per perfezionare il lavoro sul movimento naturale.
+
+        Nel 2022 viene nominato responsabile e formatore nazionale del settore Parkour dello [C.S.E.N.](https://www.csen.it/) e sviluppa la prima formazione continua per insegnanti di parkour in Italia.
+
+        Negli ultimi anni si è dedicato ad integrare i principi delle discipline orientali nella disciplina del parkour, per renderla più scalabile, tecnica, salutare e profonda.
+
+        Oltre al lavoro con Uncensored Runners, negli anni ha diretto anche la sezione parkour di [CUS Padova](https://www.cuspadova.it/), [Accademia dell'Acrobata](https://accademiadellacrobata.org/), [Teatro Frida](https://www.teatrofrida.it/), [Infinity Sport Village](https://www.infinitysportvillage.com/) e [S.S.D. Giamburrasca](https://www.ssdgiamburrasca.it/).
+  - blocks:
+    - type: image
+      src: /uploads/parkour-padova-5.jpg
+      alt: parkour padova 5
+    - type: heading
+      text: La storia di Uncensored Runners
+      level: 2
+    - type: text
+      body: |-
+        Il nome Uncensored Runners nasce nel 2014, quando Elia ha deciso di dare una forma al gruppo di amici che avevano iniziato a seguire i suoi allenamenti di parkour, iniziati nel 2009.
+
+        Dopo aver completato il percorso da [istruttore di parkour internazionale](https://parkourgenerations.com/) con due amici, nel settembre 2016 Elia costituisce con loro l'ASD Uncensored Runners e inaugura i primi corsi aperti al pubblico.
+
+        Negli anni successivi i collaboratori cambiano ma il progetto cresce.
+
+        Nel 2020 viene costituita una nuova associazione, per ampliare l'offerta con percorsi di crescita personale che unissero alla pratica fisica anche aspetti gli aspetti meditativi e filosofici vicini al percorso formativo di Elia, laureato in filosofia e diplomato ad un master in meditazione e neuroscienze, oggi anche istruttore di yoga e laureato in scienze delle religioni.
+
+        Nel settembre 2021 Elia è vittima di un incidente in moto ed è costretto a sospendere il lavoro sul campo per più di un anno. Nel frattempo ha modo di dedicarsi allo sviluppo della disciplina e viene nominato responsabile nazionale del settore parkour CSEN e formatore nazionale degli istruttori.
+
+        Nel 2024 torna sul campo grazie ad una nuova collaborazione con l'**[associazione Well-Being](https://we-be.it/).**
+
+        Nel 2025 fonda la nuova Movivo SSDrl con Emma Torsello, cara amica e grande istruttrice di apnea, anche lei appassionata di pratiche fisiche e movimento. L'associazione si occupa della promozione delle arti del movimento in tutte le forme e Uncensored Runners resta il progetto di punta per lo sviluppo e la diffusione della cultura del parkour.
+    - type: video
+      youtube: cY5k8_YDE5A
+    - type: video
+      youtube: l-QUaqkWEHQ
+- type: button
+  text: CONTATTACI PER UNA LEZIONE DI PROVA GRATUITA
+  link: /contatti/parkour-padova/
+  style: rosso
+- type: columns
+  columns:
+  - blocks:
+    - type: document
+      title: Statuto Movivo SSDARL
+      description: Copia digitale Statuto Movivo SSDARL
+      file: /uploads/docs/statuto-movivo-ssdarl.pdf
+  - blocks:
+    - type: document
+      title: Informativa privacy
+      description: Copia digitale informativa trattamento dati personali Movivo SSDARL
+      file: /uploads/docs/informativa-privacy-movivo-ssdarl.pdf

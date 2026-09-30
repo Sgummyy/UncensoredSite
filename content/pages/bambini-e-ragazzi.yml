@@ -1,0 +1,101 @@
+url: /bambini-e-ragazzi/
+menu_label: Bambini e ragazzi
+order: 2
+seo_title: Corsi di parkour a padova per bambini e ragazzi | Uncensored Runners Padova
+description: Corsi di parkour a Padova per scoprire la disciplina in sicurezza, con i migliori professionisti, per bambini e ragazzi dai 3 ai 13 anni.Corso di parkour 3 - 4 anniCorso di parkour 5 - 7 anniCorso di parkour 8 - 10 anniCorso di parkour 11 - 13 anni
+tag: Corsi 3–17 anni
+title: Corsi di parkour a padova per bambini e ragazzi
+subtitle: ''
+notice: ''
+parent: ''
+show_cta: true
+noindex: false
+layout: standard
+blocks:
+- type: columns
+  columns:
+  - blocks:
+    - type: image
+      src: /uploads/corso-di-parkour-a-padova-bambini-di-4-5-6-7-8-9-e-10-anni.jpg
+      alt: Corso di parkour a Padova bambini di 4, 5, 6, 7, 8, 9 e 10 anni
+      caption: Corso Base Under14 - 2018/19
+  - blocks:
+    - type: heading
+      text: Albignasego - Chiesanuova - Padova Centro - Forcellini - Vigodarzere - Ponte San Nicolò - Noventa Padovana - Monselice
+      level: 2
+    - type: text
+      body: |-
+        L'educazione di bambini e ragazzi è sempre stata al centro delle nostre attività. I nostri corsi sono pensati per integrare l'istruzione scolastica con un'educazione al movimento, alla salute e alla relazione adattata alle esigenze specifiche di ogni età.
+
+        Insieme alle tecniche e ai valori dell'arte dello spostamento e della preparazione atletica, ci impegniamo ad integrare negli allenamenti i principi della pedagogia di Pestalozzi, Montessori, Hessen ed Etievan, oltre alla nostra esperienza decennale, per un'educazione integrata di bambini e ragazzi.
+- type: divider
+- type: columns
+  columns:
+  - blocks:
+    - type: heading
+      text: Corsi di parkour 3 - 4 anni
+      level: 2
+    - type: text
+      body: |-
+        I corsi di parkour per bambini di 3 - 4 anni sono dedicati allo sviluppo delle capacità motorie di base e alla sicurezza nel movimento. Gli allenamenti durano 40 minuti e sono pensati per:
+
+        1. stimolare il sistema cardiocircolatorio e quello respiratorio, con esercizi e giochi di gruppo ad alta intensità che aiutano i bambini a sfogarsi e sciogliere le tensioni accumulate durante la giornata;
+
+        2. sviluppare concentrazione e propriocettività, con sfide e giochi per sviluppare l'intelligenza motoria e la consapevolezza dell'ambiente;
+
+        3. sviluppare la creatività e l'ascolto, con attività di esplorazione dell'ambiente e del corpo.
+    - type: heading
+      text: Corsi di parkour 5 - 7 anni
+      level: 2
+    - type: text
+      body: |-
+        I corsi di parkour per bambini di 5, 6 e 7 anni sono dedicati allo sviluppo delle capacità motorie generali e coordinative. Gli allenamenti durano 55 minuti e comprendono:
+
+        1. preparazione fisica generale ed equilibrio
+
+        2. arrampicata e sulla consapevolezza del rischio
+
+        3. tecniche di base del parkour (salti, scavalcamenti ecc.)
+
+        4. principi di inseguimento e difesa personale.
+
+        Particolare attenzione è dedicata all'educazione al rispetto degli altri e dell'ambiente e allo sviluppo della concentrazione.
+  - blocks:
+    - type: heading
+      text: Corsi di parkour 8 - 10 anni
+      level: 2
+    - type: text
+      body: |-
+        I corsi di parkour per bambini di 8, 9 e 10 anni sono dedicati allo sviluppo della tecnica del movimento, che comprende postura, precisione e disciplina. Gli allenamenti durano 60 minuti e comprendono:
+
+        1. preparazione fisica specifica ed equilibrio
+
+        2. arrampicata e tecniche di salvataggio
+
+        3. tecniche del parkour
+
+        4. principi di inseguimento e difesa personale
+
+        Particolare attenzione è dedicata alla gestione dello stress e dell'ansia e al rispetto dei limiti imposti dal nostro corpo e dall'ambiente.
+    - type: heading
+      text: Corsi di parkour 11 - 13 anni
+      level: 2
+    - type: text
+      body: |-
+        I corsi di parkour per ragazzi di 11, 12 e 13 anni sono dedicati alle tecniche avanzate e allo sviluppo delle qualità del movimento, per arricchire la dimensione psicologica della pratica. Gli allenamenti durano 60 minuti e comprendono:
+
+        1. preparazione fisica specifica ed equilibrio
+
+        2. studio delle qualità del movimento
+
+        3. arrampicata e tecniche di salvataggio
+
+        4. tecnica
+
+        5. inseguimento e percorsi
+
+        Particolare attenzione è dedicata allo sviluppo della responsabilità e dell'autodeterminazione.
+
+        Dai 14 anni i corsi non fanno più distinzione d'età. Vedi [Parkour e Movimento](/parkour-movimentonaturale-yoga-padova/).
+- type: form
+  title: ''

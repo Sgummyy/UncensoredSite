@@ -1,0 +1,38 @@
+url: /il-parkour/cos-è-il-parkour/
+menu_label: Cos'è il parkour
+order: 8
+seo_title: Cos'è il parkour? | Uncensored Runners Padova
+description: cos'è il parkour
+tag: La disciplina
+title: Cos'è il parkour
+subtitle: ''
+notice: ''
+parent: /il-parkour/
+show_cta: true
+noindex: false
+layout: standard
+blocks:
+- type: columns
+  columns:
+  - blocks:
+    - type: text
+      body: 'Il parkour è molto più di un semplice sport, è una disciplina completa. Anche la definizione di “arte dello spostamento” (art du deplacement in francese, definizione coniata dal gruppo originale degli Yamakasi), se priva di un adeguata contestualizzazione, non è in grado di definirlo. L’aspetto più conosciuto di questa disciplina è sicuramente la spettacolarità delle performance dei praticanti, che ha trovato terreno fertile nei media, che ne hanno consentito l’enorme diffusione che ha avuto in tutto il mondo. Peccato però che l’utente medio spesso si fermi a questo aspetto, senza informarsi ed approfondire ulteriormente la questione, causando la scomparsa di tutto l’aspetto valoriale e filosofico della disciplina dall’immaginario comune. Il parkour infatti, anche conosciuto come freerunning (termine coniato da Sebastian Foucan), prima di tutto è un’attitudine, un modo di approcciarsi agli ostacoli, alla città, alla vita e al mondo. In questo in effetti presenta una affinità
+        davvero curiosa proprio con la filosofia: quest’ultima nasce dall’inquisizione dell’ovvio, del noto, dalla messa in dubbio delle consuetudini, al fine di scoprire la verità, ovvero ciò che sta dietro alle apparenze, la cui comprensione permette di condurre una vita felice e giusta.'
+  - blocks:
+    - type: text
+      body: |-
+        Il parkour presenta lo stesso approccio inquisitorio nei confronti del movimento, in particolare dello spostamento, al fine di indagare le capacità e le potenzialità del fisico umano in questo contesto. Con il diffondersi dell’urbanizzazione e della civiltà, in nome della produttività e dell’efficienza la società ha eliminato qualsiasi ostacolo naturale dalla vita di tutti i giorni, pianificando i terreni per facilitare la marcia dei veicoli e dei pedoni. In questo modo l’uomo si è “infiappito” disabituandosi a muoversi e spostarsi con il proprio corpo in ambienti naturali e non facilitati. Il concetto di esplorazione del parkour, uno dei suoi valori fondamentali, nasce proprio da questa ricerca delle capacità perdute dell’uomo che il praticante cerca di recuperare e massimizzare muovendosi e spostandosi in modo non convenzionale, dalle variazioni della quadrupedia, al superamento di ostacoli come muretti (vault), alla corsa sui muri (wallrun), ai salti di precisione (precision) e via dicendo.
+
+        La differenza sostanziale con gli altri sport è insomma la mancanza di schemi fissi, in un’ottica di
+  - blocks:
+    - type: text
+      body: |-
+        continua sperimentazione e sfida nei confronti dei propri limiti, fisici (in senso lato, quindi dalla forza all’equilibrio) e mentali (dal movimento in altezza agli atterraggi su superfici limitate o instabili), al fine di portare se stessi al massimo delle proprie potenzialità in modo da potersi spostare e muovere in modo ***fluido***, ***sicuro***, ***cosciente*** ed ***efficiente*** in qualsiasi contesto. Questo tipo di approccio ovviamente, portando le capacità fisiche di una persona a livelli estremamente superiori alla media, permette di eseguire movimenti che al grande pubblico appaiono incredibili, spettacolari e qualche volta anche sconsiderati, ma che in realtà sono frutto di anni di riflessioni ed allenamento.
+
+        Per approfondire l’aspetto valoriale leggi anche Perché Uncensored Runners.
+
+        Ci sarebbero molte altre cose da dire, ma preferiamo lasciarti il gusto di scoprirle da solo.
+
+        Ti aspettiamo!
+
+        di Elia Landolfi

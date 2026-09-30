@@ -286,7 +286,17 @@ def footer():
 </div></footer>
 <div class="quickbar"><a class="btn btn-ghost" href="tel:{PHONE_TEL}">Chiama</a><a class="btn btn-red" href="/contatti/parkour-padova/">Prova gratuita</a></div>'''
 
-FONTS = '<link rel="preload" href="/assets/fonts/fraunces-normal-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/assets/fonts/instrument-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/assets/fonts/fonts.css">'
+import hashlib
+def asset_v(path):
+    """'/assets/site.css' -> '/assets/site.css?v=<hash del contenuto>': ogni modifica cambia l'indirizzo, niente file vecchi in cache."""
+    f = os.path.join(ROOT, 'static', path.lstrip('/'))
+    try:
+        h = hashlib.sha1(open(f, 'rb').read()).hexdigest()[:10]
+    except OSError:
+        return path
+    return f'{path}?v={h}'
+
+FONTS = '<link rel="preload" href="/assets/fonts/fraunces-normal-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/assets/fonts/instrument-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="' + asset_v('/assets/fonts/fonts.css') + '">'
 
 def org():
     return {"@type": "SportsOrganization", "@id": DOMAIN + "/#scuola", "sport": "Parkour", "name": f"{S['site_name']} – Scuola di parkour a Padova",
@@ -322,7 +332,7 @@ def write_page(url, title, desc, body, crumbs=None, og=None, ld=None, noindex=Fa
 <meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#081C35">
 <link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 {FONTS}
-<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="{asset_v('/assets/site.css')}">
 {f'<script type="application/ld+json">{ldj}</script>' if ldj else ''}
 </head><body>
 {header(url)}
@@ -330,8 +340,8 @@ def write_page(url, title, desc, body, crumbs=None, og=None, ld=None, noindex=Fa
 {body}
 </main>
 {footer()}
-<script src="/assets/consent.js"></script>
-<script src="/assets/site.js" defer></script>
+<script src="{asset_v('/assets/consent.js')}"></script>
+<script src="{asset_v('/assets/site.js')}" defer></script>
 </body></html>'''
     path = os.path.join(OUT, slug, 'index.html') if slug else os.path.join(OUT, 'index.html')
     os.makedirs(os.path.dirname(path), exist_ok=True)

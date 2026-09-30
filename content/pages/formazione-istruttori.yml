@@ -4,10 +4,10 @@ order: 5
 seo_title: Formazione istruttori di parkour C.S.E.N. | Uncensored Runners
 description: Formazione nazionale per istruttori di parkour riconosciuta C.O.N.I. e M.I.U.R., in collaborazione con C.S.E.N. ed Elia Landolfi. Regolamento e date.
 tag: C.S.E.N. · C.O.N.I. · M.I.U.R.
-title: FORMAZIONE ISTRUTTORI nazionali DI PARKOUR
+title: Formazione istruttori nazionali di parkour
 subtitle: |-
   Riconosciuti C.O.N.I. e M.I.U.R., in collaborazione con C.S.E.N.
-  DATE 2025/26 IN ARRIVO
+  Date 2025/26 in arrivo
 notice: ''
 parent: ''
 show_cta: true
@@ -18,7 +18,7 @@ blocks:
   src: /uploads/parkour-padova-78f124.jpg
   alt: Istruttori di parkour in allenamento durante la formazione
 - type: heading
-  text: INTRODUZIONE E REGOLAMENTO
+  text: Introduzione e regolamento
   level: 2
 - type: text
   body: |-

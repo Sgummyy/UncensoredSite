@@ -1,5 +1,5 @@
 ---
-title: PROGRAMMA DI ALLENAMENTO PARKOUR VACANZE DI NATALE
+title: Programma di allenamento parkour vacanze di Natale
 date: '2017-12-19'
 url: /2017/12/19/programma-di-allenamento-parkour-vacanze-di-natale/
 cover: ''

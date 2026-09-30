@@ -1,5 +1,5 @@
 ---
-title: 'PAURA: limite dell''uomo o spunto per elevarsi?'
+title: 'Paura: limite dell''uomo o spunto per elevarsi?'
 date: '2018-03-13'
 url: /paura-e-parkour/
 cover: ''

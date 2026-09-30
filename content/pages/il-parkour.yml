@@ -16,12 +16,12 @@ blocks:
   columns:
   - blocks:
     - type: button
-      text: COS'È IL PARKOUR
+      text: Cos'è il parkour
       link: /il-parkour/cos-è-il-parkour/
       style: contorno
   - blocks:
     - type: button
-      text: STORIA DEL PARKOUR
+      text: Storia del parkour
       link: /il-parkour/storia-del-parkour/
       style: contorno
 - type: columns

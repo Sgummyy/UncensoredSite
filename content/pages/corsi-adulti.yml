@@ -28,7 +28,7 @@ blocks:
   src: /uploads/parkour-padova-15cf7e.jpg
   alt: Allievi di Uncensored Runners durante un allenamento di parkour in città
 - type: heading
-  text: I NOSTRI CORSI IN BREVE
+  text: I nostri corsi in breve
   level: 2
 - type: divider
 - type: columns
@@ -107,7 +107,7 @@ blocks:
       title: ''
 - type: divider
 - type: heading
-  text: DUE PAROLE IN PIÙ PER I CURIOSI
+  text: Due parole in più per i curiosi
   level: 2
 - type: divider
 - type: columns

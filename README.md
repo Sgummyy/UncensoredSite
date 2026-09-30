@@ -59,17 +59,25 @@ Ci sono due modi per entrare:
 2. Su GitHub crea una *OAuth App* (*Settings → Developer settings → OAuth Apps*) con *Authorization callback URL* = `https://<nome-worker>.<account>.workers.dev/callback` e copia Client ID e Client Secret nelle variabili del worker.
 3. In `admin/config.yml`, dentro `backend`, aggiungi `base_url: https://<nome-worker>.<account>.workers.dev`.
 
+## Cookie e privacy
+
+- **Banner cookie** (`static/assets/consent.js`, Vanilla JS, nessuna dipendenza): accetta, rifiuta o scegli per categoria. Chiudere con la X equivale a rifiutare. La scelta vale 6 mesi e si cambia dal link "Preferenze cookie" nel piè di pagina.
+- **Blocco preventivo:** prima del consenso il sito non contatta nessun servizio esterno. I caratteri sono ospitati in locale (`static/assets/fonts`), i video YouTube e le loro anteprime partono solo dopo il consenso "Contenuti esterni".
+- Per aggiungere in futuro un servizio (es. statistiche): aggiungi la categoria in `CATEGORIES` dentro `consent.js`, marca lo script con `type="text/plain" data-consent="statistiche"`, aggiorna la Cookie policy e aumenta `VERSION` per richiedere di nuovo il consenso.
+- **Privacy policy** (`/j/privacy/`) e **Cookie policy** (`/cookie-policy/`) si modificano dal pannello, in *Pagine*. Contengono campi **[DA COMPLETARE]** (sede legale, P.IVA, fornitore email, tempi di conservazione) da compilare prima della pubblicazione e da far verificare a un consulente privacy.
+
 ## Costi
 
 | Voce | Costo |
 |---|---|
 | Hosting e modulo contatti (Netlify, piano gratuito) | 0 € |
 | Pannello (Sveltia CMS) e accesso (Cloudflare Workers, gratuito) | 0 € |
+| Banner cookie (fatto in casa, nessun abbonamento) | 0 € |
 | Dominio `.com` (es. Cloudflare Registrar) | circa 10 €/anno |
 
 ## Da completare prima del lancio
 
-- [ ] Informativa privacy: il testo attuale arriva da Jimdo e descrive il vecchio hosting. Va aggiornata.
+- [ ] Privacy e Cookie policy: compilare i campi [DA COMPLETARE] e farle verificare da un consulente.
 - [ ] PDF "Statuto": sul vecchio sito puntava allo stesso file dell'informativa privacy. Caricare lo statuto corretto.
 - [ ] Link Instagram in *Home e impostazioni → Contatti*.
 - [ ] Verificare la licenza dell'illustrazione nell'articolo "Programma di allenamento vacanze di Natale".

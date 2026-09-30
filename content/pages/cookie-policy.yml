@@ -1,0 +1,70 @@
+url: /cookie-policy/
+menu_label: Cookie policy
+order: 11
+seo_title: Cookie policy | Uncensored Runners
+description: Quali cookie usa il sito Uncensored Runners, a cosa servono, per quanto tempo restano e come cambiare le tue preferenze in qualsiasi momento.
+tag: Note legali
+title: Cookie policy
+subtitle: Informativa sui cookie e sulle tecnologie simili usate da questo sito.
+notice: ''
+parent: ''
+show_cta: false
+noindex: false
+layout: standard
+blocks:
+- type: text
+  body: |-
+    *Ultimo aggiornamento: 30 settembre 2026*
+
+    Questa pagina spiega quali cookie e tecnologie simili usa il sito **www.uncensoredrunners.com**, a cosa servono e come puoi gestirli. Completa la [privacy policy](/j/privacy/), dove trovi i dati del Titolare (Movivo SSDARL) e i tuoi diritti.
+
+    ## Cosa sono i cookie
+
+    I cookie sono piccoli file di testo che un sito salva nel tuo browser. Tecnologie simili, come il *localStorage*, funzionano allo stesso modo e seguono le stesse regole: in questa pagina le chiamiamo tutte "cookie".
+
+    - **Cookie tecnici:** servono al funzionamento del sito. Non richiedono il tuo consenso (art. 122 del Codice privacy).
+    - **Cookie di terze parti e di profilazione:** vengono impostati da altri servizi, per esempio YouTube. Li attiviamo **solo se acconsenti**.
+
+    ## Il tuo consenso
+
+    Alla prima visita un banner ti permette di **accettare tutto**, **rifiutare tutto** o **scegliere per categoria**. Chiudere il banner con la X equivale a rifiutare i cookie non necessari.
+
+    Finché non scegli, il sito non carica nessun contenuto di terze parti: neanche le anteprime dei video.
+
+    Ricordiamo la tua scelta per **6 mesi**. Puoi cambiarla o revocarla quando vuoi dal link **"Preferenze cookie"** in fondo a ogni pagina.
+
+    ## Cookie usati da questo sito
+
+    ### Necessari (sempre attivi)
+
+    | Nome | Fornitore | Finalità | Durata |
+    |---|---|---|---|
+    | `ur_consent` (cookie e localStorage) | Uncensored Runners (prima parte) | Ricorda le tue scelte sui cookie | 6 mesi |
+
+    ### Contenuti esterni: YouTube (solo con consenso)
+
+    Quando attivi i video, il sito carica il lettore YouTube in modalità "privacy avanzata" (dominio youtube-nocookie.com) e le anteprime da i.ytimg.com. Google può impostare cookie e usare il localStorage (per esempio `VISITOR_INFO1_LIVE`, `YSC`, `yt-remote-*`, `ytidb::LAST_RESULT_ENTRY_KEY`) per riprodurre il video, misurarne l'uso e, se hai un account Google, collegarlo alle tue preferenze. Durata: da fine sessione a circa 6 mesi.
+
+    Google agisce come titolare autonomo. Informativa: [policies.google.com/privacy](https://policies.google.com/privacy). Cookie usati da Google: [policies.google.com/technologies/cookies](https://policies.google.com/technologies/cookies).
+
+    ### Cosa non usiamo
+
+    - **Nessun cookie di statistica o di profilazione** di prima parte.
+    - **Nessun pixel pubblicitario** (per esempio Facebook o Google Ads). I link a Facebook sono semplici collegamenti e non caricano nulla finché non li apri.
+    - **I caratteri tipografici sono ospitati sul nostro server:** il sito non si collega a Google Fonts.
+
+    **[DA COMPLETARE: se in futuro si aggiunge un servizio di statistiche o pubblicità, aggiornare questa tabella e la categoria nel banner prima di attivarlo]**
+
+    ## Gestire i cookie dal browser
+
+    Oltre al banner, puoi bloccare o cancellare i cookie dalle impostazioni del browser:
+    [Chrome](https://support.google.com/chrome/answer/95647) ·
+    [Firefox](https://support.mozilla.org/it/kb/Attivare%20e%20disattivare%20i%20cookie) ·
+    [Safari](https://support.apple.com/it-it/guide/safari/sfri11471/mac) ·
+    [Edge](https://support.microsoft.com/it-it/microsoft-edge/eliminare-i-cookie-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09)
+
+    Se blocchi i cookie tecnici, il sito potrebbe chiederti di nuovo le preferenze a ogni visita.
+
+    ## Contatti
+
+    Per domande su questa pagina scrivi a **info@uncensoredrunners.com**.

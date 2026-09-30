@@ -111,7 +111,7 @@ FBICON = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" ar
 def video(yt, label='Guarda il video su YouTube'):
     yt = re.sub(r'.*(?:v=|youtu\.be/|embed/)([\w-]{6,}).*', r'\1', yt or '')
     return (f'<a class="yt" href="https://www.youtube.com/watch?v={e(yt)}" data-yt="{e(yt)}" target="_blank" rel="noopener" aria-label="{e(label)}">'
-            f'<img src="https://i.ytimg.com/vi/{e(yt)}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">'
+            f'<img data-consent="media" data-src="https://i.ytimg.com/vi/{e(yt)}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">'
             f'<span class="play"><span>{PLAY}</span></span><span class="lbl">YouTube</span></a>')
 
 def button(b):
@@ -140,7 +140,7 @@ def form(title=''):
             f'<div class="row">{inp("Nome", "text", "name", 1)}{inp("Email", "email", "email", 2)}</div>'
             f'<div class="row">{inp("Telefono", "tel", "tel", 3, False)}<div><label for="f{n}-4">Motivo del contatto *</label><select id="f{n}-4" name="Motivo del contatto" required><option value="">Seleziona…</option>{opts}</select></div></div>'
             f'<div><label for="f{n}-5">Messaggio <small>(facoltativo)</small></label><textarea id="f{n}-5" name="Messaggio" placeholder="Es. età del bambino, giorni preferiti, domande…"></textarea></div>'
-            f'<label class="check"><input type="checkbox" id="f{n}-6" name="privacy" required> Ho letto l\'<a href="/j/privacy/">informativa privacy</a> e acconsento al trattamento dei dati.</label>'
+            f'<label class="check"><input type="checkbox" id="f{n}-6" name="privacy" required> Dichiaro di aver letto l\'<a href="/j/privacy/">informativa privacy</a>.</label>'
             f'<button class="btn btn-red" type="submit">Invia richiesta {ARROW}</button></form>'
             f'<p class="form-ok" hidden>Grazie! Abbiamo ricevuto la tua richiesta e ti risponderemo al più presto. Per urgenze chiamaci al <strong>{e(PHONE)}</strong>.</p></div>')
 
@@ -270,18 +270,18 @@ def footer():
     socials = ''.join(f'<li><a href="{e(S[k])}" target="_blank" rel="noopener">{n}</a></li>' for k, n in (('facebook', 'Facebook'), ('instagram', 'Instagram'), ('youtube', 'YouTube')) if S.get(k))
     return f'''<footer class="site-footer"><div class="wrap">
 <div class="f-grid">
-<div class="f-brand"><a class="brand" href="/"><img src="/assets/logo-192.png" alt="" width="44" height="44" loading="lazy"><b style="color:#fff">{e(S['site_name'])}<span>{e(S['tagline'])}</span></b></a>
+<div class="f-brand"><a class="brand" href="/"><img src="/assets/logo-192.png" alt="" width="44" height="44" loading="lazy"><b>{e(S['site_name'])}<span>{e(S['tagline'])}</span></b></a>
 <p>{e(S.get('footer_text'))}</p></div>
 <div><h3>Corsi</h3><ul><li><a href="/parkour-movimentonaturale-yoga-padova/">Parkour e movimento</a></li><li><a href="/bambini-e-ragazzi/">Bambini e ragazzi</a></li><li><a href="/formazione-istruttori/">Formazione istruttori</a></li><li><a href="/il-parkour/">Il parkour</a></li></ul></div>
 <div><h3>Scuola</h3><ul><li><a href="/scuola-parkour-padova/">Chi siamo</a></li><li><a href="/scuola-parkour-padova/politica-economica/">Politica economica</a></li><li><a href="/blog-parkour-padova/">Blog</a></li><li><a href="/contatti/parkour-padova/">Contatti</a></li></ul></div>
-<div><h3>Contatti</h3><ul><li><a href="tel:{PHONE_TEL}">{e(PHONE)}</a></li><li><a href="mailto:{e(EMAIL)}">{e(EMAIL)}</a></li>{socials}<li><a class="btn btn-red" style="margin-top:.5rem;color:#fff" href="/contatti/parkour-padova/">Lezione di prova gratuita</a></li></ul></div>
+<div><h3>Contatti</h3><ul><li><a href="tel:{PHONE_TEL}">{e(PHONE)}</a></li><li><a href="mailto:{e(EMAIL)}">{e(EMAIL)}</a></li>{socials}<li><a class="btn btn-red" href="/contatti/parkour-padova/">Lezione di prova gratuita</a></li></ul></div>
 </div>
 <div class="f-legal"><span>© {datetime.date.today().year} {e(S.get('legal_name'))} – {e(S['site_name'])}. Tutti i diritti riservati.</span>
-<ul><li><a href="/j/privacy/">Privacy</a></li><li><a href="/sitemap/">Mappa del sito</a></li></ul></div>
+<ul><li><a href="/j/privacy/">Privacy policy</a></li><li><a href="/cookie-policy/">Cookie policy</a></li><li><button type="button" class="linkbtn" data-consent-open>Preferenze cookie</button></li><li><a href="/sitemap/">Mappa del sito</a></li></ul></div>
 </div></footer>
 <div class="quickbar"><a class="btn btn-ghost" href="tel:{PHONE_TEL}">Chiama</a><a class="btn btn-red" href="/contatti/parkour-padova/">Prova gratuita</a></div>'''
 
-FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">'
+FONTS = '<link rel="preload" href="/assets/fonts/bricolage-grotesque-normal-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/assets/fonts/figtree-normal-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/assets/fonts/fonts.css">'
 
 def org():
     return {"@type": "SportsOrganization", "@id": DOMAIN + "/#scuola", "sport": "Parkour", "name": f"{S['site_name']} – Scuola di parkour a Padova",
@@ -325,6 +325,7 @@ def write_page(url, title, desc, body, crumbs=None, og=None, ld=None, noindex=Fa
 {body}
 </main>
 {footer()}
+<script src="/assets/consent.js"></script>
 <script src="/assets/site.js" defer></script>
 </body></html>'''
     path = os.path.join(OUT, slug, 'index.html') if slug else os.path.join(OUT, 'index.html')
@@ -339,13 +340,13 @@ def crumbs_html(crumbs):
 def page_head(crumbs, tag, title, subtitle='', notice=''):
     subs = ''.join(f'<p class="sub">{e(s)}</p>' for s in (subtitle or '').split('\n') if s.strip())
     return (f'<section class="page-head"><div class="wrap">{crumbs_html(crumbs)}'
-            f'<div style="margin-top:1.4rem"><span class="tag">{e(tag)}</span></div><h1>{e(title)}</h1>{subs}'
+            f'<div><span class="tag">{e(tag)}</span></div><h1>{e(title)}</h1>{subs}'
             f'{f"<p class=notice>{e(notice)}</p>" if notice else ""}</div></section>')
 
 def cta_aside():
     return (f'<div class="aside-cta"><h2>{e(S.get("cta_title"))}</h2>'
             f'<div class="cta-row"><a class="btn btn-red" href="/contatti/parkour-padova/">Prenota la prova {ARROW}</a>'
-            f'<a class="btn btn-ghost" style="color:#fff" href="tel:{PHONE_TEL}">{e(PHONE)}</a></div></div>')
+            f'<a class="btn btn-ghost" href="tel:{PHONE_TEL}">{e(PHONE)}</a></div></div>')
 
 # ---------------- pages ----------------
 def post_card(p, feature=False):
@@ -368,20 +369,27 @@ def build_home():
         small = f'<small>{e(c["caption"])}</small>' if c.get('caption') else ''
         cards += (f'<a class="path" href="{e(c.get("link"))}"><div class="ph">{img(c.get("image"), c.get("title"), sizes="(max-width:900px) 100vw, 33vw")}</div>'
                   f'<div class="bd"><span class="q">{e(c.get("question"))}</span><h3>{e(c.get("title"))}</h3>{small}<span class="go">{e(c.get("action"))} {ARROW}</span></div></a>')
+    areas = ('<div class="wrap"><div class="areas"><b>Dove ci alleniamo</b>' + ''.join(f'<span>{e(a)}</span>' for a in S.get('areas') or []) + '</div></div>') if S.get('areas') else ''
     socials = ''.join(f'<div class="social-card">{video(v, "Video su YouTube")}</div>' for v in (H.get('videos') or [])[:2])
     body = f'''
 <section class="hero">
-<picture>{img(hero.get('image'), '', sizes='100vw', eager=True)}</picture>
 <div class="wrap">
+<div class="hero-text">
 <span class="tag">{e(hero.get('tag'))}</span>
 <h1>{e(hero.get('title_1'))} <em>{e(hero.get('title_2'))}</em></h1>
 <p class="lead">{e(hero.get('lead'))}</p>
-<div class="actions"><a class="btn btn-red" href="/contatti/parkour-padova/">{e(hero.get('button'))} {ARROW}</a><a class="btn btn-ghost" href="/parkour-movimentonaturale-yoga-padova/">{e(hero.get('button_2'))}</a></div>
+<div class="cta-row"><a class="btn btn-red" href="/contatti/parkour-padova/">{e(hero.get('button'))} {ARROW}</a><a class="btn btn-ghost" href="/parkour-movimentonaturale-yoga-padova/">{e(hero.get('button_2'))}</a></div>
 {f'<div class="stats">{stats}</div>' if stats else ''}
-{f'<p class="areas"><b>Dove ci alleniamo</b> {e(" · ".join(S.get("areas") or []))}</p>' if S.get('areas') else ''}
 </div>
+<svg class="trajectory" viewBox="0 0 300 200" preserveAspectRatio="none" aria-hidden="true"><path d="M4 196 C 60 20, 200 -10, 296 60"/></svg>
+<div class="hero-media">
+<picture>{img(hero.get('image'), '', sizes='(max-width:900px) 100vw, 55vw', eager=True)}</picture>
+<div class="hero-badge"><span class="dot">{ARROW}</span><span><b>Prima lezione gratuita</b><small>Chiamaci al {e(PHONE)} o scrivici</small></span></div>
+</div>
+</div>
+{areas}
 </section>
-<section class="section"><div class="wrap manifesto">
+<section class="section tinted"><div class="wrap manifesto">
 <figure>{img(q.get('image'), q.get('author'), sizes='(max-width:820px) 100vw, 40vw')}</figure>
 <div class="flow">
 <p class="eyebrow">{e(q.get('eyebrow'))}</p>
@@ -392,11 +400,11 @@ def build_home():
 <div class="section-head"><h2>{e(H.get('paths_title'))}</h2></div>
 <div class="paths">{cards}</div>
 </div></section>
-<section class="band"><div class="wrap">
-<h2>{e(H.get('band_title'))}</h2>
-<div class="cta-row"><a class="phone" href="tel:{PHONE_TEL}">{e(PHONE)}</a><a class="btn" href="/contatti/parkour-padova/">Scrivici {ARROW}</a></div>
-</div></section>
-<section class="section" style="padding-top:clamp(2.5rem,6vw,4.5rem)"><div class="wrap">
+<section class="section band"><div class="wrap"><div>
+<div><h2>{e(H.get('band_title'))}</h2><p>Rispondiamo di persona e ti aiutiamo a scegliere il corso giusto.</p></div>
+<div class="cta-row"><a class="phone" href="tel:{PHONE_TEL}">{e(PHONE)}</a><a class="btn btn-light" href="/contatti/parkour-padova/">Scrivici {ARROW}</a></div>
+</div></div></section>
+<section class="section"><div class="wrap">
 <div class="section-head"><h2>Dal blog</h2><a class="btn btn-ghost" href="/blog-parkour-padova/">Tutti gli articoli {ARROW}</a></div>
 <div class="posts">{''.join(post_card(p) for p in POSTS[:3])}</div>
 </div></section>
@@ -460,7 +468,7 @@ def build_post(i):
     pn += f'<a class="card next" href="{e(next_p["url"])}"><small>Articolo successivo →</small><b>{e(next_p["title"])}</b></a>' if next_p else '<span></span>'
     pn += '</div>'
     d = p['date']
-    body = (f'<section class="page-head"><div class="wrap">{crumbs_html(crumbs)}<div style="margin-top:1.4rem"><span class="tag">Blog · <time datetime="{d.isoformat() if d else ""}">{fmt_date(d)}</time></span></div>'
+    body = (f'<section class="page-head"><div class="wrap">{crumbs_html(crumbs)}<div><span class="tag">Blog · <time datetime="{d.isoformat() if d else ""}">{fmt_date(d)}</time></span></div>'
             f'<h1>{e(p["title"])}</h1></div></section>'
             f'<section class="section"><article class="wrap"><div class="article flow">{cov}<div class="prose">{body_html}</div>{cta_aside()}{pn}</div></article></section>')
     im = cover or first_md_image(p['body'])

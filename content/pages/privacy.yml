@@ -1,25 +1,94 @@
 url: /j/privacy/
-menu_label: Privacy
+menu_label: Privacy policy
 order: 10
-seo_title: Privacy | Uncensored Runners
-description: ''
+seo_title: Privacy policy | Uncensored Runners
+description: 'Come Movivo SSDARL – Uncensored Runners tratta i dati personali di chi visita il sito e ci contatta: finalità, basi giuridiche, conservazione e diritti.'
 tag: Note legali
-title: Privacy
-subtitle: ''
+title: Privacy policy
+subtitle: Informativa sul trattamento dei dati personali ai sensi degli artt. 13-14 del Regolamento (UE) 2016/679.
 notice: ''
 parent: ''
 show_cta: false
-noindex: true
+noindex: false
 layout: standard
 blocks:
 - type: text
   body: |-
-    ## Dati analitici del sito (Statistiche di Creator)
+    *Ultimo aggiornamento: 30 settembre 2026*
 
-    Quando visiti il nostro sito, raccogliamo informazioni sul tuo utilizzo dello stesso attraverso uno strumento di analisi web fornito dal nostro servizio di hosting. Tale strumento raccoglie e combina il tuo indirizzo IP e user agent, lo accorcia e lo salva usando una funzione di hash. Tale processo crea un elemento di identificazione del visitatore codificato con un valore generato casualmente (SALT) che cambia ogni 24 ore. Questo metodo assicura che il tuo indirizzo IP non possa essere ricostruito a partire dall'elemento di identificazione del visitatore salvato, mantenendo così il tuo anonimato. Inoltre, queste informazioni non vengono combinate con nessun altro dato e vengono salvate solo sul server del provider di hosting.
+    Questa informativa spiega come trattiamo i dati personali di chi visita il sito **www.uncensoredrunners.com** e di chi ci contatta attraverso il sito, ai sensi degli articoli 13 e 14 del Regolamento (UE) 2016/679 ("GDPR") e del D.Lgs. 196/2003 come modificato dal D.Lgs. 101/2018.
 
-     Trattiamo inoltre dati di analisi web, dati HTTP e di profilazione. Lo strumento di analisi web che usiamo crea e salva un profilo di analisi web che comprende dettagli sull'uso del tuo sito, ad esempio le visualizzazioni, le frequenze delle visite, il tempo trascorso su ogni pagina, l'user agent del tuo dispositivo. Tale profilo include altresì i dati sull'utilizzo (come le pagine visitate e i tempi di accesso) e i dati sulla comunicazione (come il tipo di browser, il sistema operativo e gli indirizzi IP).
+    Riguarda solo il sito. Per l'iscrizione ai corsi, il tesseramento e le attività sportive forniamo un'informativa separata al momento dell'iscrizione.
 
-     La nostra finalità relativa al trattamento di questi dati è di analizzare il comportamento dell'utente in forma aggregata al fine di migliorare la presentazione e il contenuto del nostro sito. Il fondamento giuridico di tale trattamento è il nostro interesse legittimo (art. 6, par. 1, lettera (f) del RGPD), in particolare nel misurare le metriche relative al sito per migliorare i nostri prodotti e il nostro sito.
+    ## 1. Titolare del trattamento
 
-     I dati raccolti sono condivisi con il nostro provider di hosting del sito e trattati all'interno dell'UE.
+    **Movivo SSDARL** (Società Sportiva Dilettantistica a responsabilità limitata), che gestisce il progetto Uncensored Runners.
+
+    - Sede legale: **[DA COMPLETARE: indirizzo completo]**
+    - Codice fiscale / Partita IVA: **[DA COMPLETARE: numero]**
+    - Email: info@uncensoredrunners.com
+    - Telefono: 352 048 0417
+
+    Non abbiamo nominato un Responsabile della protezione dei dati (DPO), perché non è obbligatorio per la nostra attività.
+
+    ## 2. Quali dati trattiamo
+
+    **Dati di navigazione.** Quando visiti il sito, il server che lo ospita registra automaticamente alcuni dati tecnici: indirizzo IP, data e ora della richiesta, pagina visitata, tipo di browser e sistema operativo. Servono a far funzionare il sito e a proteggerlo da abusi. Non li usiamo per identificarti né per profilarti.
+
+    **Dati che ci invii tu.** Se compili il modulo contatti o ci scrivi per email o telefono, trattiamo i dati che ci comunichi: nome, email, eventualmente telefono, motivo del contatto e il contenuto del messaggio. Non inserire nel messaggio dati sanitari o altri dati particolari: se servono per un corso (per esempio certificati medici), li raccogliamo al momento dell'iscrizione.
+
+    **Cookie e tecnologie simili.** Il sito usa solo cookie tecnici necessari e, soltanto con il tuo consenso, i contenuti di YouTube. I dettagli sono nella [cookie policy](/cookie-policy/).
+
+    ## 3. Perché li trattiamo e su quale base giuridica
+
+    | Finalità | Base giuridica |
+    |---|---|
+    | Rispondere alle tue richieste di informazioni e organizzare la lezione di prova | Esecuzione di misure precontrattuali su tua richiesta (art. 6.1.b GDPR) |
+    | Far funzionare il sito e garantirne la sicurezza | Legittimo interesse del Titolare (art. 6.1.f GDPR) |
+    | Mostrare i video di YouTube | Tuo consenso (art. 6.1.a GDPR), revocabile in ogni momento |
+    | Adempiere a obblighi di legge o difendere un nostro diritto in sede giudiziaria | Obbligo legale (art. 6.1.c) e legittimo interesse (art. 6.1.f GDPR) |
+
+    Il conferimento dei dati nel modulo contatti è facoltativo, ma senza nome, email e motivo del contatto non possiamo risponderti.
+
+    **Minori.** Se la richiesta riguarda un minore (per esempio i corsi per bambini e ragazzi), deve essere inviata da un genitore o da chi ne esercita la responsabilità genitoriale. Non raccogliamo consapevolmente dati tramite il sito da minori di 14 anni.
+
+    ## 4. Come trattiamo i dati e chi può vederli
+
+    I dati sono trattati con strumenti elettronici, con misure di sicurezza adeguate e solo da persone autorizzate (lo staff di Movivo SSDARL). Non vendiamo i dati e non li usiamo per decisioni automatizzate o profilazione.
+
+    I dati possono essere trattati per nostro conto da fornitori che agiscono come **responsabili del trattamento** (art. 28 GDPR):
+
+    - **Netlify, Inc.** – ospita il sito e riceve i messaggi del modulo contatti.
+    - ****[DA COMPLETARE: fornitore della casella email info@uncensoredrunners.com, ad es. Google, Zoho, Aruba]**** – gestisce la posta elettronica.
+
+    Se il fornitore ha sede fuori dallo Spazio economico europeo (è il caso di Netlify, con sede negli Stati Uniti), il trasferimento avviene sulla base delle garanzie previste dal Capo V del GDPR: la decisione di adeguatezza per le aziende aderenti all'EU-U.S. Data Privacy Framework o, in mancanza, le Clausole contrattuali standard approvate dalla Commissione europea. **[DA COMPLETARE: verificare lo strumento indicato nel contratto di trattamento dati (DPA) di Netlify]**
+
+    Se attivi i video, **Google Ireland Ltd / Google LLC (YouTube)** tratta i dati come titolare autonomo, secondo la propria informativa: [policies.google.com/privacy](https://policies.google.com/privacy).
+
+    ## 5. Per quanto tempo conserviamo i dati
+
+    - Richieste di contatto: per il tempo necessario a rispondere e comunque non oltre **24 mesi** dall'ultimo scambio, salvo iscrizione ai corsi.
+    - Dati di navigazione registrati dal server: per il periodo previsto dal fornitore di hosting, di norma non oltre **30 giorni**, salvo necessità di accertare reati.
+    - Scelte sui cookie: **6 mesi**, poi ti chiederemo di nuovo il consenso.
+
+    **[DA COMPLETARE: verificare e adattare i tempi di conservazione alle prassi effettive della società]**
+
+    ## 6. I tuoi diritti
+
+    In qualsiasi momento puoi chiederci di:
+
+    - accedere ai tuoi dati e riceverne copia (art. 15);
+    - correggerli o completarli (art. 16);
+    - cancellarli (art. 17);
+    - limitarne il trattamento (art. 18);
+    - riceverli in un formato leggibile da un computer o trasmetterli a un altro titolare (art. 20);
+    - **opporti** al trattamento basato sul legittimo interesse (art. 21);
+    - **revocare il consenso** in qualsiasi momento, senza che questo renda illecito il trattamento svolto prima (art. 7). Per i cookie basta usare il link "Preferenze cookie" in fondo a ogni pagina.
+
+    Per esercitare i tuoi diritti scrivi a **info@uncensoredrunners.com**. Ti rispondiamo entro un mese, salvo proroga nei casi previsti dalla legge.
+
+    Se ritieni che il trattamento violi il GDPR, puoi proporre reclamo al **Garante per la protezione dei dati personali** ([www.garanteprivacy.it](https://www.garanteprivacy.it)) o all'autorità del Paese in cui vivi o lavori.
+
+    ## 7. Modifiche
+
+    Possiamo aggiornare questa informativa, per esempio se cambiano i servizi usati dal sito. La data in cima indica l'ultima versione. Le modifiche importanti saranno segnalate sul sito.

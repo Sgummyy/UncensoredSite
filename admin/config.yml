@@ -104,6 +104,10 @@ collections:
     label: Descrizione della foto nell'intestazione
     widget: string
     required: false
+  - name: head_image_caption
+    label: Didascalia della foto in cima
+    widget: string
+    required: false
   - name: notice
     label: Avviso in evidenza (facoltativo)
     widget: text
@@ -405,11 +409,15 @@ collections:
         label: Etichetta rossa
         widget: string
       - name: title_1
-        label: Titolo (riga piena)
+        label: Titolo – inizio
         widget: string
       - name: title_2
-        label: Titolo (riga a contorno)
+        label: Titolo – parte in corsivo rosso
         widget: string
+      - name: title_3
+        label: Titolo – fine
+        widget: string
+        required: false
       - name: lead
         label: Frase sotto il titolo
         widget: text
@@ -449,6 +457,55 @@ collections:
       - name: image
         label: Foto
         widget: image
+    - name: gallery
+      label: Carosello foto
+      label_singular: foto
+      widget: list
+      fields:
+      - name: image
+        label: Foto
+        widget: image
+      - name: caption
+        label: Didascalia
+        widget: string
+        required: false
+    - name: facts
+      label: Punti in evidenza (sotto il carosello)
+      label_singular: punto
+      widget: list
+      fields:
+      - name: title
+        label: Titolo
+        widget: string
+      - name: text
+        label: Testo
+        widget: text
+    - name: courses_title
+      label: Titolo sezione corsi
+      widget: string
+    - name: courses_text
+      label: Testo sezione corsi
+      widget: text
+    - name: courses
+      label: Corsi per età
+      label_singular: corso
+      widget: list
+      fields:
+      - name: label
+        label: Età o nome
+        widget: string
+      - name: text
+        label: Descrizione
+        widget: text
+      - name: link
+        label: Link
+        widget: string
+    - name: contact_title
+      label: Titolo riquadro contatti
+      widget: string
+    - name: contact_text
+      label: Testo riquadro contatti
+      widget: text
     - name: paths_title
       label: Titolo delle schede
       widget: string
@@ -469,13 +526,6 @@ collections:
       - name: link
         label: Link
         widget: string
-      - name: image
-        label: Foto
-        widget: image
-      - name: caption
-        label: Didascalia
-        widget: string
-        required: false
     - name: band_title
       label: Testo della fascia rossa
       widget: string

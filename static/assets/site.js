@@ -59,3 +59,24 @@
     });
   });
 })();
+
+// Carosello foto (home): scorrimento nativo con swipe, frecce, pallini e avanzamento automatico lento
+(function(){
+  document.querySelectorAll('[data-carousel]').forEach(function(c){
+    var track=c.querySelector('.car-track'), slides=[].slice.call(c.querySelectorAll('.car-slide')), dots=[].slice.call(c.querySelectorAll('.car-dot'));
+    if(!track||!slides.length) return;
+    var cur=0, timer=null, reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function go(i,smooth){ cur=(i+slides.length)%slides.length; track.scrollTo({left:slides[cur].offsetLeft-track.offsetLeft,behavior:smooth===false||reduce?'auto':'smooth'}); mark(); }
+    function mark(){ dots.forEach(function(d,j){ d.setAttribute('aria-current',j===cur?'true':'false'); }); }
+    track.addEventListener('scroll',function(){ var x=track.scrollLeft, best=0, bd=1e9; slides.forEach(function(s,j){ var d=Math.abs(s.offsetLeft-track.offsetLeft-x); if(d<bd){bd=d;best=j;} }); if(best!==cur){cur=best;mark();} },{passive:true});
+    var prev=c.querySelector('.car-prev'), next=c.querySelector('.car-next');
+    if(prev) prev.addEventListener('click',function(){ stop(); go(cur-1); });
+    if(next) next.addEventListener('click',function(){ stop(); go(cur+1); });
+    dots.forEach(function(d,j){ d.addEventListener('click',function(){ stop(); go(j); }); });
+    track.addEventListener('keydown',function(e){ if(e.key==='ArrowRight'){e.preventDefault();stop();go(cur+1);} if(e.key==='ArrowLeft'){e.preventDefault();stop();go(cur-1);} });
+    function start(){ if(reduce||timer) return; timer=setInterval(function(){ go(cur+1); },6000); }
+    function stop(){ clearInterval(timer); timer=null; }
+    c.addEventListener('mouseenter',stop); c.addEventListener('focusin',stop); track.addEventListener('touchstart',stop,{passive:true});
+    mark(); start();
+  });
+})();

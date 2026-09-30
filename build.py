@@ -286,7 +286,7 @@ def footer():
 </div></footer>
 <div class="quickbar"><a class="btn btn-ghost" href="tel:{PHONE_TEL}">Chiama</a><a class="btn btn-red" href="/contatti/parkour-padova/">Prova gratuita</a></div>'''
 
-FONTS = '<link rel="preload" href="/assets/fonts/big-shoulders-display-normal-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/assets/fonts/source-sans-3-normal-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/assets/fonts/fonts.css">'
+FONTS = '<link rel="preload" href="/assets/fonts/fraunces-normal-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/assets/fonts/instrument-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/assets/fonts/fonts.css">'
 
 def org():
     return {"@type": "SportsOrganization", "@id": DOMAIN + "/#scuola", "sport": "Parkour", "name": f"{S['site_name']} – Scuola di parkour a Padova",
@@ -344,7 +344,7 @@ def crumbs_html(crumbs):
 
 def page_head(crumbs, tag, title, subtitle='', notice='', image=None, image_alt=''):
     subs = ''.join(f'<p class="sub">{e(s)}</p>' for s in (subtitle or '').split('\n') if s.strip())
-    text = (f'<div class="ph-text">{crumbs_html(crumbs)}<div><span class="tag">{e(tag)}</span></div><h1>{e(title)}</h1>{subs}'
+    text = (f'<div class="ph-text">{crumbs_html(crumbs)}<p class="tag">{e(tag)}</p><h1>{e(title)}</h1>{subs}'
             + (f'<p class="notice">{e(notice)}</p>' if notice else '') + '</div>')
     return f'<section class="page-head"><div class="wrap">{text}</div></section>'
 
@@ -385,49 +385,64 @@ def first_md_image(body):
 
 def build_home():
     H = HOME; hero = H['hero']; q = H['quote']
-    stats = ''.join(f'<div>{e(s.get("value"))}<small>{e(s.get("label"))}</small></div>' for s in hero.get('stats') or [])
-    cards = ''
-    for c in H.get('paths') or []:
-        small = f'<small>{e(c["caption"])}</small>' if c.get('caption') else ''
-        cards += (f'<a class="path" href="{e(c.get("link"))}"><div class="ph">{img(c.get("image"), c.get("title"), sizes="(max-width:900px) 100vw, 33vw")}</div>'
-                  f'<div class="bd"><span class="q">{e(c.get("question"))}</span><h3>{e(c.get("title"))}</h3>{small}<span class="go">{e(c.get("action"))} {ARROW}</span></div></a>')
-    areas = ('<div class="areas"><b>Dove ci alleniamo</b>' + ''.join(f'<span>{e(a)}</span>' for a in S.get('areas') or []) + '</div>') if S.get('areas') else ''
+    gal = H.get('gallery') or []
+    slides = ''.join(
+        f'<figure class="car-slide" role="group" aria-roledescription="slide" aria-label="{i + 1} di {len(gal)}">'
+        f'{img(g.get("image"), g.get("caption") or "", sizes="(max-width:820px) 88vw, 70vw", eager=(i == 0))}'
+        + (f'<figcaption>{e(g.get("caption"))}</figcaption>' if g.get('caption') else '') + '</figure>'
+        for i, g in enumerate(gal))
+    dots = ''.join(f'<button type="button" class="car-dot" aria-label="Vai alla foto {i + 1}"></button>' for i in range(len(gal)))
+    carousel = (f'<div class="carousel" data-carousel aria-roledescription="carosello" aria-label="Foto della scuola">'
+                f'<div class="car-track" tabindex="0">{slides}</div>'
+                f'<div class="car-ui"><div class="car-dots">{dots}</div><div class="car-arrows">'
+                f'<button type="button" class="car-prev" aria-label="Foto precedente"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>'
+                f'<button type="button" class="car-next" aria-label="Foto successiva"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>'
+                f'</div></div></div>') if slides else ''
+    facts = ''.join(f'<div><h3>{e(x.get("title"))}</h3><p>{e(x.get("text"))}</p></div>' for x in H.get('facts') or [])
+    rows = ''.join(f'<a class="row-link" href="{e(c.get("link"))}"><span class="rl-label">{e(c.get("label"))}</span><span class="rl-text">{e(c.get("text"))}</span><span class="rl-go" aria-hidden="true">→</span></a>' for c in H.get('courses') or [])
+    paths = ''.join(f'<a class="row-link" href="{e(c.get("link"))}"><span class="rl-label">{e(c.get("title"))}</span><span class="rl-text">{e(c.get("question"))} <b>{e(c.get("action"))}</b></span><span class="rl-go" aria-hidden="true">→</span></a>' for c in H.get('paths') or [])
     socials = ''.join(f'<div class="social-card">{video(v, "Video su YouTube")}</div>' for v in (H.get('videos') or [])[:2])
+    withc = [x for x in POSTS if x.get('cover') or first_md_image(x['body'])][:3]
+    cards = ''.join(post_card(p) for p in withc)
     body = f'''
-<section class="hero">
-<picture>{img(hero.get('image'), '', sizes='100vw', eager=True)}</picture>
-<div class="wrap">
-<span class="tag">{e(hero.get('tag'))}</span>
-<h1>{e(hero.get('title_1'))} <em>{e(hero.get('title_2'))}</em></h1>
-<p class="lead">{e(hero.get('lead'))}</p>
-<div class="actions"><a class="btn btn-red" href="/contatti/parkour-padova/">{e(hero.get('button'))} {ARROW}</a><a class="btn btn-ghost" href="/parkour-movimentonaturale-yoga-padova/">{e(hero.get('button_2'))}</a></div>
-{f'<div class="stats">{stats}</div>' if stats else ''}
-{areas}
+<section class="hero"><div class="wrap">
+<div class="hero-grid">
+<div><p class="tag">{e(hero.get('tag'))}</p>
+<h1>{e(hero.get('title_1'))} <em>{e(hero.get('title_2'))}</em> {e(hero.get('title_3'))}</h1></div>
+<div class="hero-side"><p class="lead">{e(hero.get('lead'))}</p>
+<div class="cta-row"><a class="btn btn-dark" href="/contatti/parkour-padova/">{e(hero.get('button'))}</a><a class="btn btn-text" href="#corsi">{e(hero.get('button_2'))} →</a></div></div>
 </div>
-</section>
-<section class="section"><div class="wrap manifesto">
-<figure>{img(q.get('image'), q.get('author'), sizes='(max-width:820px) 100vw, 40vw')}</figure>
-<div class="flow">
-<p class="eyebrow">{e(q.get('eyebrow'))}</p>
-<blockquote class="big">{e(q.get('text'))}</blockquote>
-<p class="sig">{e(q.get('author'))}<small>{e(q.get('role'))}</small></p>
-</div></div></section>
+{carousel}
+</div></section>
+<section class="facts-band"><div class="wrap"><div class="facts">{facts}</div></div></section>
+<section class="section" id="corsi"><div class="wrap split">
+<div class="split-head"><p class="tag">I corsi</p><h2>{e(H.get('courses_title'))}</h2><p>{e(H.get('courses_text'))}</p></div>
+<div class="row-list">{rows}</div>
+</div></section>
+<section class="section"><div class="wrap split">
+<div class="split-head"><p class="tag">Per iniziare</p><h2>{e(H.get('paths_title'))}</h2></div>
+<div class="row-list">{paths}</div>
+</div></section>
+<section class="section"><div class="wrap quote-grid">
+<div class="flow"><p class="tag">{e(q.get('eyebrow'))}</p>
+<blockquote class="big">“{e(q.get('text'))}”</blockquote>
+<p class="sig"><b>{e(q.get('author'))}</b> - {e(q.get('role'))}</p>
+<a class="btn btn-text" href="/scuola-parkour-padova/">La nostra storia →</a></div>
+<figure>{img(q.get('image'), q.get('author'), sizes='(max-width:820px) 100vw, 420px')}</figure>
+</div></section>
 <section class="section"><div class="wrap">
-<div class="section-head"><h2>{e(H.get('paths_title'))}</h2></div>
-<div class="paths">{cards}</div>
-</div></section>
-<section class="band"><div class="wrap">
-<h2>{e(H.get('band_title'))}</h2>
-<div class="cta-row"><a class="phone" href="tel:{PHONE_TEL}">{e(PHONE)}</a><a class="btn btn-white" href="/contatti/parkour-padova/">Scrivici {ARROW}</a></div>
-</div></section>
-<section class="section section-top"><div class="wrap">
-<div class="section-head"><h2>Dal blog</h2><a class="btn btn-ghost" href="/blog-parkour-padova/">Tutti gli articoli {ARROW}</a></div>
-<div class="posts">{''.join(post_card(p) for p in [x for x in POSTS if x.get('cover') or first_md_image(x['body'])][:3])}</div>
+<div class="section-head"><h2>Dal blog</h2><a class="btn btn-text" href="/blog-parkour-padova/">Tutti gli articoli →</a></div>
+<div class="posts">{cards}</div>
 </div></section>
 <section class="section"><div class="wrap">
 <div class="section-head"><h2>{e(H.get('social_title'))}</h2></div>
 <div class="social-grid">{socials}
 <div class="social-card card flow"><h3>Facebook</h3><p>{e(H.get('facebook_text'))}</p>{facebook_btn()}</div>
+</div></div></section>
+<section class="section"><div class="wrap"><div class="contact-panel">
+<div class="flow"><h2>{e(H.get('contact_title'))}</h2><p class="lede">{e(H.get('contact_text'))}</p>
+<p class="big-contact"><a href="tel:{PHONE_TEL}">{e(PHONE)}</a><a href="mailto:{e(EMAIL)}">{e(EMAIL)}</a></p></div>
+{form()}
 </div></div></section>'''
     write_page('/', H.get('seo_title'), H.get('description'), body)
 
@@ -444,7 +459,7 @@ def build_page(p):
     lay = p.get('layout')
     blocks = p.get('blocks') or []
     if p.get('head_image') and lay == 'standard':
-        blocks = [{'type': 'image', 'src': p['head_image'], 'alt': p.get('head_image_alt') or p.get('title')}] + list(blocks)
+        blocks = [{'type': 'image', 'src': p['head_image'], 'alt': p.get('head_image_alt') or p.get('title'), 'caption': p.get('head_image_caption') or ''}] + list(blocks)
     head = page_head(crumbs, p.get('tag'), p.get('title'), p.get('subtitle'), p.get('notice'))
     if lay == 'blog':
         withc = [x for x in POSTS if x.get('cover') or first_md_image(x['body'])]

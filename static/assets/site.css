@@ -15,14 +15,7 @@
   --ease:cubic-bezier(.2,.7,.2,1);
   color-scheme:light;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#081426; --soft:#0F1E36; --surface:#0D1B30; --ink:#E9EDF3; --muted:#A3AEC0; --line:#22324D;
-  --accent:#FF7A7A; --trail:#E0575C; --label:#FF8F8F; --panel:#13264A; --badge:#1E3A66;
-  --shadow:0 8px 24px rgba(0,0,0,.25); --shadow-lg:0 20px 48px rgba(0,0,0,.4); color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#081426; --soft:#0F1E36; --surface:#0D1B30; --ink:#E9EDF3; --muted:#A3AEC0; --line:#22324D;
-  --accent:#FF7A7A; --trail:#E0575C; --label:#FF8F8F; --panel:#13264A; --badge:#1E3A66;
-  --shadow:0 8px 24px rgba(0,0,0,.25); --shadow-lg:0 20px 48px rgba(0,0,0,.4); color-scheme:dark}
+/* Sempre tema chiaro: il sito non passa al tema scuro nemmeno se il dispositivo è in modalità scura. */
 
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}

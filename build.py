@@ -330,7 +330,7 @@ def write_page(url, title, desc, body, crumbs=None, og=None, ld=None, noindex=Fa
 {'<meta name="robots" content="noindex">' if noindex else ''}
 <meta property="og:type" content="{'article' if is_post else 'website'}"><meta property="og:locale" content="it_IT"><meta property="og:site_name" content="{e(S['site_name'])}">
 <meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{canonical(slug)}"><meta property="og:image" content="{e(og or og_image(HOME['hero'].get('image')))}">
-<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0A1A33">
+<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0A1A33"><meta name="color-scheme" content="light only">
 <link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 {FONTS}
 <link rel="stylesheet" href="{asset_v('/assets/site.css')}">

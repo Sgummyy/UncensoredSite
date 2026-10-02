@@ -12,9 +12,23 @@ backend:
 site_url: https://www.uncensoredrunners.com
 display_url: https://www.uncensoredrunners.com
 logo_url: /assets/logo-192.png
-locale: it
 media_folder: static/uploads
 public_folder: /uploads
+media_libraries:
+  default:
+    config:
+      slugify_filename: true
+      transformations:
+        raster_image:
+          format: webp
+          quality: 85
+          width: 2000
+          height: 2000
+  stock_assets:
+    providers: []
+slug:
+  encoding: ascii
+  clean_accents: true
 collections:
 - name: posts
   label: Articoli del blog
@@ -27,11 +41,12 @@ collections:
   slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
   summary: '{{title}} · {{date}}'
   sortable_fields:
-  - date
-  - title
-  sort_by:
-    field: date
-    direction: descending
+    fields:
+    - date
+    - title
+    default:
+      field: date
+      direction: descending
   fields:
   - name: title
     label: Titolo
@@ -42,10 +57,42 @@ collections:
     time_format: false
     date_format: DD/MM/YYYY
     format: YYYY-MM-DD
+    default: '{{now}}'
   - name: cover
     label: Foto di copertina
     widget: image
     required: false
+  - name: cover_focus
+    label: 'Copertina: parte della foto da tenere visibile'
+    widget: select
+    required: false
+    default: ''
+    options:
+    - label: Automatico
+      value: ''
+    - label: Al centro
+      value: centro
+    - label: In alto
+      value: alto
+    - label: Un po' più in alto
+      value: poco-alto
+    - label: Un po' più in basso
+      value: poco-basso
+    - label: In basso
+      value: basso
+    - label: A sinistra
+      value: sinistra
+    - label: A destra
+      value: destra
+    - label: In alto a sinistra
+      value: alto-sinistra
+    - label: In alto a destra
+      value: alto-destra
+    - label: In basso a sinistra
+      value: basso-sinistra
+    - label: In basso a destra
+      value: basso-destra
+    hint: 'Serve quando la foto viene ritagliata e taglia fuori volti o persone: scegli la zona da tenere sempre in vista.'
   - name: excerpt
     label: Anteprima (2-3 righe mostrate nell'elenco del blog)
     widget: text
@@ -76,13 +123,14 @@ collections:
   format: yml
   create: true
   slug: '{{slug}}'
-  summary: '{{menu_label}} ({{url}})'
+  summary: '{{title}} ({{url}})'
   sortable_fields:
-  - order
-  - menu_label
-  sort_by:
-    field: order
-    direction: ascending
+    fields:
+    - order
+    - menu_label
+    default:
+      field: order
+      direction: ascending
   fields:
   - name: title
     label: Titolo grande della pagina
@@ -100,6 +148,37 @@ collections:
     widget: image
     required: false
     hint: Se vuota, viene usata la prima foto della pagina.
+  - name: head_image_focus
+    label: 'Foto nell''intestazione: parte da tenere visibile'
+    widget: select
+    required: false
+    default: ''
+    options:
+    - label: Automatico
+      value: ''
+    - label: Al centro
+      value: centro
+    - label: In alto
+      value: alto
+    - label: Un po' più in alto
+      value: poco-alto
+    - label: Un po' più in basso
+      value: poco-basso
+    - label: In basso
+      value: basso
+    - label: A sinistra
+      value: sinistra
+    - label: A destra
+      value: destra
+    - label: In alto a sinistra
+      value: alto-sinistra
+    - label: In alto a destra
+      value: alto-destra
+    - label: In basso a sinistra
+      value: basso-sinistra
+    - label: In basso a destra
+      value: basso-destra
+    hint: 'Serve quando la foto viene ritagliata e taglia fuori volti o persone: scegli la zona da tenere sempre in vista.'
   - name: head_image_alt
     label: Descrizione della foto nell'intestazione
     widget: string
@@ -145,6 +224,37 @@ collections:
       - name: src
         label: Foto
         widget: image
+      - name: focus
+        label: Parte della foto da tenere visibile
+        widget: select
+        required: false
+        default: ''
+        options:
+        - label: Automatico
+          value: ''
+        - label: Al centro
+          value: centro
+        - label: In alto
+          value: alto
+        - label: Un po' più in alto
+          value: poco-alto
+        - label: Un po' più in basso
+          value: poco-basso
+        - label: In basso
+          value: basso
+        - label: A sinistra
+          value: sinistra
+        - label: A destra
+          value: destra
+        - label: In alto a sinistra
+          value: alto-sinistra
+        - label: In alto a destra
+          value: alto-destra
+        - label: In basso a sinistra
+          value: basso-sinistra
+        - label: In basso a destra
+          value: basso-destra
+        hint: 'Serve quando la foto viene ritagliata e taglia fuori volti o persone: scegli la zona da tenere sempre in vista.'
       - name: alt
         label: Descrizione della foto (per Google e accessibilità)
         widget: string
@@ -266,6 +376,37 @@ collections:
             - name: src
               label: Foto
               widget: image
+            - name: focus
+              label: Parte della foto da tenere visibile
+              widget: select
+              required: false
+              default: ''
+              options:
+              - label: Automatico
+                value: ''
+              - label: Al centro
+                value: centro
+              - label: In alto
+                value: alto
+              - label: Un po' più in alto
+                value: poco-alto
+              - label: Un po' più in basso
+                value: poco-basso
+              - label: In basso
+                value: basso
+              - label: A sinistra
+                value: sinistra
+              - label: A destra
+                value: destra
+              - label: In alto a sinistra
+                value: alto-sinistra
+              - label: In alto a destra
+                value: alto-destra
+              - label: In basso a sinistra
+                value: basso-sinistra
+              - label: In basso a destra
+                value: basso-destra
+              hint: 'Serve quando la foto viene ritagliata e taglia fuori volti o persone: scegli la zona da tenere sempre in vista.'
             - name: alt
               label: Descrizione della foto (per Google e accessibilità)
               widget: string
@@ -361,10 +502,13 @@ collections:
   - name: menu_label
     label: Nome breve (percorso e mappa del sito)
     widget: string
+    required: false
+    hint: Se vuoto, viene usato il titolo della pagina.
   - name: url
     label: Indirizzo della pagina
     widget: string
-    hint: Es. /corsi-estivi/ – non modificarlo nelle pagine esistenti, Google le conosce con questo indirizzo.
+    hint: 'Per una pagina nuova puoi lasciarlo vuoto: viene creato dal titolo. Non modificarlo nelle pagine già pubblicate (cambierebbe l''indirizzo su Google).'
+    required: false
   - name: parent
     label: Pagina madre (per il percorso)
     widget: string
@@ -443,15 +587,41 @@ collections:
       - name: image
         label: Foto
         widget: image
+      - name: focus
+        label: Parte della foto da tenere visibile
+        widget: select
+        required: false
+        default: ''
+        options:
+        - label: Automatico
+          value: ''
+        - label: Al centro
+          value: centro
+        - label: In alto
+          value: alto
+        - label: Un po' più in alto
+          value: poco-alto
+        - label: Un po' più in basso
+          value: poco-basso
+        - label: In basso
+          value: basso
+        - label: A sinistra
+          value: sinistra
+        - label: A destra
+          value: destra
+        - label: In alto a sinistra
+          value: alto-sinistra
+        - label: In alto a destra
+          value: alto-destra
+        - label: In basso a sinistra
+          value: basso-sinistra
+        - label: In basso a destra
+          value: basso-destra
+        hint: 'Serve quando la foto viene ritagliata e taglia fuori volti o persone: scegli la zona da tenere sempre in vista.'
       - name: caption
         label: Didascalia
         widget: string
         required: false
-      - name: position
-        label: Punto da tenere al centro (es. 50% 30%)
-        widget: string
-        required: false
-        hint: Prima cifra = orizzontale, seconda = verticale. 50% 20% tiene visibile la parte alta della foto.
     - name: facts
       label: Punti in evidenza (sotto il carosello)
       label_singular: punto
@@ -501,6 +671,37 @@ collections:
     - name: where_image
       label: Passo 2 – foto rotonda
       widget: image
+    - name: where_focus
+      label: Passo 2 – parte della foto da tenere visibile
+      widget: select
+      required: false
+      default: ''
+      options:
+      - label: Automatico
+        value: ''
+      - label: Al centro
+        value: centro
+      - label: In alto
+        value: alto
+      - label: Un po' più in alto
+        value: poco-alto
+      - label: Un po' più in basso
+        value: poco-basso
+      - label: In basso
+        value: basso
+      - label: A sinistra
+        value: sinistra
+      - label: A destra
+        value: destra
+      - label: In alto a sinistra
+        value: alto-sinistra
+      - label: In alto a destra
+        value: alto-destra
+      - label: In basso a sinistra
+        value: basso-sinistra
+      - label: In basso a destra
+        value: basso-destra
+      hint: 'Serve quando la foto viene ritagliata e taglia fuori volti o persone: scegli la zona da tenere sempre in vista.'
     - name: places
       label: Passo 2 – sedi
       label_singular: sede
@@ -551,6 +752,37 @@ collections:
       - name: image
         label: Foto
         widget: image
+      - name: focus
+        label: Parte della foto da tenere visibile
+        widget: select
+        required: false
+        default: ''
+        options:
+        - label: Automatico
+          value: ''
+        - label: Al centro
+          value: centro
+        - label: In alto
+          value: alto
+        - label: Un po' più in alto
+          value: poco-alto
+        - label: Un po' più in basso
+          value: poco-basso
+        - label: In basso
+          value: basso
+        - label: A sinistra
+          value: sinistra
+        - label: A destra
+          value: destra
+        - label: In alto a sinistra
+          value: alto-sinistra
+        - label: In alto a destra
+          value: alto-destra
+        - label: In basso a sinistra
+          value: basso-sinistra
+        - label: In basso a destra
+          value: basso-destra
+        hint: 'Serve quando la foto viene ritagliata e taglia fuori volti o persone: scegli la zona da tenere sempre in vista.'
     - name: paths_title
       label: Titolo delle schede
       widget: string

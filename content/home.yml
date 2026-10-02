@@ -14,25 +14,25 @@ hero:
 gallery:
 - image: /uploads/parkour-padova-78f124.jpg
   caption: Allenamento all'aperto a Padova
-  position: 50% 40%
+  focus: centro
 - image: /uploads/parkour-padova-284b2b.jpg
   caption: Allenamento in città con gli Uncensored Runners
+  focus: centro
 - image: /uploads/scuola-di-parkour-a-padova.jpg
   caption: Primo corso di parkour a padova U14 Uncensored Runners
-  position: 50% 45%
+  focus: centro
 - image: /uploads/corso-di-parkour-a-padova-bambini-di-4-5-6-7-8-9-e-10-anni.jpg
   caption: Corso Base Under14 - 2018/19
-  position: 50% 38%
-- image: /uploads/foto-fondatore-parkour-padova.jpg
-  caption: Elia Landolfi, fondatore di Uncensored Runners e responsabile nazionale del settore parkour C.S.E.N.
-  position: 50% 22%
+  focus: poco-alto
 - image: /uploads/parkour-padova-d4acce.jpg
   caption: Esercizi di quadrupedia in palestra
+  focus: centro
 - image: /uploads/parkour-padova-performers.jpg
   caption: Uncensored Runners performers
+  focus: centro
 - image: /uploads/parkour-padova-ed282e.jpg
   caption: Allenamento serale
-  position: 50% 30%
+  focus: poco-alto
 facts:
 - title: Istruttori formati
   text: Almeno sei mesi di formazione e tirocinio ed esame teorico e pratico prima di insegnare.

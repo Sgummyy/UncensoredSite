@@ -24,10 +24,17 @@ EMAIL = S['email']
 
 PAGES = []
 for f in sorted(glob.glob(f'{ROOT}/content/pages/*.yml')):
-    p = yaml.safe_load(open(f, encoding='utf-8'))
-    p['slug'] = p['url'].strip('/')
+    try:
+        p = yaml.safe_load(open(f, encoding='utf-8'))
+        if not p.get('url'):  # pagina nuova creata dal pannello senza indirizzo: si usa il nome del file
+            p['url'] = '/' + os.path.splitext(os.path.basename(f))[0] + '/'
+        p['url'] = '/' + p['url'].strip('/') + '/'
+        p['slug'] = p['url'].strip('/')
+        p.setdefault('title', p.get('menu_label') or p['slug'])
+    except Exception as ex:  # un file rovinato non deve bloccare l'aggiornamento di tutto il sito
+        print(f'ATTENZIONE: pagina saltata {os.path.basename(f)}: {ex}'); continue
     PAGES.append(p)
-PAGES.sort(key=lambda p: p.get('order', 99))
+PAGES.sort(key=lambda p: p.get('order') if isinstance(p.get('order'), (int, float)) else 99)
 BYSLUG = {p['slug']: p for p in PAGES}
 
 MONTHS = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre']
@@ -41,13 +48,17 @@ def slugify(s):
 
 POSTS = []
 for f in glob.glob(f'{ROOT}/content/posts/*.md'):
-    raw = open(f, encoding='utf-8').read()
-    m = re.match(r'^---\s*\n(.*?)\n---\s*\n(.*)$', raw, re.S)
-    fm, body = (yaml.safe_load(m.group(1)), m.group(2)) if m else ({}, raw)
-    if fm.get('draft'): continue
-    d = fm.get('date')
-    if isinstance(d, str): d = datetime.date.fromisoformat(d[:10])
-    elif isinstance(d, datetime.datetime): d = d.date()
+    try:
+        raw = open(f, encoding='utf-8').read()
+        m = re.match(r'^---\s*\n(.*?)\n---\s*(?:\n(.*))?$', raw, re.S)
+        fm, body = (yaml.safe_load(m.group(1)) or {}, m.group(2) or '') if m else ({}, raw)
+        if fm.get('draft'): continue
+        d = fm.get('date')
+        if isinstance(d, str): d = datetime.date.fromisoformat(d[:10])
+        elif isinstance(d, datetime.datetime): d = d.date()
+        if not fm.get('title'): fm['title'] = 'Articolo senza titolo'
+    except Exception as ex:  # un articolo rovinato non deve bloccare l'aggiornamento di tutto il sito
+        print(f'ATTENZIONE: articolo saltato {os.path.basename(f)}: {ex}'); continue
     name = re.sub(r'^\d{4}-\d{2}-\d{2}-', '', os.path.splitext(os.path.basename(f))[0])
     url = fm.get('url') or f'/{slugify(name)}/'
     POSTS.append(dict(fm, date=d, body=body, slug=url.strip('/'), url='/' + url.strip('/') + '/'))
@@ -73,7 +84,12 @@ def image_variants(src):
     path = os.path.join(ROOT, 'static', unquote(src).lstrip('/'))
     if not os.path.exists(path):
         IMGCACHE[src] = None; return None
-    im = ImageOps.exif_transpose(Image.open(path))
+    try:
+        im = ImageOps.exif_transpose(Image.open(path))
+        im.load()
+    except Exception as ex:  # formato non leggibile (es. HEIC): la foto viene usata così com'è, il sito si aggiorna comunque
+        print(f'ATTENZIONE: immagine non elaborabile {src}: {ex}')
+        IMGCACHE[src] = None; return None
     W, H = im.size
     base, ext = os.path.splitext(unquote(src).lstrip('/'))
     out = []
@@ -89,15 +105,30 @@ def image_variants(src):
     IMGCACHE[src] = (out, H / W)
     return IMGCACHE[src]
 
-def img(src, alt='', sizes='(max-width: 820px) 100vw, 60vw', eager=False):
+FOCUS = {  # "parte della foto da tenere visibile" scelta dal pannello -> object-position
+    'centro': '50% 50%', 'alto': '50% 12%', 'poco-alto': '50% 30%', 'poco-basso': '50% 70%', 'basso': '50% 88%',
+    'sinistra': '15% 50%', 'destra': '85% 50%', 'alto-sinistra': '15% 15%', 'alto-destra': '85% 15%',
+    'basso-sinistra': '15% 85%', 'basso-destra': '85% 85%'}
+def focus_pos(focus, ratio=None):
+    """Valore scelto dal pannello (o percentuali scritte a mano, es. '50% 30%'); se vuoto, le foto verticali
+    restano agganciate un po' più in alto, dove di solito ci sono i volti."""
+    f = str(focus or '').strip()
+    if f in FOCUS: return FOCUS[f]
+    if re.fullmatch(r'\d{1,3}% \d{1,3}%', f): return f
+    if ratio and ratio > 1.15: return '50% 28%'
+    return ''
+
+def img(src, alt='', sizes='(max-width: 820px) 100vw, 60vw', eager=False, focus=None):
     v = image_variants(src or '')
     if not v:
         return f'<img src="{e(src)}" alt="{e(alt)}" loading="lazy">' if src else ''
     vs, ratio = v
+    pos = focus_pos(focus, ratio)
+    pos = f' style="object-position:{pos}"' if pos else ''
     mid = next((u, w) for u, w in vs if w >= 960) if any(w >= 960 for _, w in vs) else vs[-1]
     load = ' fetchpriority="high"' if eager else ' loading="lazy" decoding="async"'
     srcset = ', '.join(f'{u} {w}w' for u, w in vs)
-    return f'<img src="{mid[0]}" srcset="{srcset}" sizes="{sizes}" alt="{e(alt)}" width="{mid[1]}" height="{round(mid[1] * ratio)}"{load}>'
+    return f'<img src="{mid[0]}" srcset="{srcset}" sizes="{sizes}" alt="{e(alt)}" width="{mid[1]}" height="{round(mid[1] * ratio)}"{pos}{load}>'
 
 def og_image(src):
     v = image_variants(src or '')
@@ -167,9 +198,11 @@ def render_blocks(blocks, ctx='page'):
             out.append(f'<div class="prose">{h}</div>')
         elif t == 'image':
             cap = f'<figcaption>{e(b["caption"])}</figcaption>' if b.get('caption') else ''
-            im = img(b.get('src'), b.get('alt') or b.get('caption') or '')
+            im = img(b.get('src'), b.get('alt') or b.get('caption') or '', focus=b.get('focus'))
             if b.get('link'): im = f'<a href="{e(b["link"])}">{im}</a>'
-            out.append(f'<figure>{im}{cap}</figure>')
+            v = image_variants(b.get('src') or '')
+            tall = ' class="fig-tall"' if v and v[1] > 1.1 else ''  # foto verticali: intere, non ritagliate a striscia
+            out.append(f'<figure{tall}>{im}{cap}</figure>')
         elif t == 'divider':
             if ctx == 'page': out.append('<hr class="divider">')
         elif t == 'button':
@@ -385,7 +418,7 @@ def cta_aside():
 # ---------------- pages ----------------
 def post_card(p, feature=False):
     cover = p.get('cover') or first_md_image(p['body'])
-    ph = img(cover, p['title'], sizes='(max-width:620px) 100vw, 33vw') if cover else '<span class="ph-fallback"><img src="/assets/logo-192.png" alt="" width="192" height="192" loading="lazy"></span>'
+    ph = img(cover, p['title'], sizes='(max-width:620px) 100vw, 33vw', focus=p.get('cover_focus')) if cover else '<span class="ph-fallback"><img src="/assets/logo-192.png" alt="" width="192" height="192" loading="lazy"></span>'
     ex = p.get('excerpt') or trim(plain(md(p['body'])), 200)
     d = p['date']
     return (f'<a class="post-card{" feature" if feature else ""}" href="{e(p["url"])}"><div class="ph">{ph}</div>'
@@ -412,10 +445,10 @@ def build_home():
     gal = [g for g in (H.get('gallery') or []) if g.get('image')]
     def slide(i, g):
         hid = ' aria-hidden="true"' if i else ''
-        pos = f' style="--pos:{e(g["position"])}"' if g.get('position') else ''
+        pos = ''
         on = ' is-on' if i == 0 else ''
         return (f'<figure class="hs{on}" role="group" aria-roledescription="slide" aria-label="{i + 1} di {len(gal)}"{hid} data-caption="{e(g.get("caption"))}"{pos}>'
-                f'{img(g.get("image"), g.get("caption") or "", sizes="100vw", eager=(i == 0))}</figure>')
+                f'{img(g.get("image"), g.get("caption") or "", sizes="100vw", eager=(i == 0), focus=g.get("focus") or g.get("position"))}</figure>')
     slides = ''.join(slide(i, g) for i, g in enumerate(gal))
     bars = ''.join(f'<button type="button" class="hb-dot" aria-label="Foto {i + 1} di {len(gal)}"><i></i></button>' for i in range(len(gal)))
     words = []
@@ -477,11 +510,11 @@ def build_home():
 <ul class="places">{places}</ul>
 <div class="sched"><p class="sched-title">{e(H.get('schedule_title'))}</p><ul>{sched}</ul></div>
 <div class="cta-row"><a class="btn btn-text" href="/bambini-e-ragazzi/">Corsi bambini e ragazzi →</a><a class="btn btn-text" href="/parkour-movimentonaturale-yoga-padova/">Corsi per adulti →</a></div></div>
-<figure class="blob-img" data-reveal>{img(H.get('where_image'), 'Allievi di Uncensored Runners durante un allenamento', sizes='(max-width:820px) 80vw, 440px')}</figure>
+<figure class="blob-img" data-reveal>{img(H.get('where_image'), 'Allievi di Uncensored Runners durante un allenamento', sizes='(max-width:820px) 80vw, 440px', focus=H.get('where_focus'))}</figure>
 </div></div>
 {trail('rl')}
 <div class="step step-l">{badge(3, ' badge-hot')}<div class="step-body step-split step-split-r">
-<figure class="arch-img" data-reveal>{img(q.get('image'), q.get('author'), sizes='(max-width:820px) 80vw, 400px')}</figure>
+<figure class="arch-img" data-reveal>{img(q.get('image'), q.get('author'), sizes='(max-width:820px) 80vw, 400px', focus=q.get('focus'))}</figure>
 <div class="flow" data-reveal><p class="eyebrow">{e(H.get('trainers_eyebrow'))}</p><h2>{e(H.get('trainers_title'))}</h2><p class="muted">{e(H.get('trainers_text'))}</p>
 <blockquote class="quote"><p class="q-eyebrow">{e(q.get('eyebrow'))}</p>“{e(q.get('text'))}”</blockquote>
 <p class="sig"><b>{e(q.get('author'))}</b> · {e(q.get('role'))}</p>
@@ -520,7 +553,7 @@ def build_page(p):
     lay = p.get('layout')
     blocks = p.get('blocks') or []
     if p.get('head_image') and lay == 'standard':
-        blocks = [{'type': 'image', 'src': p['head_image'], 'alt': p.get('head_image_alt') or p.get('title'), 'caption': p.get('head_image_caption') or ''}] + list(blocks)
+        blocks = [{'type': 'image', 'src': p['head_image'], 'alt': p.get('head_image_alt') or p.get('title'), 'caption': p.get('head_image_caption') or '', 'focus': p.get('head_image_focus')}] + list(blocks)
     head = page_head(crumbs, p.get('tag'), p.get('title'), p.get('subtitle'), p.get('notice'))
     if lay == 'blog':
         withc = [x for x in POSTS if x.get('cover') or first_md_image(x['body'])]
@@ -533,7 +566,7 @@ def build_page(p):
     elif lay == 'contatti':
         def _fig(b):
             cap = '<figcaption>' + e(b.get('caption')) + '</figcaption>' if b.get('caption') else ''
-            return '<figure>' + img(b.get('src'), b.get('alt'), sizes='(max-width:820px) 100vw, 40vw') + cap + '</figure>'
+            return '<figure>' + img(b.get('src'), b.get('alt'), sizes='(max-width:820px) 100vw, 40vw', focus=b.get('focus')) + cap + '</figure>'
         photos = ''.join(_fig(b) for b in (p.get('blocks') or []) if b.get('type') == 'image')
         fb = f'<div class="card flow"><p class="eyebrow">Seguici su Facebook</p>{facebook_btn()}</div>' if S.get('facebook') else ''
         body = head + f'''<section class="section"><div class="wrap"><div class="cols" style="grid-template-columns:minmax(0,5fr) minmax(0,7fr)">
@@ -560,7 +593,7 @@ def build_post(i):
     body_html = re.sub(r'<p>(<img [^>]*>)</p>', r'<figure>\1</figure>', body_html)
     body_html = re.sub(r'<img alt="([^"]*)" src="(/uploads/[^"]+)"\s*/?>', lambda m: img(m.group(2), m.group(1), sizes='(max-width:860px) 100vw, 820px'), body_html)
     body_html = body_html.replace('<table', '<div class="table-scroll"><table').replace('</table>', '</table></div>')
-    cov = f'<figure class="cover">{img(cover, p["title"], sizes="(max-width:860px) 100vw, 820px", eager=True)}</figure>' if cover and not first_md_image(p['body']) else ''
+    cov = f'<figure class="cover">{img(cover, p["title"], sizes="(max-width:860px) 100vw, 820px", eager=True, focus=p.get("cover_focus"))}</figure>' if cover and not first_md_image(p['body']) else ''
     prev_p = POSTS[i + 1] if i + 1 < len(POSTS) else None
     next_p = POSTS[i - 1] if i > 0 else None
     pn = '<div class="pn">'
